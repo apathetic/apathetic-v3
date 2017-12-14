@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { navItems } from './data';
-
-// import * as siteActions from 'store/actions/site';
-// import './Gallery.css';
 
 class Nav extends Component {
   renderLinks() {
     return navItems.map((item) => {
       return (
         <li key={item.path}>
-          {item.title}
+          <Link to={item.path}>{item.title}</Link>
         </li>
       );
     });
