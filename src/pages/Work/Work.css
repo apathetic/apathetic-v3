@@ -1,0 +1,12 @@
+.work {
+  animation: breathe 4s infinite;
+}
+
+@keyframes breathe {
+  0% {
+    transform: rotateY(-23deg);
+  }
+  100% {
+    transform: rotateY(23deg);
+  }
+}

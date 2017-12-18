@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  transform: rotateZ(6deg) skew(3deg, -10deg);
 }
 
 .App-logo {
@@ -8,14 +9,21 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #111;
   height: 150px;
   padding: 20px;
   color: white;
+
+
+    transform: rotateZ(-11deg) translate(0vw, 0%);
+    text-align: center;
+    width: 110vmin;
+    transform-origin: left bottom;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 5.5em;
+  color: #212121;
 }
 
 .App-intro {

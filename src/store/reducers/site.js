@@ -6,14 +6,24 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
     case 'FETCH_SUCCESS':
-      return { ...state, items: action.payload.data.items };
+      return {
+        ...state,
+        items: action.payload.data.items,
+        status: 'success'
+      };
 
     case 'FETCH_ERROR':
       console.log('error');
-      break;
+      return {
+        ...state,
+        status: 'error',
+        // items: []
+      };
 
     case 'FETCH_PENDING':
-      return { fetching: true }
+      return {
+        status: 'fetching'
+      }
 
     default:
       return state;

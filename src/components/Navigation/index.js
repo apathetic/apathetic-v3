@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { navItems } from './data';
 
-class Nav extends Component {
+import './Navigation.css';
+
+class Navigation extends Component {
   renderLinks() {
     return navItems.map((item) => {
       return (
-        <li key={item.path}>
-          <Link to={item.path}>{item.title}</Link>
+        <li key={item.path} className="Navigation-item">
+          <Link to={item.path} className="Navigation-link">{item.title}</Link>
         </li>
       );
     });
@@ -15,8 +17,8 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav>
-        <ul>
+      <nav className="Navigation">
+        <ul className="Navigation-list">
           { this.renderLinks() }
         </ul>
       </nav>
@@ -25,4 +27,4 @@ class Nav extends Component {
 }
 
 
-export default Nav;
+export default Navigation;

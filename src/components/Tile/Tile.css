@@ -1,10 +1,18 @@
 
 
 .site {
-  border: 2px solid rgba(0,0,0, 0.12);
+  border: 2px solid black;
+  cursor: pointer;
   flex: 1;
   margin: 0.1em;
   padding: 1em;
+  transition: all 1s;
+}
+
+.site.active {
+  transform: scale(2.2) rotate(12deg) skew(12deg, -6deg);
+  background: rgba(11,11,11, 0.9);
+  z-index: 100;
 }
 
 .site:hover {

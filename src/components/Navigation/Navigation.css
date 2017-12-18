@@ -1,0 +1,19 @@
+.Navigation {
+  position: absolute;
+  right: 93px;
+  top: 43px;
+}
+
+.Navigation-list {
+  transform: skew(0deg, 6deg);
+}
+
+.Navigation-item {
+  display: inline-block;
+  list-style: none;
+}
+
+.Navigation-link {
+  padding: 1em;
+}
+

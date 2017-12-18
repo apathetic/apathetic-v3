@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import Tile from 'components/Tile';
+
 import * as siteActions from 'store/actions/site';
 import './Gallery.css';
 
@@ -11,25 +13,36 @@ class Gallery extends Component {
   };
 
   renderSites() {
-    return this.props.site.items.map((post, index) => {
+    return this.props.site.items.map((item, index) => {
       return (
-        <li className='list-item' key={post.sys.id}>
-          <h3>{post.fields.title}</h3>
-          <p>{post.fields.description}</p>
-          date
-          URL
-          keywords
+        <li className='grid-item' key={item.sys.id}>
+          <Tile data={item.fields}></Tile>
         </li>
       );
     });
   };
 
   render() {
-    return (
-      <ul className='list'>
-        { this.renderSites() }
-      </ul>
-    )
+    switch (this.props.site.status) {
+      case 'success':
+        return (
+          <ul className='grid'>
+            { this.renderSites() }
+          </ul>
+        );
+
+      case 'fetching':
+        return (
+          <p>Fetching...'</p>
+        );
+
+      case 'error':
+      default:
+        return (
+          <p>'ERROR';</p>
+        );
+    }
+
   }
 }
 
