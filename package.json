@@ -10,6 +10,7 @@
     "koa-router": "^7.3.0",
     "koa-send": "^4.1.1",
     "koa-static": "^4.0.2",
+    "three": "^0.89.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
