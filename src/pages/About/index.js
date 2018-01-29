@@ -4,8 +4,8 @@ import './About.css'
 class About extends Component {
   render() {
     return (
-      <div className='bold'>
-        <h2>about Page</h2>
+      <div className="container">
+      <pre>
         Front-End engineer, Huge Inc.
         New York, NY
         May '13 - present
@@ -26,13 +26,22 @@ Functional Programming
 NodeJS
 
 some php, python
+</pre>
 
-
-        http://www.github.com/apathetic
+      <ul>
+        <li>http://www.github.com/apathetic</li>
+        <li>https://github.com/apathetic/scrollify</li>
+        <li>https://github.com/apathetic/modular-synth</li>
+        <li>https://github.com/apathetic/flexicarousel</li>
+        <li>https://github.com/apathetic/panels</li>
+        <li>https://github.com/apathetic/stickynav</li>
+      </ul>
         http://apathetic.github.io/showcase/
 
 
 
+https://www.npmjs.com/package/@apatheticwes/flexicarousel
+https://www.npmjs.com/~apatheticwes
 
       </div>
     )

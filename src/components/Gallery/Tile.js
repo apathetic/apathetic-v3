@@ -39,7 +39,7 @@ class Tile extends Component {
     return (
       <div
           ref='expander'
-          className={['site', active].join(' ')}
+          className={['tile', active].join(' ')}
           style={this.state.style}
           onClick={this.toggle}>
         <h3>{this.props.data.title}</h3>

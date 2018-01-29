@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
 import * as THREE from 'three';
 import Bird from './Bird';
 import './Birds.css';
 
+const NUM_BIRDS = 200;
 let camera, scene, renderer;
 let particles = [];
 
@@ -12,13 +12,21 @@ class Birds extends Component {
     super(props);
 
     this.state = {
-      // camera, scene, renderer;
       mouseX: 0,
       mouseY: 0
     };
 
-    this.animate = () => { this._animate(); };
-    this.onMouseMove = () => { this._onMouseMove(); };
+    // this.animate = () => {
+    //   this._animate();
+    // };
+
+    this.mouseMove = e => {
+      this.onMouseMove(e);
+    };
+
+    this.resize = () => {
+      this.onResize();
+    };
 
     // params: field of view, aspect ratio for render output, near and far clipping plane.
     // also move the camera backwards so we can see stuff! (default position is 0,0,0)
@@ -37,33 +45,37 @@ class Birds extends Component {
     scene.add(camera);
 
     // figure out what the stuff in the scene looks like, draws it
-    renderer = new THREE.WebGLRenderer();
+    renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     this.makeGrid();
     this.makeParticles();
     camera.lookAt(scene.position);
-
-    // add the mouse move listener
-    // document.addEventListener('mousemove', onMouseMove, false);
-    // window.addEventListener('resize', onResizes);
   }
 
   componentDidMount() {
-    // the renderer's canvas domElement is added to the container
     this.container.appendChild(renderer.domElement);
+
+    window.addEventListener('resize', this.resize);
+    window.addEventListener('mousemove', this.mouseMove);
     this.animate();
   }
 
-  _onMouseMove(e) {
+  onMouseMove(e) {
     this.setState({
       mouseX: e.clientX,
       mouseY: e.clientY
     });
   }
 
-  _animate() {
-    requestAnimationFrame(this.animate);
+  onResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  };
+
+  animate() {
+    requestAnimationFrame(() => { this.animate() });
     this.draw();
   }
 
@@ -73,13 +85,15 @@ class Birds extends Component {
     // camera.position.z = Math.sin(timer) * 200;
     // camera.lookAt(scene.position);
 
-    // iterate through every particle
     particles.forEach(particle => {
-      // move it forward dependent on the mouseY position.
       particle.position.z += 1; //mouseY * 0.1;
+
+      // console.log(particle.geometry.vertices);
+      
 
       particle.phase =
         (particle.phase + (Math.max(0, particle.rotation.z) + 0.1)) % 62.83;
+
       particle.geometry.vertices[5].y = particle.geometry.vertices[4].y =
         Math.sin(particle.phase) * 5;
 
@@ -87,6 +101,14 @@ class Birds extends Component {
       if (particle.position.z > 1000) {
         particle.position.z -= 2000;
       }
+
+
+      // particle.elementsNeedUpdate = true;
+      // particle.verticesNeedUpdate = true;
+      // particle.morphTargetsNeedUpdate = true;
+      // particle.normalsNeedUpdate = true;
+      
+
     });
 
     renderer.render(scene, camera);
@@ -95,7 +117,7 @@ class Birds extends Component {
   makeParticles() {
     let bird;
 
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < NUM_BIRDS; i++) {
       bird = particles[i] = new THREE.Mesh(
         new Bird(),
         new THREE.MeshBasicMaterial({ color: 0xff0000 })
@@ -126,14 +148,14 @@ class Birds extends Component {
     for (let i = 0; i <= 20; i++) {
       const line1 = new THREE.Line(
         geometry,
-        new THREE.LineBasicMaterial({ color: 0xffffff, opacity: 0.2 })
+        new THREE.LineBasicMaterial({ color: 0x555555, opacity: 0.2 })
       );
       line1.position.z = i * 50 - 500;
       scene.add(line1);
 
       const line2 = new THREE.Line(
         geometry,
-        new THREE.LineBasicMaterial({ color: 0xffffff, opacity: 0.2 })
+        new THREE.LineBasicMaterial({ color: 0x555555, opacity: 0.2 })
       );
       line2.position.x = i * 50 - 500;
       line2.rotation.y = 90 * Math.PI / 180;
@@ -141,19 +163,11 @@ class Birds extends Component {
     }
   }
 
-  // function onResize(event) {
-  //   console.log('resizeeeing', renderer);
-  //   console.log('resizeeeing', window.innerWidth, window.innerHeight);
-  //   renderer.setSize(window.innerWidth, window.innerHeight);
-  // };
-
   render() {
     const { x, y } = this.state;
     return (
       <div
         className="birds"
-        onMouseMove={this._onMouseMove}
-        style={{ width: "inherit", height: "inherit", position: "absolute" }}
         ref={birds => (this.container = birds)}
       >
         <h1>

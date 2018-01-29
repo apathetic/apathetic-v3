@@ -1,51 +1,48 @@
-import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom'
+import React from "react";
+import { Switch, Route, Link, withRouter } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Birds from "components/Birds";
 import Navigation from "components/Navigation";
 import Footer from "components/Footer";
 
-import NotFound from 'pages/NotFound'
-import Home from 'pages/Home'
-import About from './pages/About'
-import Work from './pages/Work'
-import Contact from './pages/Contact'
+import NotFound from "pages/NotFound"
+import Home from "pages/Home"
+import About from "./pages/About"
+import Work from "./pages/Work"
+import Contact from "./pages/Contact"
 
-// import logo from './assets/icons/logo.svg';
-import './App.css';
+import "./App.css";
 
-const logo = '';
+// const App = ({ location }) => {
 
-class App extends Component {
-  render() {
-    return (
-      <div>
+const App = withRouter(({ location }) => 
+  <div className="">
+    <Birds />
 
-        <Birds></Birds>
+    <header className="App-header">
+      <Link to="/"> </Link>
+      <h1 className="App-title">Welcome to Wes</h1>
+    </header>
 
-        <header className="App-header">
-          <Link to='/'>
-            <img src={logo} className="App-logo" alt="logo" />
-          </Link>
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+    <Navigation />
 
-        <Navigation />
-
-        <main className="App">
-          <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/work" component={Work}/>
-            <Route path="/about" component={About}/>
-            <Route path="/contact" component={Contact}/>
-            <Route component={NotFound}/>
+    <main className="App">
+      <TransitionGroup>
+        <CSSTransition key={location.key} classNames="fade" timeout={1000}>
+          <Switch location={location}>
+            <Route exact path="/" component={Home} />
+            <Route path="/work" component={Work} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            <Route component={NotFound} />
           </Switch>
-        </main>
+        </CSSTransition>
+      </TransitionGroup>
+    </main>
 
-        <Footer />
-      </div>
-    );
-  }
-}
+    <Footer />
+  </div>
+);
 
 export default App;

@@ -1,9 +1,15 @@
+* {
+  position: relative;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   background: #212121;
   color: #bbb;
+  overflow-x: hidden;
 }
 
 /* -------------------------------- */
@@ -26,17 +32,14 @@ a:hover {
 
 /* -------------------------------- */
 
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  max-width: 100vmin;
+main {
+  transform: rotateZ(6deg) skew(3deg, -10deg);
 }
 
-.grid-item {
-  display: inline-flex;
-  height: 120px;
-  flex: 0 0 33.333%;
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 5%;
+
+  position: absolute;
 }

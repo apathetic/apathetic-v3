@@ -1,36 +1,17 @@
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  max-width: 100vmin;
 
-
-.site {
-  border: 2px solid rgba(0,0,0, 0.12);
-  flex: 1;
-  margin: 0.1em;
-  padding: 1em;
+  /* transform: rotateX(60deg) rotateY(0deg) rotateZ(-45deg); */
 }
 
-.site:hover {
-  border: 2px greenyellow dashed;
-  color: #fff;
-  animation: 2s stupid infinite;
-}
-
-
-@keyframes stupid {
-  0% {
-    border-color: chocolate;
-  }
-  22% {
-    border-color: darkmagenta;
-  }
-  46% {
-    border-color: turquoise;
-  }
-  58% {
-    border-color: khaki;
-  }
-  72% {
-    border-color: fuschia;
-  }
-  82% {
-    border-color: crimson;
-  }
+.grid-item {
+  display: inline-flex;
+  height: 120px;
+  flex: 0 0 33.333%;
+  min-width: 240px;
 }

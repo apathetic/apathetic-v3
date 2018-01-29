@@ -1,10 +1,8 @@
 import * as THREE from 'three';
-// import { Geometry } from 'three';
 
 export default class Bird extends THREE.Geometry {
   constructor() {
     super();
-  	// THREE.Geometry.call(this);
 
     this.v(   5,   0,   0 );
     this.v( - 5, - 2,   1 );
@@ -22,8 +20,6 @@ export default class Bird extends THREE.Geometry {
     this.f3( 5, 6, 7 );
 
   	this.computeFaceNormals();
-    // this.computeCentroids();
-    // this.computeFaceNormals();
   }
 
   v(x, y, z) {

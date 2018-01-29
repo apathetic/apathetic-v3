@@ -1,24 +1,13 @@
-.App {
-  text-align: center;
-  transform: rotateZ(6deg) skew(3deg, -10deg);
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
 
 .App-header {
   background-color: #111;
   height: 150px;
   padding: 20px;
   color: white;
-
-
-    transform: rotateZ(-11deg) translate(0vw, 0%);
-    text-align: center;
-    width: 110vmin;
-    transform-origin: left bottom;
+  transform: rotateZ(-11deg) translate(0vw, 0%);
+  text-align: center;
+  width: 110vmin;
+  transform-origin: left bottom;
 }
 
 .App-title {
@@ -26,11 +15,24 @@
   color: #212121;
 }
 
-.App-intro {
-  font-size: large;
+/* -------------------------------- */
+
+.fade-appear,
+.fade-enter {
+  opacity: 0;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.fade-appear-active,
+.fade-enter-active {
+  transition: opacity .3s linear;
+  opacity: 1;
+}
+
+.fade-exit {
+  transition: opacity .2s linear;
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
 }

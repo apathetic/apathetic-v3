@@ -1,3 +1,5 @@
-.bold{
-  fontWeight: 'bold'
+/**/
+
+pre {
+  white-space: inherit;
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Tile from 'components/Tile';
+import Tile from './Tile';
 
 import * as siteActions from 'store/actions/site';
 import './Gallery.css';
