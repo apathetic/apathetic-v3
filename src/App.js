@@ -16,20 +16,20 @@ import "./App.css";
 
 // const App = ({ location }) => {
 
-const App = withRouter(({ location }) => 
+const App = withRouter(({ location }) => (
   <div className="">
     <Birds />
 
-    <header className="App-header">
+    <header className="header">
       <Link to="/"> </Link>
-      <h1 className="App-title">Welcome to Wes</h1>
+      <h1 className="h1">Wes Hatch</h1>
+      <h2 className="h2">Front-end web dev</h2>
+      <Navigation />
     </header>
-
-    <Navigation />
 
     <main className="App">
       <TransitionGroup>
-        <CSSTransition key={location.key} classNames="fade" timeout={1000}>
+        <CSSTransition key={location.key} classNames="fade" timeout={300}>
           <Switch location={location}>
             <Route exact path="/" component={Home} />
             <Route path="/work" component={Work} />
@@ -43,6 +43,6 @@ const App = withRouter(({ location }) =>
 
     <Footer />
   </div>
-);
+));
 
 export default App;

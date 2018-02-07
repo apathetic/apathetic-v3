@@ -6,8 +6,8 @@ class Work extends Component {
 
   render() {
     return (
-      <div className="work container">
-        <Gallery></Gallery>
+      <div className="container">
+        <Gallery className="work"></Gallery>
       </div>
     )
   }

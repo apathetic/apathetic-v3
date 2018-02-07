@@ -8,8 +8,8 @@ class Navigation extends Component {
   renderLinks() {
     return navItems.map((item) => {
       return (
-        <li key={item.path} className="Navigation-item">
-          <Link to={item.path} className="Navigation-link">{item.title}</Link>
+        <li key={item.path} className="nav__item">
+          <Link to={item.path} className="nav__link">{item.title}</Link>
         </li>
       );
     });
@@ -17,8 +17,8 @@ class Navigation extends Component {
 
   render() {
     return (
-      <nav className="Navigation">
-        <ul className="Navigation-list">
+      <nav className="nav">
+        <ul className="nav__list">
           { this.renderLinks() }
         </ul>
       </nav>

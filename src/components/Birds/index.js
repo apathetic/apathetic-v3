@@ -170,9 +170,7 @@ class Birds extends Component {
         className="birds"
         ref={birds => (this.container = birds)}
       >
-        <h1>
-          Mouse coordinates: {x} {y}
-        </h1>
+        {/* <h1> Mouse coordinates: {x} {y}     </h1> */}
       </div>
     );
   }

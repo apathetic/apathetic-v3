@@ -1,51 +1,73 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './About.css'
 
-class About extends Component {
-  render() {
-    return (
-      <div className="container">
-      <pre>
-        Front-End engineer, Huge Inc.
-        New York, NY
-        May '13 - present
+const About = () => (
+  <div className="flex container">
+    <div className="column">
+      <p>
+        developing best practices, coding standards advocate for- and promoting
+        performance optimizations authorship of many core, reusable components
+        defined many front-end boilerplates mentoring junior developers ensuring
+        high quality, timely code delivery
+      </p>
+      <p>
+        Vue / Vuex, Angular 1.x, React Isomorphic Javascript Functional
+        Programming NodeJS some php, python
+      </p>
+    </div>
 
-
-        Senior front end developer,
-
-        developing best practices, coding standards
-        advocate for- and promoting performance optimizations
-        authorship of many core, reusable components
-        defined many front-end boilerplates
-        mentoring junior developers
-        ensuring high quality, elegant code delivery
-
-Vue / Vuex, Angular 1.x, React
-Isomorphic Javascript
-Functional Programming
-NodeJS
-
-some php, python
-</pre>
-
+    <div className="column">
+      <h3>Experience</h3>
       <ul>
-        <li>http://www.github.com/apathetic</li>
-        <li>https://github.com/apathetic/scrollify</li>
-        <li>https://github.com/apathetic/modular-synth</li>
-        <li>https://github.com/apathetic/flexicarousel</li>
-        <li>https://github.com/apathetic/panels</li>
-        <li>https://github.com/apathetic/stickynav</li>
+        <li>
+          <a href="https://docs.google.com/document/d/1eHbgSWL5puQnpyi2SiLGgqpW0Jp0W5t-dpUXdb461Gg">
+            wes hatch CV
+          </a>
+        </li>
       </ul>
-        http://apathetic.github.io/showcase/
+    </div>
 
+    <div className="column">
+      <h3>Demos</h3>
+      <ul>
+        <li>http://apathetic.github.io/showcase/</li>
+        <li>smash your friends</li>
+        <li>modular synth</li>
+        <li>malformed.ca</li>
+      </ul>
+    </div>
 
+    <div className="column">
+      <h3>Selected Repos</h3>
+      <ul>
+        <li>
+          <a href="https://github.com/apathetic/scrollify">scrollify</a>
+        </li>
+        <li>
+          <a href="https://github.com/apathetic/modular-synth">modular synth</a>
+        </li>
+        <li>
+          <a href="https://github.com/apathetic/flexicarousel">carousel</a>
+        </li>
+        <li>
+          <a href="https://">boilerplate ...</a>
+        </li>
+        <li>
+          <a href="https://github.com/apathetic/stickynav">this here site.</a>
+        </li>
+      </ul>
+    </div>
 
-https://www.npmjs.com/package/@apatheticwes/flexicarousel
-https://www.npmjs.com/~apatheticwes
-
-      </div>
-    )
-  }
-}
+    <div className="column">
+      <h3>Selected NPM packages</h3>
+      <ul>
+        <li><a href="https://www.npmjs.com/package/@apatheticwes/scrollify">scrollify</a></li>
+        <li><a href="https://www.npmjs.com/package/@apatheticwes/flexicarousel">carousel</a></li>
+        <li><a href="https://www.npmjs.com/package/@hugeinc/stickynav">stickynav</a></li>
+        <li><a href="https://www.npmjs.com/package/@hugeinc/panels">panels</a></li>
+      </ul>
+    </div>
+  </div>
+);
 
 export default About;

@@ -9,9 +9,11 @@ class Contact extends Component {
         <ul>
           <li>email: wes.hatch@gmail.com</li>
           <li>linkedin: https://www.linkedin.com/in/weshatch/</li>
+          <li>github: http://www.github.com/apathetic</li>
+          <li>npm: https://www.npmjs.com/~apatheticwes</li>
         </ul>
       </div>
-    )
+    );
   }
 }
 

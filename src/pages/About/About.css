@@ -1,4 +1,8 @@
 /**/
+.column:first-child {
+  flex-basis: 100%;
+  padding-right: 50%;
+}
 
 pre {
   white-space: inherit;

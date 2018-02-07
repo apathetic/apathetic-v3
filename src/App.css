@@ -1,19 +1,17 @@
 
-.App-header {
-  background-color: #111;
-  height: 150px;
+.header {
+  /* background-color: #111; */
+  /* height: 150px; */
   padding: 20px;
   color: white;
-  transform: rotateZ(-11deg) translate(0vw, 0%);
-  text-align: center;
-  width: 110vmin;
-  transform-origin: left bottom;
+  /* transform: rotateZ(-11deg) translate(0vw, 0%); */
+  /* text-align: center; */
+  /* width: 110vmin; */
+  /* transform-origin: left bottom; */
+  height: 80vh;
+  z-index: 1;
 }
 
-.App-title {
-  font-size: 5.5em;
-  color: #212121;
-}
 
 /* -------------------------------- */
 
@@ -29,10 +27,13 @@
 }
 
 .fade-exit {
-  transition: opacity .2s linear;
+  transition: opacity .2s linear, 
+              transform .3s linear;
   opacity: 1;
+  transform: translateY(0);
 }
 
 .fade-exit-active {
   opacity: 0;
+  transform: translateY(20px);
 }

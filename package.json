@@ -28,5 +28,8 @@
     "postinstall": "npm run build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@hugeinc/stickynav": "^0.5.8"
   }
 }

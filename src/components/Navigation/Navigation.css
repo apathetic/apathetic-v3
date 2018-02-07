@@ -1,19 +1,25 @@
-.Navigation {
+.nav {
+  border-bottom: 1px solid #444;
   position: absolute;
-  right: 93px;
-  top: 43px;
+  /* right: 93px; */
+  /* top: 43px; */
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
-.Navigation-list {
+.nav__list {
+  display: inline-block;
+  float: right;
   transform: skew(0deg, 6deg);
 }
 
-.Navigation-item {
+.nav__item {
   display: inline-block;
   list-style: none;
 }
 
-.Navigation-link {
+.nav__link {
   padding: 1em;
 }
 
