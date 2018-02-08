@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import { navItems } from './data';
+import React, { Component } from "react";
+import { Link } from "react-router-dom"
+import { navItems } from "./data";
+import stickyNav from "@hugeinc/stickynav";
 
-import './Navigation.css';
+import "./Navigation.css";
 
 class Navigation extends Component {
   renderLinks() {

@@ -1,5 +1,5 @@
 /**/
-.column:first-child {
+.column.gap {
   flex-basis: 100%;
   padding-right: 50%;
 }

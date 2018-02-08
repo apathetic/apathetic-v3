@@ -6,7 +6,7 @@ class Work extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="page container">
         <Gallery className="work"></Gallery>
       </div>
     )
