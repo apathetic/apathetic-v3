@@ -1,9 +1,9 @@
 import React from "react";
-import { Switch, Route, Link, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Birds from "components/Birds";
-import Navigation from "components/Navigation";
+import Header from "components/Header";
 import Footer from "components/Footer";
 
 import NotFound from "pages/NotFound"
@@ -14,20 +14,13 @@ import Contact from "./pages/Contact"
 
 import "./App.css";
 
-// const App = ({ location }) => {
-
 const App = withRouter(({ location }) => (
   <div className="">
     <Birds />
 
-    <header className="header">
-      <Link to="/"> </Link>
-      <h1 className="h1">Wes Hatch</h1>
-      <h2 className="h2">Front-end web dev</h2>
-      <Navigation />
-    </header>
+    <Header></Header>
 
-    <main className="App">
+    <main className="content">
       <TransitionGroup>
         <CSSTransition key={location.key} classNames="fade" timeout={300}>
           <Switch location={location}>

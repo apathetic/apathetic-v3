@@ -12,6 +12,10 @@ body {
   overflow-x: hidden;
 }
 
+body, html {
+  height: 100%;
+}
+
 /* -------------------------------- */
 
 h1, h2, h3, h4, h5 {
@@ -43,21 +47,33 @@ a:hover {
 /* -------------------------------- */
 
 main {
+  /* background: red; */
   background: rgba(0,0,0, 0.6);
-  min-height: 100vh;
-  /* transform: rotateZ(6deg) skew(3deg, -10deg); */
+  /* clip-path: polygon(0 0%, 100% 6%, 100% 94%, 0% 100%); */
+  clip-path: polygon(0 0%, 100% 6%, 100% 100%, 0% 100%);
+  min-height: calc(100vh - 64px);
+}
+
+main::before {
+  content: '';
+  clip-path: polygon(0 0%, 100% 6%, 100% 6.5%, 0% .5%);
+  position: absolute;
+  background: #222;
+  width: 100%;
+  height: 100%;
 }
 
 main > div {
-  transform: rotateZ(6deg) skew(3deg, -10deg);
+  /* transform: rotateZ(6deg) skew(3deg, -10deg); */
+  padding: 64px 0;
+  height: 100%;
 }
 
 .container {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 5%;
-
-  position: absolute;
+  width: 100%;
 }
 
 .flex {

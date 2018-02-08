@@ -1,15 +1,7 @@
 
-.header {
-  /* background-color: #111; */
-  /* height: 150px; */
-  padding: 20px;
-  color: white;
-  /* transform: rotateZ(-11deg) translate(0vw, 0%); */
-  /* text-align: center; */
-  /* width: 110vmin; */
-  /* transform-origin: left bottom; */
-  height: 80vh;
-  z-index: 1;
+
+.content .container {
+  position: absolute;
 }
 
 
