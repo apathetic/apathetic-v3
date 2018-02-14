@@ -30,6 +30,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "@hugeinc/stickynav": "^0.5.8"
+    "@apatheticwes/stickynav": "^0.5.8"
   }
 }

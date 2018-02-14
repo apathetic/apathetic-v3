@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import Tile from './Tile';
 
 import * as siteActions from 'store/actions/site';
+import sites from './data';
 import './Gallery.css';
 
 class Gallery extends Component {
@@ -20,10 +21,20 @@ class Gallery extends Component {
         </li>
       );
     });
+    // return this.props.sites.map((year, index) => {
+    //   Object.keys(year);
+    //   return (
+    //     <li className='grid-item' key={index}>
+    //       <Tile data={item.fields}></Tile>
+    //     </li>
+    //   );
+    // });
+
   };
 
   render() {
     switch (this.props.site.status) {
+    // switch ('success') {
       case 'success':
         return (
           <ul className='grid'>
@@ -42,12 +53,12 @@ class Gallery extends Component {
           <p>'ERROR';</p>
         );
     }
-
   }
 }
 
 const mapStateToProps = (state) => ({
   site: state.site
+  // sites: sites
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -58,6 +58,7 @@ class Birds extends Component {
 
     window.addEventListener('resize', this.resize);
     window.addEventListener('mousemove', this.mouseMove);
+
     this.animate();
   }
 
@@ -164,13 +165,12 @@ class Birds extends Component {
   }
 
   render() {
-    const { x, y } = this.state;
+    // const { x, y } = this.state;
     return (
       <div
         className="birds"
-        ref={birds => (this.container = birds)}
+        ref={ (birds) => { this.container = birds }}
       >
-        {/* <h1> Mouse coordinates: {x} {y}     </h1> */}
       </div>
     );
   }

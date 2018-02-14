@@ -7,7 +7,7 @@
   max-width: 100vmin;
 
   /* transform: rotateX(60deg) rotateY(0deg) rotateZ(-45deg); */
-  transform: rotateX(44deg) rotateY(18deg) rotateZ(-18deg);
+  /* transform: rotateX(44deg) rotateY(18deg) rotateZ(-18deg); */
 }
 
 .grid-item {

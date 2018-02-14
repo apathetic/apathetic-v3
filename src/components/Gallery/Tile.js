@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import './Tile.css';
 
 class Tile extends Component {
@@ -14,23 +14,23 @@ class Tile extends Component {
   }
 
   toggle(e) {
-    const dimensions = ReactDOM
-     .findDOMNode(this.refs['expander'])
-     .getBoundingClientRect();
+    // const dimensions = ReactDOM
+    //  .findDOMNode(this.refs['expander'])
+    //  .getBoundingClientRect();
 
-    // console.log(dimensions);
-    const style = {
-      position: 'fixed',
-      left: dimensions.x,
-      // top: dimensions.y,
-      width: dimensions.width,
-      color: 'blue'
-    };
+    // // console.log(dimensions);
+    // const style = {
+    //   position: 'fixed',
+    //   left: dimensions.x,
+    //   // top: dimensions.y,
+    //   width: dimensions.width,
+    //   color: 'blue'
+    // };
 
-    this.setState(prevState => ({
-      isActive: !prevState.isActive,
-      style: !prevState.isActive ? style : {}
-    }));
+    // this.setState(prevState => ({
+    //   isActive: !prevState.isActive,
+    //   style: !prevState.isActive ? style : {}
+    // }));
   }
 
   render() {
