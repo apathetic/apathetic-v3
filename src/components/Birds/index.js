@@ -4,6 +4,7 @@ import Bird from './Bird';
 import './Birds.css';
 
 const NUM_BIRDS = 200;
+const LINE_COLOUR = 0x333333;
 let camera, scene, renderer;
 let particles = [];
 
@@ -149,14 +150,14 @@ class Birds extends Component {
     for (let i = 0; i <= 20; i++) {
       const line1 = new THREE.Line(
         geometry,
-        new THREE.LineBasicMaterial({ color: 0x555555, opacity: 0.2 })
+        new THREE.LineBasicMaterial({ color: LINE_COLOUR, opacity: 0.2 })
       );
       line1.position.z = i * 50 - 500;
       scene.add(line1);
 
       const line2 = new THREE.Line(
         geometry,
-        new THREE.LineBasicMaterial({ color: 0x555555, opacity: 0.2 })
+        new THREE.LineBasicMaterial({ color: LINE_COLOUR, opacity: 0.2 })
       );
       line2.position.x = i * 50 - 500;
       line2.rotation.y = 90 * Math.PI / 180;

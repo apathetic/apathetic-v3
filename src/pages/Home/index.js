@@ -4,9 +4,9 @@ import './Home.css'
 class Home extends Component {
   render() {
     return (
-      <div className='bold'>
+      <section className='bold'>
         <h2>Home Page</h2>
-      </div>
+      </section>
     )
   }
 }

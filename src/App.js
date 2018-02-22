@@ -69,21 +69,10 @@ class App extends Component {
       }
     });
 
-
-
-
-
-
-
-
-
-
-
-
   }
 
   render() {
-    const { location } = this.props;
+    // const { location } = this.props;
 
     return (
       <div className="">
@@ -92,7 +81,8 @@ class App extends Component {
         <Header></Header>
 
         <main className="content" ref={(main) => { this.main = main; }}>
-          <TransitionGroup>
+
+          {/* <TransitionGroup>
             <CSSTransition key={location.key} classNames="fade" timeout={300}>
               <Switch location={location}>
                 <Route exact path="/" component={Home} />
@@ -102,9 +92,12 @@ class App extends Component {
                 <Route component={NotFound} />
               </Switch>
             </CSSTransition>
-          </TransitionGroup>
+          </TransitionGroup> */}
 
-
+          <Home />
+          <About />
+          <Work />
+          <Contact />
 
         </main>
 

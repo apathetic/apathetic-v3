@@ -41,17 +41,8 @@ body {
 
 main {
   min-height: calc(100vh - 64px);
-  /* background: rgba(0,0,0, 0.6);
-  clip-path: polygon(0 0, 100% 6vw, 100% 100%, 0% 100%); */
-
-  /* clip-path: polygon(
-    0    calc(var(--scroll_) * 80vw),
-    100% calc(var(--scroll_) * 86vw),
-    100% 100%,
-    0%,  100%
-  ); */
-
-  /* overflow: -webkit-paged-y; */
+  background: rgba(0,0,0, 0.6);
+  clip-path: polygon(0 0, 100% 6vw, 100% 100%, 0% 100%);
   overflow: hidden;
 }
 
@@ -61,7 +52,7 @@ main {
   /* position: relative !important; */
 }
 
-main > div {
+main > div.XXXXXXXXX {
   /* annoying div inserted by react transition */
   /* position: static; */
   position: absolute;
@@ -137,6 +128,7 @@ main > div {
   /* padding: 64px 0; */
   height: 100%;
 }
+
 .page {
   padding-top: 64px !important;
 }

@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import Tile from './Tile';
 
 import * as siteActions from 'store/actions/site';
-import sites from './data';
 import './Gallery.css';
 
 class Gallery extends Component {
@@ -33,26 +32,11 @@ class Gallery extends Component {
   };
 
   render() {
-    switch (this.props.site.status) {
-    // switch ('success') {
-      case 'success':
-        return (
-          <ul className='grid'>
-            { this.renderSites() }
-          </ul>
-        );
-
-      case 'fetching':
-        return (
-          <p>Fetching...'</p>
-        );
-
-      case 'error':
-      default:
-        return (
-          <p>'ERROR';</p>
-        );
-    }
+    return (
+      <ul className='grid'>
+        { this.renderSites() }
+      </ul>
+    );
   }
 }
 
