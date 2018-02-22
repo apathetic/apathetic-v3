@@ -44,6 +44,14 @@ a:hover {
   color: #fff;
 }
 
+ul {
+  list-style-type: none;
+}
+
+.bullets {
+  list-style-type: disc;
+}
+
 /* -------------------------------- */
 
 .container {

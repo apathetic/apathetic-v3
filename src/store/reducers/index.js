@@ -1,10 +1,16 @@
 import { combineReducers } from 'redux'
 
-import user from './user'
-import site from './site';
+import sites from "./sites";
+import demos from "./demos";
+import repos from "./repos";
+import logos from "./logos";
+import npm from "./npm";
 
 export default combineReducers({
-  site,
-  user
+  sites,
+  demos,
+  repos,
+  logos,
+  npm
 })
 

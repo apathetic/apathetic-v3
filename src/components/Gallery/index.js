@@ -1,56 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import Tile from './Tile';
-
-import * as siteActions from 'store/actions/site';
 import './Gallery.css';
 
 class Gallery extends Component {
-  componentWillMount() {
-    this.props.siteActions.fetchSites();
-  };
+  renderSites() {    
+    return this.props.site.list
+      .sort((a, b) => b.year - a.year)
+      .map((item, index) => {
+        return (
+          <li className="gallery__item" key={"site-"+index}>
+            <h3>{item.name}</h3>
+            <p>{item.description}</p>
+            {item.tech && 
+              <p>
+              {item.tech.map((t, i) => 
+                <span key={"tech-"+i}>{t}</span>
+              )}
+              </p>
+            }
+          </li>
+        )
+      });
+  }
 
-  renderSites() {
-    return this.props.site.items.map((item, index) => {
-      return (
-        <li className='grid-item' key={item.sys.id}>
-          <Tile data={item.fields}></Tile>
-        </li>
-      );
+  renderLogos() {
+    return this.props.logos.map((l, i) => {
+      return (<li key={"logo="+i}><img src={"/static/icons/logos/"+l} alt="" /></li>);
     });
-    // return this.props.sites.map((year, index) => {
-    //   Object.keys(year);
-    //   return (
-    //     <li className='grid-item' key={index}>
-    //       <Tile data={item.fields}></Tile>
-    //     </li>
-    //   );
-    // });
-
-  };
+  }
 
   render() {
     return (
-      <ul className='grid'>
-        { this.renderSites() }
-      </ul>
+      // <ul className="gallery">{this.renderSites()}</ul>
+      <ul className="gallery">{this.renderLogos()}</ul>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  site: state.site
-  // sites: sites
+  site: state.sites,
+  logos: state.logos.logos
 });
-
-const mapDispatchToProps = (dispatch) => ({
-  siteActions: bindActionCreators(siteActions, dispatch)
-});
-
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Gallery);
