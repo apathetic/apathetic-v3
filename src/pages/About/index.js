@@ -5,40 +5,36 @@ import './About.css'
 const About = (props) => {
   console.log(props);
   
-  return <section className="page">
+  return <section className="about section">
       <div className="container">
-        <div className="column gap">
+        <div className="block">
           <p>
-            developing best practices, coding standards advocate for- and
+            Hi. I'm a experienced front-end developer, developing best practices, coding standards advocate for- and
             promoting performance optimizations authorship of many core,
             reusable components defined many front-end boilerplates mentoring
             junior developers ensuring high quality, timely code delivery
           </p>
-          <p>
-            Vue / Vuex, Angular 1.x, React Isomorphic Javascript Functional
-            Programming NodeJS some php, python
-          </p>
         </div>
 
-        <div className="column">
+        <div className="block">
           <h3>Experience</h3>
           <ul>
             <li>
-              <a href="https://docs.google.com/document/d/1eHbgSWL5puQnpyi2SiLGgqpW0Jp0W5t-dpUXdb461Gg">
+              <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/document/d/1eHbgSWL5puQnpyi2SiLGgqpW0Jp0W5t-dpUXdb461Gg">
                 wes hatch CV
               </a>
             </li>
           </ul>
         </div>
 
-        <div className="column">
+        <div className="block">
           <h3>Demos</h3>
           <ul>
             {props.demos.map((d, i) => <li key={"demo-" + i}>{d}</li>)}
           </ul>
         </div>
 
-        <div className="column">
+        <div className="block">
           <h3>Selected Repos</h3>
           <ul className="bullets">
             {Object.keys(props.repos).map(function(r, i) {
@@ -47,7 +43,7 @@ const About = (props) => {
           </ul>
         </div>
 
-        <div className="column">
+        <div className="block">
           <h3>Selected NPM packages</h3>
           <ul>
             <li>

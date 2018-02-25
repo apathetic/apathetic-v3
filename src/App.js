@@ -1,26 +1,19 @@
 import React, { Component }  from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { Sticky } from "@apatheticwes/stickynav";
+// import { TransitionGroup, CSSTransition } from "react-transition-group";
+// import { Sticky } from "@apatheticwes/stickynav";
 
 import Birds from "components/Birds";
 import Header from "components/Header";
 import Footer from "components/Footer";
 
-import NotFound from "pages/NotFound"
-import Home from "pages/Home"
+// import NotFound from "pages/NotFound"
+// import Home from "pages/Home"
 import About from "./pages/About"
 import Work from "./pages/Work"
 import Contact from "./pages/Contact"
 
 import "./App.css";
-
-// when current nav item is clicked, act as a toggle, then:
-// filter: invert(84%);
-
-// handles the effect on load
-// body.style.filter = "invert( calc( var(--scrollparallax) * 1% ) )";
-
 
 
 // const App = withRouter(({ location }) => (
@@ -37,6 +30,8 @@ class App extends Component {
     let currentPosition = 0;
     const scrollContainer = document.documentElement;
     const scrollContent = document.querySelector("main > div");
+
+    if (!scrollContent) return;
 
     const scrollTotal = scrollContainer.scrollHeight - scrollContainer.offsetHeight;
     const xxx = scrollTotal + scrollContent.scrollHeight - scrollContent.offsetHeight;
@@ -94,7 +89,6 @@ class App extends Component {
             </CSSTransition>
           </TransitionGroup> */}
 
-          <Home />
           <About />
           <Work />
           <Contact />

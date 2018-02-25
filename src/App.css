@@ -110,7 +110,7 @@ body {
 
 /* interesting poly effect, within main */
 /* main::after { */
-main > div::after {
+.section::after {
   content: '';
   clip-path: polygon(0 0, 100% 6vw, 100% 100%, 0% 0%);
   position: absolute;
@@ -123,7 +123,7 @@ main > div::after {
   z-index: -1;
 }
 
-main > div {
+.section {
   /* transform: rotateZ(6deg) skew(3deg, -10deg); */
   /* padding: 64px 0; */
   height: 100%;

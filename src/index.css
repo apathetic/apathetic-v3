@@ -1,3 +1,15 @@
+:root {
+  --skew: 3deg;
+  --min-width: 320px;
+  --max-width: 480px;
+  --colour-reflect: #1b1b1b; /* 0,0,0 at 0.4 */
+  /* --colour-reflect: rgba(0,0,0, 0.4); */
+}
+
+
+/* -------------------------------- */
+
+
 * {
   position: relative;
   box-sizing: border-box;
@@ -6,7 +18,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
+  /* font-family: 'Space Mono', monospace; */
+  font-family: 'Nunito', sans-serif;
   background: #212121;
   color: #bbb;
   overflow-x: hidden;
@@ -18,9 +32,10 @@ body, html {
 
 /* -------------------------------- */
 
-h1, h2, h3, h4, h5 {
-  margin: 0 0 0.2em;
+h1, h2, h3, h4 {
+  margin: 0;
   color: rgba(158, 158, 158, 1);
+  font-weight: 100;
 }
 
 .h1 {
@@ -29,6 +44,14 @@ h1, h2, h3, h4, h5 {
 
 .h2 {
   font-size: 18px;
+}
+
+h3 {
+  margin: 0 0 0.2em;
+}
+
+.heavy {
+  font-weight: 600;
 }
 
 
@@ -46,6 +69,8 @@ a:hover {
 
 ul {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .bullets {
@@ -55,7 +80,8 @@ ul {
 /* -------------------------------- */
 
 .container {
-  max-width: 960px;
+  max-width: 480px;
+  min-width: 320px;
   margin: 0 auto;
   padding: 0 5%;
   width: 100%;
@@ -64,17 +90,19 @@ ul {
 /* .page {
   position: absolute;
 } */
+section {
+  padding: 64px 0;
+}
 
 .flex {
   display: flex;
   flex-wrap: wrap;
 }
 
-.column {
-  flex: 0 0 50%;
+.block {
+  /* flex: 0 0 50%; */
   border: 30px solid transparent;
-
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 

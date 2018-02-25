@@ -60,7 +60,7 @@ class Birds extends Component {
     window.addEventListener('resize', this.resize);
     window.addEventListener('mousemove', this.mouseMove);
 
-    this.animate();
+    // this.animate();
   }
 
   onMouseMove(e) {

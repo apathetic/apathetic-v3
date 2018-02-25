@@ -33,7 +33,7 @@ router.get('/api', (context, next) => {
   return next();
 });
 
-router.get('/', renderPage);
+router.get('/', renderPage);   // router.use('^/$', renderPage);
 router.get(/\.?/, serve(rootPath)); // anything w/ extension
 router.get('/:page', renderPage);
 

@@ -5,6 +5,17 @@ import { Scroll, Sticky } from "@apatheticwes/stickynav";
 
 import "./Navigation.css";
 
+
+
+// when current nav item is clicked, act as a toggle, then:
+// filter: invert(84%);
+
+// handles the effect on load
+// body.style.filter = "invert( calc( var(--scrollparallax) * 1% ) )";
+
+
+
+
 class Navigation extends Component {
   constructor() {
     super();

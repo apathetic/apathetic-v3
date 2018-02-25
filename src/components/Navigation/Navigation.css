@@ -8,7 +8,7 @@
 .nav__list {
   /* display: inline-block; */
   float: right;
-  transform: skew(0deg, 6deg);
+  transform: skew(0deg, var(--skew));
 }
 
 .nav__item {

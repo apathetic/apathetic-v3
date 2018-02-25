@@ -4,7 +4,7 @@ import './Contact.css'
 class Contact extends Component {
   render() {
     return (
-      <section className="page">
+      <section className="contact section">
         <div className="container">
           <h2>Contact</h2>
           <ul>

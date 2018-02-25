@@ -1,12 +1,13 @@
 const initialState = {
   logos: [
     "mcm.svg",
-    "google.svg",
+    "walmart.svg",
     "hp.svg",
-    "mcm.svg",
-    "walmart.svg"
+    "nyulangone.svg",
+    "nbc.svg",
+    "google.svg"
   ]
-}
+};
 
 export default function reducer(state=initialState, action) {
   switch (action.type) {

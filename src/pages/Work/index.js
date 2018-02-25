@@ -6,9 +6,12 @@ class Work extends Component {
 
   render() {
     return (
-      <div className="page container">
-        <Gallery className="work"></Gallery>
-      </div>
+      <section className="work section">
+        <div className="container">
+          <h3>Selected Work</h3>
+          <Gallery></Gallery>
+        </div>
+      </section>
     )
   }
 }

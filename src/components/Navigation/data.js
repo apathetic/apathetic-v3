@@ -1,10 +1,4 @@
-// @flow
-export type NavigationItem = {|
-  title: string,
-  path: string
-|};
-
-export const navItems: Array<NavigationItem> = [
+export const navItems = [
   {
     title: "About",
     path: "/about"

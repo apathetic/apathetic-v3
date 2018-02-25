@@ -9,7 +9,7 @@ const Header = () => (
     <div className="parallax">
       <div className="weshatch-is-great">
         <h1 className="h1">Wes Hatch</h1>
-        <h2 className="h2">front-end web dev</h2>
+        <h2 className="h2 heavy">front-end developer</h2>
       </div>
     </div>
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Gallery.css';
 
+
 class Gallery extends Component {
   renderSites() {    
     return this.props.site.list
@@ -25,14 +26,25 @@ class Gallery extends Component {
 
   renderLogos() {
     return this.props.logos.map((l, i) => {
-      return (<li key={"logo="+i}><img src={"/static/icons/logos/"+l} alt="" /></li>);
+      const logo = require(`../../assets/icons/${l}`);
+      return (
+        <li className="grid-item" key={"logo="+i}>
+          <img className={"icon"+ (i%2 ? " icon--wide" : "")} src={ logo } alt="" />
+        </li>
+      );
+      
+      // return (
+      //   <li className="grid-item" key={"logo="+i}>
+      //     <Logo />
+      //   </li>
+      // );
     });
   }
 
   render() {
     return (
       // <ul className="gallery">{this.renderSites()}</ul>
-      <ul className="gallery">{this.renderLogos()}</ul>
+      <ul className="gallery grid">{this.renderLogos()}</ul>
     );
   }
 }
