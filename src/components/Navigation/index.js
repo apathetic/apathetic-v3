@@ -61,7 +61,7 @@ class Navigation extends Component {
         className="nav"
         ref={nav => { this.nav = nav; }}
       >
-        <div className="container">
+        <div className="container container--large">
           <ul className="nav__list">{this.renderLinks()}</ul>
         </div>
       </nav>

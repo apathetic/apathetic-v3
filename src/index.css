@@ -1,9 +1,12 @@
 :root {
   --skew: 3deg;
   --min-width: 320px;
-  --max-width: 480px;
+  --column-width: 480px;
+  --max-width: 960px;
   --colour-reflect: #1b1b1b; /* 0,0,0 at 0.4 */
   /* --colour-reflect: rgba(0,0,0, 0.4); */
+  --padding: 48px;
+  --transition: 0.2s;
 }
 
 
@@ -61,11 +64,36 @@ a {
   text-decoration: none;
   color: inherit;
   font-weight: bold;
+  color: #c8c8c8;
 }
 
 a:hover {
   color: #fff;
 }
+
+a::before {
+  content: '';
+  background: currentColor;
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+  border-radius: 5px;
+  transform: scaleX(0);
+  transition: var(--transition);
+}
+
+/* a:hover::before,
+a:focus::before {
+  visibility: visible;
+  transform: scaleX(1);
+} */
+
+
+/* -------------------------------- */
+
 
 ul {
   list-style-type: none;
@@ -77,22 +105,40 @@ ul {
   list-style-type: disc;
 }
 
+dt {
+  float: left;
+  clear: left;
+  width: 100px;
+  text-align: right;
+  padding-right: 0.5em;
+}
+
+dt::after {
+  content: ':';
+}
+
+
 /* -------------------------------- */
 
+
 .container {
-  max-width: 480px;
-  min-width: 320px;
+  max-width: var(--column-width);
+  min-width: var(--min-width);
   margin: 0 auto;
   padding: 0 5%;
   width: 100%;
 }
 
+.container--large {
+  max-width: var(--max-width);
+}
+
 /* .page {
   position: absolute;
 } */
-section {
-  padding: 64px 0;
-}
+/* section {
+  padding: var(--padding) 0;
+} */
 
 .flex {
   display: flex;
@@ -101,10 +147,14 @@ section {
 
 .block {
   /* flex: 0 0 50%; */
-  border: 30px solid transparent;
+  /* border: 30px solid transparent; */
   /* overflow: hidden; */
+  /* margin: calc(var(--padding) / 2) 0; */
 }
 
+.block + .block {
+  margin-top: var(--padding);
+}
 
 
  /* -------------------------------- */
@@ -137,3 +187,17 @@ section {
   filter: blur(3px);
   transform: translateY(20px);
 }
+
+
+
+main::-webkit-scrollbar,
+body::-webkit-scrollbar { 
+  display: none;
+}
+
+main,
+body {
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none; /*  -ms-autohiding-scrollbar; */
+}
+

@@ -4,9 +4,9 @@ const initialState = {
   repos: {
     "scrollify": "https://github.com/apathetic/scrollify",
     "modular synth": "https://github.com/apathetic/modular-synth",
-    "carousel": "https://github.com/apathetic/flexicarousel",
-    "boilerplate": "https://",
-    "this here site.": "https://github.com/apathetic/stickynav"
+    // "carousel": "https://github.com/apathetic/flexicarousel",
+    "boilerplate": "https://github.com/apathetic/boilerplate-react",
+    "this here site": "https://github.com/apathetic/apathetic-v2"
   }
 }
 

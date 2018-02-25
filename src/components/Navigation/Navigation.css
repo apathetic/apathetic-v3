@@ -20,6 +20,9 @@
   padding: 1em;
 }
 
+.nav__link::before {
+  display: none;
+}
 
 /* position: static; */
 

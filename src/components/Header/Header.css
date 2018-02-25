@@ -11,7 +11,8 @@
 .weshatch-is-great {
   position: absolute;
   width: 110%;
-  background: rgba(110,110,110, 0.2);
+  /* background: rgba(110,110,110, 0.2); */
+  background: var(--colour-reflect);
   transform: rotate(-4deg);
   padding: 12px 10%;
   left: -5%

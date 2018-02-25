@@ -4,11 +4,6 @@ body {
   background: #2121A1;
 }
 
-/*
-.birds { opacity: 0.4; }
-*/
-
-
 @keyframes colorize {
   0% {
     filter: hue-rotate(0deg);
@@ -44,48 +39,10 @@ main {
   background: rgba(0,0,0, 0.6);
   clip-path: polygon(0 0, 100% 6vw, 100% 100%, 0% 100%);
   overflow: hidden;
-}
-
-.page {
-  height: 100%;
-  overflow: auto;
-  /* position: relative !important; */
-}
-
-main > div.XXXXXXXXX {
-  /* annoying div inserted by react transition */
-  /* position: static; */
-  position: absolute;
-  top: 0;
-  height: 100%;
   width: 100%;
-
-  background: rgba(0,0,0, 0.6);
-  clip-path: polygon(0 0, 100% 6vw, 100% 100%, 0% 100%);
 }
 
-/* .xxx {
-  padding-right: 15px;
-}
-.xxx header {
-  top: -70vh;
-}
-
-.xxx main {
-  overflow: auto;
-  pointer-events: none;
-  position: fixed;
-  top: 10vh;
-  height: 90vh;
-  width: 100%;
-
-}
-.xxx main > div {
-  overflow: auto;
-  pointer-events: all;
-} */
-
-/* main > div::before { */
+/** top border */
 main::before {
   content: '';
   clip-path: polygon(0 0%, 100% 6vw, 100% 6.5vw, 0% .5vw);
@@ -96,21 +53,8 @@ main::before {
   z-index: 1;
 }
 
-
-.page::-webkit-scrollbar,
-body::-webkit-scrollbar { 
-  display: none;
-}
-.page,
-body {
-  overflow: -moz-scrollbars-none;
-  -ms-overflow-style: none; /*  -ms-autohiding-scrollbar; */
-}
-
-
 /* interesting poly effect, within main */
-/* main::after { */
-.section::after {
+main::after {
   content: '';
   clip-path: polygon(0 0, 100% 6vw, 100% 100%, 0% 0%);
   position: absolute;
@@ -124,12 +68,10 @@ body {
 }
 
 .section {
-  /* transform: rotateZ(6deg) skew(3deg, -10deg); */
-  /* padding: 64px 0; */
-  height: 100%;
+  padding: var(--padding) 0;
 }
 
 .page {
-  padding-top: 64px !important;
+  padding-top: var(--padding) !important;
 }
 

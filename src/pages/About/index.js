@@ -9,10 +9,11 @@ const About = (props) => {
       <div className="container">
         <div className="block">
           <p>
-            Hi. I'm a experienced front-end developer, developing best practices, coding standards advocate for- and
-            promoting performance optimizations authorship of many core,
-            reusable components defined many front-end boilerplates mentoring
-            junior developers ensuring high quality, timely code delivery
+            Hi. I'm a experienced front-end developer with a broad set of
+            skills. Usually I'm championing the newest coding paradigms in the
+            front-end world, but I also enjoy collaborating with designers on
+            UI/UX patterns and am equally at home within back-end
+            architecture, too.
           </p>
         </div>
 
@@ -29,7 +30,7 @@ const About = (props) => {
 
         <div className="block">
           <h3>Demos</h3>
-          <ul>
+          <ul className="bullets">
             {props.demos.map((d, i) => <li key={"demo-" + i}>{d}</li>)}
           </ul>
         </div>
@@ -38,34 +39,25 @@ const About = (props) => {
           <h3>Selected Repos</h3>
           <ul className="bullets">
             {Object.keys(props.repos).map(function(r, i) {
-              return (<li key={"repo-" + i}><a href={props.repos[r]}>{r}</a></li>);
+              return (
+                <li key={"repo-" + i}>
+                  <a href={props.repos[r]} target="_blank" rel="noopener noreferrer">{r}</a>
+                </li>
+              );
             })}
           </ul>
         </div>
 
         <div className="block">
           <h3>Selected NPM packages</h3>
-          <ul>
-            <li>
-              <a href="https://www.npmjs.com/package/@apatheticwes/scrollify">
-                scrollify
-              </a>
-            </li>
-            <li>
-              <a href="https://www.npmjs.com/package/@apatheticwes/flexicarousel">
-                carousel
-              </a>
-            </li>
-            <li>
-              <a href="https://www.npmjs.com/package/@hugeinc/stickynav">
-                stickynav
-              </a>
-            </li>
-            <li>
-              <a href="https://www.npmjs.com/package/@hugeinc/panels">
-                panels
-              </a>
-            </li>
+          <ul className="bullets">
+            {Object.keys(props.npm).map(function(n, i) {
+              return (
+                <li key={"npm-" + i}>
+                  <a href={props.npm[n]} target="_blank" rel="noopener noreferrer">{n}</a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
@@ -74,7 +66,7 @@ const About = (props) => {
 
 const mapStateToProps = state => ({
   demos: state.demos.demos,
-  npm: state.npm.npm,
+  npm: state.npm,
   repos: state.repos.repos
 });
 

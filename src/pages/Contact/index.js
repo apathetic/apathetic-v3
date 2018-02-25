@@ -7,12 +7,12 @@ class Contact extends Component {
       <section className="contact section">
         <div className="container">
           <h2>Contact</h2>
-          <ul>
-            <li>email: wes.hatch@gmail.com</li>
-            <li>linkedin: https://www.linkedin.com/in/weshatch/</li>
-            <li>github: http://www.github.com/apathetic</li>
-            <li>npm: https://www.npmjs.com/~apatheticwes</li>
-          </ul>
+          <dl>
+            <dt>email</dt>    <dd>wes.hatch@gmail.com</dd>
+            <dt>linkedin</dt> <dd>www.linkedin.com/in/weshatch/</dd>
+            <dt>github</dt>   <dd>www.github.com/apathetic</dd>
+            <dt>npm</dt>      <dd>www.npmjs.com/~apatheticwes</dd>
+          </dl>
         </div>
       </section>
     );

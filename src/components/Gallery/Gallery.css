@@ -12,10 +12,8 @@
 
 .grid-item {
   display: inline-flex;
-  height: 120px;
+  height: 96px;
   flex: 0 0 33.333%;
-  /* min-width: 240px; */
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,14 +21,10 @@
 
 
 .icon {
-  width: 64px;
+  width: 54px;
   filter: grayscale(100) contrast(0.5);
 }
 
 .icon--wide {
   width: 96px;
-}
-
-.grid-item:nth-child(4) .icon {
-  width: 128px;
 }
