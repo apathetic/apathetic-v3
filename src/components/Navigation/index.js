@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import { navItems } from "./data";
-import { Scroll, Sticky } from "@apatheticwes/stickynav";
 
 import "./Navigation.css";
 
@@ -27,14 +25,12 @@ class Navigation extends Component {
       // Scroll();
     };
 
-    this.toggle = (match, location) => {
-      const path = location.pathname;
-
-      if (!match) { return false; }
+    this.toggle = (path) => {
       if (this.state.path === path) {        
-        // document.body.classList.toggle("inversion");
+        document.body.classList.toggle("inversion");
+        this.setState({ path: "" });
       } else {
-        // this.setState({ path: path });
+        this.setState({ path: path });
       }
     };
   }
@@ -43,13 +39,7 @@ class Navigation extends Component {
     return navItems.map(item => {
       return (
         <li key={item.path} className="nav__item">
-          <NavLink 
-              to={item.path} 
-              isActive={this.toggle} 
-              className="nav__link"
-          >
-            <span onClick={this.jump}>{item.title}</span>
-          </NavLink>
+          <span onClick={() => this.toggle(item.path)} className="nav__link">{item.title}</span>
         </li>
       );
     });

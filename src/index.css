@@ -27,6 +27,7 @@ body {
   background: #212121;
   color: #bbb;
   overflow-x: hidden;
+  min-width: var(--min-width);
 }
 
 body, html {
@@ -125,7 +126,7 @@ dt::after {
   max-width: var(--column-width);
   min-width: var(--min-width);
   margin: 0 auto;
-  padding: 0 5%;
+  padding: 0 32px;
   width: 100%;
 }
 
@@ -133,23 +134,9 @@ dt::after {
   max-width: var(--max-width);
 }
 
-/* .page {
-  position: absolute;
-} */
-/* section {
-  padding: var(--padding) 0;
-} */
-
 .flex {
   display: flex;
   flex-wrap: wrap;
-}
-
-.block {
-  /* flex: 0 0 50%; */
-  /* border: 30px solid transparent; */
-  /* overflow: hidden; */
-  /* margin: calc(var(--padding) / 2) 0; */
 }
 
 .block + .block {
@@ -189,7 +176,7 @@ dt::after {
 }
 
 
-
+/* 
 main::-webkit-scrollbar,
 body::-webkit-scrollbar { 
   display: none;
@@ -198,6 +185,6 @@ body::-webkit-scrollbar {
 main,
 body {
   overflow: -moz-scrollbars-none;
-  -ms-overflow-style: none; /*  -ms-autohiding-scrollbar; */
+  -ms-overflow-style: none; 
 }
-
+ */

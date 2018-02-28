@@ -15,7 +15,6 @@ export default class Bird extends THREE.Geometry {
     this.v( - 3,   0,   0 );
 
     this.f3( 0, 2, 1 );
-    // this.f3( 0, 3, 2 );
     this.f3( 4, 7, 6 );
     this.f3( 5, 6, 7 );
 
@@ -27,6 +26,6 @@ export default class Bird extends THREE.Geometry {
   }
 
   f3(a, b, c) {
-    this.faces.push(new THREE.Face3( a, b, c ));
+    this.faces.push(new THREE.Face3(a, b, c ));
   }
 }

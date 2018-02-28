@@ -3,16 +3,14 @@ import { connect } from "react-redux";
 import './About.css'
 
 const About = (props) => {
-  console.log(props);
-  
   return <section className="about section">
       <div className="container">
         <div className="block">
           <p>
             Hi. I'm a experienced front-end developer with a broad set of
             skills. Usually I'm championing the newest coding paradigms in the
-            front-end world, but I also enjoy collaborating with designers on
-            UI/UX patterns and am equally at home within back-end
+            front-end world, but you'll also find me collaborating with 
+            designers on UI/UX patterns or messing around in back-end
             architecture, too.
           </p>
         </div>
@@ -67,7 +65,7 @@ const About = (props) => {
 const mapStateToProps = state => ({
   demos: state.demos.demos,
   npm: state.npm,
-  repos: state.repos.repos
+  repos: state.repos
 });
 
 export default connect(mapStateToProps)(About);

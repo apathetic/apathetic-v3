@@ -1,0 +1,8 @@
+@media(max-width:480px) {
+  .contact dt {
+    display: none;
+  }
+  .contact dd {
+    margin: 0;
+  }
+}

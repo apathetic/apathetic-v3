@@ -13,4 +13,5 @@
 
 .work {
   background: var(--colour-reflect);
+  opacity: 0.8;
 }

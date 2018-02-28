@@ -60,7 +60,7 @@ class Birds extends Component {
     window.addEventListener('resize', this.resize);
     window.addEventListener('mousemove', this.mouseMove);
 
-    // this.animate();
+    this.animate();
   }
 
   onMouseMove(e) {
@@ -87,57 +87,38 @@ class Birds extends Component {
     // camera.position.z = Math.sin(timer) * 200;
     // camera.lookAt(scene.position);
 
-    particles.forEach(particle => {
-      particle.position.z += 1; //mouseY * 0.1;
+    particles.forEach((bird, i) => {
+      bird.position.z += 1; //mouseY * 0.1;
+      // bird.phase = (bird.phase + (Math.max(0, bird.rotation.z) + 0.1)) % 62.83;
+      bird.phase = (bird.phase + 0.1) % 62.83;
+      bird.geometry.vertices[5].y = bird.geometry.vertices[4].y = Math.sin(bird.phase) * 5;
 
-      // console.log(particle.geometry.vertices);
-      
-
-      particle.phase =
-        (particle.phase + (Math.max(0, particle.rotation.z) + 0.1)) % 62.83;
-
-      particle.geometry.vertices[5].y = particle.geometry.vertices[4].y =
-        Math.sin(particle.phase) * 5;
-
-      // if the particle is too close move it to the back
-      if (particle.position.z > 1000) {
-        particle.position.z -= 2000;
+      // if the bird is too close move it to the back
+      if (bird.position.z > 1000) {
+        bird.position.z -= 2000;
       }
-
-
-      // particle.elementsNeedUpdate = true;
-      // particle.verticesNeedUpdate = true;
-      // particle.morphTargetsNeedUpdate = true;
-      // particle.normalsNeedUpdate = true;
-      
-
     });
 
     renderer.render(scene, camera);
   }
 
   makeParticles() {
-    let bird;
-
     for (let i = 0; i < NUM_BIRDS; i++) {
-      bird = particles[i] = new THREE.Mesh(
+      let bird = particles[i] = new THREE.Mesh(
         new Bird(),
-        new THREE.MeshBasicMaterial({ color: 0xff0000 })
+				new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide })
       );
       bird.phase = Math.floor(Math.random() * 62.83);
       bird.position.x = Math.random() * 1000 - 500;
       bird.position.y = Math.random() * 1000 - 500;
       bird.position.z = Math.random() * 2000 - 1000;
 
-      // we want the bird travelling along the z-axis
+      // we want the bird pointed so that it is going along the z-axis
       bird.rotation.y = Math.atan2(-1, 0); // Math.atan2(1, 0); "backwards"
       bird.rotation.z = 0; // Math.asin(1);
-
-      bird.doubleSided = true;
       // bird.scale.x = bird.scale.y = bird.scale.z = 10;
 
       scene.add(bird);
-      particles.push(bird);
     }
   }
 

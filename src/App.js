@@ -1,22 +1,15 @@
 import React, { Component }  from "react";
-import { Switch, Route, withRouter } from "react-router-dom";
-// import { TransitionGroup, CSSTransition } from "react-transition-group";
-// import { Sticky } from "@apatheticwes/stickynav";
 
 import Birds from "components/Birds";
 import Header from "components/Header";
 import Footer from "components/Footer";
 
-// import NotFound from "pages/NotFound"
-// import Home from "pages/Home"
 import About from "./pages/About"
 import Work from "./pages/Work"
 import Contact from "./pages/Contact"
 
 import "./App.css";
 
-
-// const App = withRouter(({ location }) => (
 class App extends Component {
   componentDidMount() {
     window.addEventListener("scroll", () => {
@@ -76,23 +69,9 @@ class App extends Component {
         <Header></Header>
 
         <main className="content" ref={(main) => { this.main = main; }}>
-
-          {/* <TransitionGroup>
-            <CSSTransition key={location.key} classNames="fade" timeout={300}>
-              <Switch location={location}>
-                <Route exact path="/" component={Home} />
-                <Route path="/work" component={Work} />
-                <Route path="/about" component={About} />
-                <Route path="/contact" component={Contact} />
-                <Route component={NotFound} />
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup> */}
-
           <About />
           <Work />
           <Contact />
-
         </main>
 
         <Footer />
@@ -100,10 +79,6 @@ class App extends Component {
     );
   }
 }
-  // ));
 
-// export default withRouter(({ location }) => (
-export default withRouter(App);
-
-// export default App;
+export default App;
 
