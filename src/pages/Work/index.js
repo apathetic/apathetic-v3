@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import Gallery from "components/Gallery";
+import Scrollify from "@apatheticwes/scrollify";
 import "./Work.css";
 
 class Work extends Component {
-
   render() {
     return (
       <section className="work section">
         <div className="container">
-          <h3>Selected Work</h3>
+          <h2>Selected Work</h2>
           <Gallery></Gallery>
         </div>
       </section>

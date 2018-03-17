@@ -1,38 +1,51 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Scrollify, fx } from "@apatheticwes/scrollify";
 import './Gallery.css';
 
 
 class Gallery extends Component {
-  renderSites() {    
-    return this.props.site.list
-      .sort((a, b) => b.year - a.year)
-      .map((item, index) => {
-        return (
-          <li className="gallery__item" key={"site-"+index}>
-            <h3>{item.name}</h3>
-            <p>{item.description}</p>
-            {item.tech && 
-              <p>
-              {item.tech.map((t, i) => 
-                <span key={"tech-"+i}>{t}</span>
-              )}
-              </p>
-            }
-          </li>
-        )
-      });
+  scrollify(el, i) {
+    const delay = (i%3) * 0.1;
+    new Scrollify(el).addScene({
+      start: 0.1 + delay,
+      duration: 0.3,
+      effects: [{
+        fn: fx.translateY,
+        options: {
+          to: 1,
+          from: 50
+        }
+      }, {
+        fn: fx.fade,
+        options: {
+          to: 1,
+          from: 0
+        }
+        
+      // }, {
+      //   fn: function(progress) {
+      //     const filter = `grayscale(${progress}) contrast(0.5))`;
+      //     this.element.style.filter = filter;
+      //   }
+      }]
+    });
   }
 
-  renderLogos() {
+  renderLogos() {    
     return this.props.logos.map((l, i) => {
       const logo = require(`../../assets/icons/${l}`);
       return (
-        <li className="grid-item" key={"logo="+i}>
-          <img className={"icon"+ (i%2 ? " icon--wide" : "")} src={ logo } alt="" />
+        <li className="grid-item" key={"logo=" + i}>
+          <img
+            ref={(el) => { this.scrollify(el, i); }}
+            className={"icon" + (i % 2 ? " icon--wide" : "")}
+            src={logo}
+            alt=""
+          />
         </li>
       );
-      
+
       // return (
       //   <li className="grid-item" key={"logo="+i}>
       //     <Logo />
@@ -43,7 +56,6 @@ class Gallery extends Component {
 
   render() {
     return (
-      // <ul className="gallery">{this.renderSites()}</ul>
       <ul className="gallery grid">{this.renderLogos()}</ul>
     );
   }

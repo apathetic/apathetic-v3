@@ -1,12 +1,11 @@
-/* TODO use columns: */
-/* .column.gap {
-  flex-basis: 100%;
-  padding-right: 50%;
-} */
-
-
-
-
 pre {
   white-space: inherit;
+}
+
+.intro {
+  font-size: 1.2em;
+}
+
+.not-white {
+  color: #c8a8c8;
 }

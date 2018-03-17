@@ -1,13 +1,9 @@
-// import { SET, RESET } from 'types/user'
-
 const initialState = {
-  demos: [
-    'http://apathetic.github.io/showcase/',
-    'smash your friends',
-    'modular synth',
-    'malformed.ca'
-  ]
-}
+  "component showcase": "http://apathetic.github.io/showcase/",
+  "smash your friends": "",
+  "modular synth": "http://dist-axkszcvddu.now.sh",
+  "malformed.ca": "http://malformed.ca"
+};
 
 export default function reducer(state=initialState, action) {
   switch (action.type) {

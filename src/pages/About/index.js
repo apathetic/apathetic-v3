@@ -1,69 +1,57 @@
 import React from 'react'
+import Block from "./Block";
 import { connect } from "react-redux";
 import './About.css'
 
 const About = (props) => {
   return <section className="about section">
       <div className="container">
-        <div className="block">
+        <div className="intro block">
           <p>
             Hi. I'm a experienced front-end developer with a broad set of
             skills. Usually I'm championing the newest coding paradigms in the
-            front-end world, but you'll also find me collaborating with 
+            front-end world, but you'll also find me collaborating with
             designers on UI/UX patterns or messing around in back-end
             architecture, too.
           </p>
+
+          <a className="not-white" target="_blank" rel="noopener noreferrer" href="https://docs.google.com/document/d/1eHbgSWL5puQnpyi2SiLGgqpW0Jp0W5t-dpUXdb461Gg">
+            wes hatch CV
+          </a>
         </div>
 
         <div className="block">
           <h3>Experience</h3>
-          <ul>
-            <li>
-              <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/document/d/1eHbgSWL5puQnpyi2SiLGgqpW0Jp0W5t-dpUXdb461Gg">
-                wes hatch CV
-              </a>
-            </li>
-          </ul>
+          <dl>
+            <dt>Front-end</dt>
+            <dd>CSS3, Javascript, ES6, Vue/Vuex, ThreeJS</dd>
+
+            <dt>Back-end</dt>
+            <dd>Node, php, python, Express/Koa, nginx</dd>
+
+            <dt>CMS</dt>
+            <dd>
+              Drupal, Wordpress, Sitecore, Contentful, Brightspot, Symfony,
+              Keystone
+            </dd>
+
+            <dt>Design</dt>
+            <dd>Photoshop, Sketch</dd>
+
+            <dt>Miscellany</dt>
+            <dd>Firebase, bash, git</dd>
+          </dl>
         </div>
 
-        <div className="block">
-          <h3>Demos</h3>
-          <ul className="bullets">
-            {props.demos.map((d, i) => <li key={"demo-" + i}>{d}</li>)}
-          </ul>
-        </div>
-
-        <div className="block">
-          <h3>Selected Repos</h3>
-          <ul className="bullets">
-            {Object.keys(props.repos).map(function(r, i) {
-              return (
-                <li key={"repo-" + i}>
-                  <a href={props.repos[r]} target="_blank" rel="noopener noreferrer">{r}</a>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-
-        <div className="block">
-          <h3>Selected NPM packages</h3>
-          <ul className="bullets">
-            {Object.keys(props.npm).map(function(n, i) {
-              return (
-                <li key={"npm-" + i}>
-                  <a href={props.npm[n]} target="_blank" rel="noopener noreferrer">{n}</a>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        <Block items={props.demos} title="Demos" />
+        <Block items={props.repos} title="Selected Repos" />
+        <Block items={props.npm} title="Selected NPM packages" />
       </div>
     </section>;
 };
 
 const mapStateToProps = state => ({
-  demos: state.demos.demos,
+  demos: state.demos,
   npm: state.npm,
   repos: state.repos
 });
