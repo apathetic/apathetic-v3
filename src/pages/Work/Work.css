@@ -12,6 +12,5 @@
 } */
 
 .work {
-  background: var(--colour-reflect);
-  opacity: 0.8;
+  background: rgba(var(--colour-bg), 0.8);
 }

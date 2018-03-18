@@ -1,5 +1,6 @@
 import React from 'react'
 import Block from "./Block";
+import BlockList from "./BlockList";
 import { connect } from "react-redux";
 import './About.css'
 
@@ -20,29 +21,7 @@ const About = (props) => {
           </a>
         </div>
 
-        <div className="block">
-          <h3>Experience</h3>
-          <dl>
-            <dt>Front-end</dt>
-            <dd>CSS3, Javascript, ES6, Vue/Vuex, ThreeJS</dd>
-
-            <dt>Back-end</dt>
-            <dd>Node, php, python, Express/Koa, nginx</dd>
-
-            <dt>CMS</dt>
-            <dd>
-              Drupal, Wordpress, Sitecore, Contentful, Brightspot, Symfony,
-              Keystone
-            </dd>
-
-            <dt>Design</dt>
-            <dd>Photoshop, Sketch</dd>
-
-            <dt>Miscellany</dt>
-            <dd>Firebase, bash, git</dd>
-          </dl>
-        </div>
-
+        <BlockList items={props.experience} title="Experience" />
         <Block items={props.demos} title="Demos" />
         <Block items={props.repos} title="Selected Repos" />
         <Block items={props.npm} title="Selected NPM packages" />
@@ -51,6 +30,7 @@ const About = (props) => {
 };
 
 const mapStateToProps = state => ({
+  experience: state.experience,
   demos: state.demos,
   npm: state.npm,
   repos: state.repos

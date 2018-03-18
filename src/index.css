@@ -4,7 +4,7 @@
   --column-width: 480px;
   --max-width: 960px;
   --colour-reflect: #1b1b1b; /* 0,0,0 at 0.4 */
-  /* --colour-reflect: rgba(0,0,0, 0.4); */
+  --colour-bg: 27, 27, 27;
   --padding: 48px;
   --transition: 0.2s;
 }

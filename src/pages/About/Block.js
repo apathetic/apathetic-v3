@@ -30,11 +30,11 @@ class Block extends Component {
   render() {
     const items = this.props.items;    
 
-    return <div className="block" ref={(el) => { this.scrollify(el); }}>
+    return <div className="block">
         <h3 ref={title => { this.title = title }}>
           {this.props.title}
         </h3>
-        <ul className="bullets">
+        <ul className="bullets" ref={(el) => { this.scrollify(el); }}>
           {Object.keys(items).map(function(r, i) {
             return (
               <li key={"item-" + i}>
