@@ -106,6 +106,7 @@ ul {
 }
 
 .bullets {
+  padding-left: 24px;
   list-style-type: disc;
 }
 

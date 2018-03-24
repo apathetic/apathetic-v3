@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Scrollify, fx } from '@apatheticwes/scrollify';
+import { Scrollify, fx, easings } from '@apatheticwes/scrollify';
 
 class BlockList extends Component {
   scrollify(el, side) {
@@ -8,9 +8,10 @@ class BlockList extends Component {
       duration: 0.3,
       effects: [{
         fn: fx.translateX,
+        easings: easings.easeInCubic,
         options: {
           to: 0,
-          from: side === 'left' ? -40 : 40
+          from: side === 'left' ? -45 : 75
         }
       }, {
         fn: fx.fade,
@@ -33,7 +34,7 @@ class BlockList extends Component {
         <dl>
         {Object.keys(items).map((r, i) => {
           return (
-            <React.Fragment>
+            <React.Fragment key={'list' + i}>
               <dt ref={(el) => { this.scrollify(el, 'left'); }}>{r}</dt>
               <dd ref={(el) => { this.scrollify(el, 'right'); }}>{items[r]}</dd>
             </React.Fragment>

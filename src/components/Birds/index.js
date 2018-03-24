@@ -82,16 +82,18 @@ class Birds extends Component {
   }
 
   draw() {
-    // var timer = Date.now() * 0.0001;
-    // camera.position.x = Math.cos(timer) * 200;
+    var timer = Date.now() * 0.0001;
+    camera.position.x = Math.cos(timer) * -500;
     // camera.position.z = Math.sin(timer) * 200;
-    // camera.lookAt(scene.position);
+    camera.lookAt(scene.position);
+
 
     particles.forEach((bird, i) => {
       bird.position.z += 1; //mouseY * 0.1;
-      // bird.phase = (bird.phase + (Math.max(0, bird.rotation.z) + 0.1)) % 62.83;
       bird.phase = (bird.phase + 0.1) % 62.83;
       bird.geometry.vertices[5].y = bird.geometry.vertices[4].y = Math.sin(bird.phase) * 5;
+
+      bird.geometry.verticesNeedUpdate = true;
 
       // if the bird is too close move it to the back
       if (bird.position.z > 1000) {

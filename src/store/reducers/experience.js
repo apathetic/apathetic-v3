@@ -1,5 +1,5 @@
 const initialState = {
-  "Front-end": "CSS3, Javascript, ES6, Vue/Vuex, ThreeJS",
+  "Front-end": "CSS3, Javascript, ES6, Vue/Vuex, Typescript, React, ThreeJS",
   "Back-end": "Node, php, python, Express/Koa, nginx",
   "CMS": "Drupal, Wordpress, Sitecore, Contentful, Brightspot, Symfony, Keystone",
   "Design": "Photoshop, Sketch",

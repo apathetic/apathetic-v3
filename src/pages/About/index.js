@@ -9,7 +9,7 @@ const About = (props) => {
       <div className="container">
         <div className="intro block">
           <p>
-            Hi. I'm a experienced front-end developer with a broad set of
+            Hi. I'm a front-end developer with a broad set of
             skills. Usually I'm championing the newest coding paradigms in the
             front-end world, but you'll also find me collaborating with
             designers on UI/UX patterns or messing around in back-end
