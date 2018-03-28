@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { Scrollify, fx } from '@apatheticwes/scrollify';
+import { Scrollify, fx, easings } from '@apatheticwes/scrollify';
 
 class Block extends Component {
   scrollify(el, i) {
-    const delay = (i%3) * 0.1;
-
     new Scrollify(el).addScene({
-      start: 0, // + delay,
-      duration: 0.3,
+      start: 0,
+      duration: 0.4,
+      easing: easings.easeInCubic,
       effects: [{
         fn: function(p) {
           const q = (1 - p);
           // const rotate = `rotate3d(0.7, 1, 0.1, -${p}deg)`;
           // const trapezoid = `perspective(${progress * 100 + 100}px) translateX(${p * -40}px) rotateY(-${p * 10}deg)`;    
-          const trapezoid = `perspective(${p * 100 + 100}px) translateY(${q * 50}px) rotateX(${q * 10}deg)`;    
+          const trapezoid = `perspective(${p * 100 + 100}px) translateY(${q * 20}px) rotateX(${q * 60}deg)`;    
 
           this.element.style.transform = trapezoid; // rotate;
         }
@@ -34,10 +33,10 @@ class Block extends Component {
         <h3 ref={title => { this.title = title }}>
           {this.props.title}
         </h3>
-        <ul className="bullets" ref={(el) => { this.scrollify(el); }}>
-          {Object.keys(items).map(function(r, i) {
+        <ul className="bullets">
+          {Object.keys(items).map((r, i) => {
             return (
-              <li key={"item-" + i}>
+              <li key={"item-" + i} ref={(el) => { this.scrollify(el); }}>
                 <a href={items[r]} target="_blank" rel="noopener noreferrer">
                   {r}
                 </a>

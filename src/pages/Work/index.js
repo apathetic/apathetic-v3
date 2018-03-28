@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Gallery from "components/Gallery";
-import Scrollify from "@apatheticwes/scrollify";
 import "./Work.css";
 
 class Work extends Component {

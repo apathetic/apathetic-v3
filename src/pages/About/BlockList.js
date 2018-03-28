@@ -6,9 +6,9 @@ class BlockList extends Component {
     new Scrollify(el).addScene({
       start: 0, // + delay,
       duration: 0.3,
+      easing: easings.easeOutCubic,
       effects: [{
         fn: fx.translateX,
-        easings: easings.easeInCubic,
         options: {
           to: 0,
           from: side === 'left' ? -45 : 75

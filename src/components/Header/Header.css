@@ -18,10 +18,11 @@
   left: -5%
 }
 
+/* 
 .parallax {
   will-change: transform, opacity;
   opacity: calc( 1 - calc(var(--scroll) * 0.01));
   transform: translateY(
     calc(var(--scroll) * 0.5px)
   );
-}
+} */
