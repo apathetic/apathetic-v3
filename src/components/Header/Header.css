@@ -19,6 +19,9 @@
 }
 
 /* 
+
+transform: perspective(1546px) translateY(-22%) rotateX(51deg);
+
 .parallax {
   will-change: transform, opacity;
   opacity: calc( 1 - calc(var(--scroll) * 0.01));

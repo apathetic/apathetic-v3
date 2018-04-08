@@ -1,6 +1,6 @@
 import React from 'react'
 import Navigation from "components/Navigation";
-import { Scrollify, fx, easings } from "@apatheticwes/scrollify";
+import { Scrollify, fx } from "@apatheticwes/scrollify";
 
 import './Header.css'
 

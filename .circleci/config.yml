@@ -1,0 +1,93 @@
+# 1. You push code to Github
+# 2. CircleCI runs your tests
+# 3. If your tests pass, then CircleCI will SSH -> droplet and execute a script
+# 4. The script will trigger your droplet to pull down the latest changes from Github.
+# 5. npm installs any new dependencies
+# 6. PM2 restarts the Node.js application.
+
+version: 2
+
+general:
+  # list of branches to build
+  branches:
+    only:
+      - master
+      - dev
+
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      - image: circleci/node:9.2.0
+
+    working_directory: ~/repo
+
+    steps:
+      # Check versions
+      - run:
+          name: Checking Versions
+          command: |
+            node --version
+            npm --version
+
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-npm-deps-{{ checksum "package-lock.json" }}
+            - v1-npm-deps
+      - run: 
+          name: Install NPM dependencies
+          # command: npm ci  #### npm version 5.8+
+          command: npm i
+      - save_cache:
+          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+
+      # Build and Test
+      - run: 
+          name: Build application
+          command: npm run build
+      # - run:
+      #     name: Tests
+      #     command: npm test
+      # - run:
+      #     name: Echo env
+      #     command: env
+
+      # Deploy and profit
+      - run:
+          name: Update Code in Droplet
+          # note: DROPLET_USER / DROPLET_IP vars are added in the CircleCI dashboard
+          command: |
+            echo "deploying..."
+            # ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP "cd /var/www/weshatch-v2; git pull; npm install"
+
+            ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP << EOF
+              cd /var/www/weshatch-v2/ #$DROPLET_PATH
+              git pull
+              npm install
+            EOF
+  
+      # - run:
+      #     name: Restart
+      #     command: pm2 start server/index.js -i max — name=\"wes hatch v2\"
+
+  # deployment:
+  #   master:
+  #     branch: master
+  #     commands:
+  #       # note: DROPLET_USER / DROPLET_IP vars are added in the CircleCI dashboard
+  #       - echo 'deploying'
+  #       - ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP
+  #       - cd $DROPLET_PATH
+  #       - git pull
+  #       - npm install
+
+  #   development:
+  #     branch: dev
+  #     commands:

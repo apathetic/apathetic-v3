@@ -1,7 +1,7 @@
 import Koa from 'koa';
 import Router from 'koa-router';
 import compression from 'koa-compress';
-import send from 'koa-send';
+// import send from 'koa-send';
 import serve from 'koa-static';
 
 import {render} from './render';
