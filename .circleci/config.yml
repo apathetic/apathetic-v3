@@ -55,9 +55,9 @@ jobs:
       # - run:
       #     name: Tests
       #     command: npm test
-      # - run:
-      #     name: Echo env
-      #     command: env
+      - run:
+          name: Echo env
+          command: env
 
       # Deploy and profit
       - run:
