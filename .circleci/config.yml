@@ -69,8 +69,11 @@ jobs:
 
             ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP << EOF
               cd /var/www/weshatch-v2/ #$DROPLET_PATH
+              pm2 stop wh2
               git pull
-              npm install
+              # npm install
+              pm2 start server/index.js --name "wh2"
+              exit
             EOF
   
       # - run:
@@ -91,3 +94,4 @@ jobs:
   #   development:
   #     branch: dev
   #     commands:
+  #       - scp -r $CIRCLE_PROJECT_REPONAME/* $DROPLET_USER@$DROPLET_IP:/var/www/weshatch-v2/
