@@ -1,8 +1,8 @@
 import React, { Component }  from "react";
 
-import Birds from "components/Birds";
-import Header from "components/Header";
-import Footer from "components/Footer";
+import Birds from "./components/Birds";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 import About from "./pages/About"
 import Work from "./pages/Work"

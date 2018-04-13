@@ -10,7 +10,7 @@ const { default: Store } = require('../src/store');
 const { default: App } = require('../src/App');
 
 
-export function render(url) {
+module.exports = function render(url) {
   const filePath = path.resolve(__dirname, '..', 'build', 'index.html')
 
   return new Promise((resolve, reject) => {

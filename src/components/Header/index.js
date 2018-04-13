@@ -1,8 +1,8 @@
-import React from 'react'
-import Navigation from "components/Navigation";
+import React from "react"
+import Navigation from "../Navigation";
 import { Scrollify, fx } from "@apatheticwes/scrollify";
 
-import './Header.css'
+import "./Header.css"
 
 const Header = () => {
   const toggle = () => {

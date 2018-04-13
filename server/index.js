@@ -1,12 +1,10 @@
-// require('babel-core/register');
 require('ignore-styles');
 require('babel-register')({
-  // ignore: /\/(build|node_modules)\//,
   presets: ['env', 'react-app']
 });
 
-const {default: app} = require('./app');
-const PORT = process.env.PORT || 3001;
+const { default: app } = require('./app');
+const PORT = process.env.PORT || 5000;
 
 
 app.listen(PORT, () => {

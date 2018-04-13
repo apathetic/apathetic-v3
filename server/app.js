@@ -1,12 +1,16 @@
-import Koa from 'koa';
-import Router from 'koa-router';
-import compression from 'koa-compress';
-// import send from 'koa-send';
-import serve from 'koa-static';
-
-import {render} from './render';
+// import Koa from 'koa';
+// import Router from 'koa-router';
+// import compression from 'koa-compress';
+// import serve from 'koa-static';
+// import {render} from './render';
 
 const path = require('path');
+const Koa = require('koa');
+const Router = require('koa-router');
+const compression = require('koa-compress');
+const serve = require('koa-static');
+const { render } = require('./render');
+
 const app = new Koa();
 const router = new Router();
 const rootPath = path.resolve(__dirname, '..', 'build/');
@@ -71,4 +75,5 @@ app.use(router.routes());
 
 
 
-export default app;
+// export default app;
+module.exports = app;
