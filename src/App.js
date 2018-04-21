@@ -11,20 +11,9 @@ import Contact from "./pages/Contact"
 import "./App.css";
 
 class App extends Component {
-  // componentDidMount() {
-  //   window.addEventListener("scroll", () => {
-  //     const scroll = window.pageYOffset;
-  //     const dist = Math.min(scroll / window.innerHeight, 1);
-
-  //     document.body.style.setProperty("--scroll", scroll);
-  //     document.body.style.setProperty("--scroll_", dist);
-  //   });
-  // }
-
   render() {
-
     return (
-      <div className="">
+      <div>
         <Birds />
 
         <Header></Header>

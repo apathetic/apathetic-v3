@@ -3,9 +3,8 @@ require('babel-register')({
   presets: ['env', 'react-app']
 });
 
-const { default: app } = require('./app');
+const app = require('./app');
 const PORT = process.env.PORT || 5000;
-
 
 app.listen(PORT, () => {
   console.log(`\x1b[32m App listening on port ${PORT}\x1b[0m\n`);
