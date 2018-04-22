@@ -70,7 +70,7 @@ jobs:
               pm2 stop wh2
               git pull
               # npm install
-              pm2 start server/index.js --name "wh2"
+              NODE_ENV=production pm2 start server/index.js --name "wh2"
               exit
             EOF
   

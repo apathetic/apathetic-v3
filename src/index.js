@@ -12,11 +12,13 @@ import registerServiceWorker from './registerServiceWorker';
 const initialState = {};
 const store = Store(initialState);
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
-, document.querySelector('body')
-);
+if (typeof window !== 'undefined') {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+    , document.querySelector('body')
+  );
+}
 
 registerServiceWorker();
