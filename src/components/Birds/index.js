@@ -12,6 +12,8 @@ class Birds extends Component {
   constructor(props) {
     super(props);
 
+    if (typeof window === 'undefined') return;
+
     this.state = {
       mouseX: 0,
       mouseY: 0

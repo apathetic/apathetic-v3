@@ -30,7 +30,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "@apatheticwes/scrollify": "^0.5.0",
+    "@apatheticwes/scrollify": "^0.5.1",
     "@apatheticwes/stickynav": "^0.5.8"
   }
 }

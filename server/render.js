@@ -19,16 +19,10 @@ module.exports = function render(url) {
         reject('read err', err);
       }
 
-      const context = {};
       const store = Store();
       const markup = renderToString(
         <Provider store={store}>
-          <StaticRouter
-            location={url}
-            context={context}
-          >
-            <App/>
-          </StaticRouter>
+          <App/>
         </Provider>
       );
       const response = indexFile.replace('{{SSR}}', markup);

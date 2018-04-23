@@ -3,12 +3,11 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const compression = require('koa-compress');
 const serve = require('koa-static');
-const { render } = require('./render');
+const render = require('./render');
 
 const app = new Koa();
 const router = new Router();
 const rootPath = path.resolve(__dirname, '..', 'build/');
-
 
 
 // Routes
