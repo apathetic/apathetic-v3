@@ -63,20 +63,21 @@ jobs:
       - run:
           name: Update Code in Droplet
           # note: DROPLET_USER / DROPLET_IP vars are added in the CircleCI dashboard
-          command: |
-            echo "deploying..."
-            ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP << EOF
-              cd /var/www/weshatch-v2/ #$DROPLET_PATH
-              pm2 stop wh2
-              git pull
-              # npm install
-              NODE_ENV=production pm2 start server/index.js --name "wh2"
-              exit
-            EOF
-  
+          command: scp -oStrictHostKeyChecking=no -r ./build ${DEPLOY_USER}@${DEPLOY_IP}:${DEPLOY_PATH}/build
+
       # - run:
-      #     name: Restart
-      #     command: pm2 start server/index.js -i max — name=\"wes hatch v2\"
+      #     name: Update Code in Droplet
+      #     # note: DROPLET_USER / DROPLET_IP vars are added in the CircleCI dashboard
+      #     command: |
+      #       echo "deploying..."
+      #       ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP << EOF
+      #         cd /var/www/weshatch-v2/ #$DROPLET_PATH
+      #         pm2 stop wh2
+      #         git pull
+      #         # npm install
+      #         NODE_ENV=production pm2 start server/index.js --name "wh2"
+      #         exit
+      #       EOF
 
   # deployment:
   #   master:
@@ -95,4 +96,4 @@ jobs:
   #   development:
   #     branch: dev
   #     commands:
-  #       - scp -r $CIRCLE_PROJECT_REPONAME/build $DROPLET_USER@$DROPLET_IP:/var/www/weshatch-v2/
+  #       - scp -r $CIRCLE_PROJECT_REPONAME/build $DROPLET_USER@$DROPLET_IP:/var/www/weshatch-v2/build
