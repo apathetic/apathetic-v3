@@ -41,7 +41,7 @@ class About extends Component {
           </div>
 
           <BlockList items={props.experience} title="Experience" />
-          <Block items={props.demos} title="Demos" />
+          <Block items={props.demos} title="Demos, Random things" />
           <Block items={props.repos} title="Selected Repos" />
           <Block items={props.npm} title="Selected NPM packages" />
         </div>

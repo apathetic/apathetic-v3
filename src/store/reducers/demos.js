@@ -1,6 +1,6 @@
 const initialState = {
   "component showcase": "http://apathetic.github.io/showcase/",
-  "smash your friends": "",
+  // "smash your friends": "",
   "modular synth": "http://dist-axkszcvddu.now.sh",
   "malformed.ca": "http://malformed.ca"
 };

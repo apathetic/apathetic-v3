@@ -4,7 +4,7 @@ const initialState = {
   "scrollify": "https://github.com/apathetic/scrollify",
   "modular synth": "https://github.com/apathetic/modular-synth",
   // "carousel": "https://github.com/apathetic/flexicarousel",
-  "boilerplate": "https://github.com/apathetic/boilerplate-react",
+  // "boilerplate": "https://github.com/apathetic/boilerplate-react",
   "this here site": "https://github.com/apathetic/apathetic-v2"
 }
 
