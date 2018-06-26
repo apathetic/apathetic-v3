@@ -9,9 +9,9 @@ class Contact extends Component {
           <h2>Contact</h2>
           <dl>
             <dt>email</dt>    <dd>wes.hatch@gmail.com</dd>
-            <dt>linkedin</dt> <dd>www.linkedin.com/in/weshatch/</dd>
-            <dt>github</dt>   <dd>www.github.com/apathetic</dd>
-            <dt>npm</dt>      <dd>www.npmjs.com/~apatheticwes</dd>
+            <dt>linkedin</dt> <dd><a href="http://linkedin.com/in/weshatch">linkedin.com/in/weshatch/</a></dd>
+            <dt>github</dt>   <dd><a href="http://github.com/apathetic">http://github.com/apathetic</a></dd>
+            <dt>npm</dt>      <dd><a href="http://npmjs.com/~apatheticwes">npmjs.com/~apatheticwes</a></dd>
           </dl>
         </div>
       </section>

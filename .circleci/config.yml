@@ -39,7 +39,7 @@ jobs:
           keys:
             - v1-npm-deps-{{ checksum "package-lock.json" }}
             - v1-npm-deps
-      - run: 
+      - run:
           name: Install NPM dependencies
           # command: npm ci  #### npm version 5.8+
           command: npm i
@@ -49,7 +49,7 @@ jobs:
             - node_modules
 
       # Build and Test
-      - run: 
+      - run:
           name: Build application
           command: npm run build
       # - run:
