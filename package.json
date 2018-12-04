@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
     "ignore-styles": "^5.0.1",
     "koa": "^2.4.1",
     "koa-compress": "^2.0.0",
@@ -14,7 +16,7 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.17",
+    "react-scripts": "^2.1.1",
     "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
     "redux-promise": "^0.5.3",
@@ -32,5 +34,11 @@
   "devDependencies": {
     "@apatheticwes/scrollify": "^0.5.1",
     "@apatheticwes/stickynav": "^0.5.8"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
