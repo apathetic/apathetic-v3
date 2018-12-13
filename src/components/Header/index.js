@@ -1,12 +1,13 @@
 import React from "react"
-import Navigation from "../Navigation";
+// import Navigation from "../Navigation";
 import { Scrollify, fx } from "@apatheticwes/scrollify";
 
 import "./Header.css"
 
 const Header = () => {
   const toggle = () => {
-    document.body.classList.toggle("inversion");
+    // document.body.classList.toggle("inversion");
+    document.documentElement.classList.toggle("inversion");
   }
 
   const scrollify = (el, i) => {
@@ -42,8 +43,8 @@ const Header = () => {
     <header className="header">
       <div className="parallax">
         <div className="weshatch-is-great">
-          <h1 className="h1" 
-              onClick={toggle} 
+          <h1 className="h1"
+              onClick={toggle}
               ref={(el) => { scrollify(el); }}>
             Wes Hatch
           </h1>
@@ -54,7 +55,7 @@ const Header = () => {
         </div>
       </div>
 
-      <Navigation />
+      {/* <Navigation /> */}
 
     </header>
   )
