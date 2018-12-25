@@ -52,9 +52,11 @@ jobs:
       - run:
           name: Build application
           command: npm run build
+
       # - run:
       #     name: Tests
       #     command: npm test
+
       - run:
           name: Echo env
           command: env

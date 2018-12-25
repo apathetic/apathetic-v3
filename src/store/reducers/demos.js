@@ -1,8 +1,8 @@
 const initialState = {
   "component showcase": "http://apathetic.github.io/showcase/",
   // "smash your friends": "",
-  "modular synth": "http://dist-axkszcvddu.now.sh",
-  "malformed.ca": "http://malformed.ca"
+  // "modular synth": "http://dist-axkszcvddu.now.sh",
+  "modular synth": "http://malformed.ca"
 };
 
 export default function reducer(state=initialState, action) {
