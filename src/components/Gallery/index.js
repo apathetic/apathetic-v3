@@ -36,15 +36,15 @@ class Gallery extends Component {
 
   renderLogos() {
     return this.props.logos.map((l, i) => {
-      // const logo = require(`../../assets/icons/${l}.svg`); // THIS WORKS FOR WEBPACK... BUT NOT SSR
+      const logo = require(`../../assets/icons/${l}.svg`); // THIS WORKS FOR WEBPACK... BUT NOT SSR
 
       return (
         <li className="grid-item" key={"logo=" + i}>
           <img
             ref={(el) => { this.scrollify(el, i); }}
             className={"icon" + (i % 2 ? " icon--wide" : "")}
-            // src={logo}
-            src={`/icons/${l}.svg`}
+            src={logo}
+            // src={`/icons/${l}.svg`}
             alt=""
           />
         </li>

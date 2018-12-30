@@ -1,3 +1,5 @@
+// NOTE: this kind of thing shouldn't really be in app state; it's
+// here more just for funsises
 const initialState = {
   logos: [
     "mcm",
