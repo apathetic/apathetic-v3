@@ -21,8 +21,6 @@
 body {
   margin: 0;
   padding: 0;
-  /* font-family: sans-serif; */
-  /* font-family: 'Space Mono', monospace; */
   font-family: 'Nunito', sans-serif;
   /* font-family: 'IBM Plex Sans', sans-serif; */
 
@@ -90,12 +88,6 @@ a::before {
   transform: scaleX(0);
   transition: var(--transition);
 }
-
-/* a:hover::before,
-a:focus::before {
-  visibility: visible;
-  transform: scaleX(1);
-} */
 
 
 /* -------------------------------- */
@@ -184,17 +176,3 @@ dd {
   filter: blur(3px);
   transform: translateY(20px);
 }
-
-
-/* 
-main::-webkit-scrollbar,
-body::-webkit-scrollbar { 
-  display: none;
-}
-
-main,
-body {
-  overflow: -moz-scrollbars-none;
-  -ms-overflow-style: none; 
-}
- */

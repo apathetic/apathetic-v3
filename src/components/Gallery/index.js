@@ -4,7 +4,6 @@ import { Scrollify, fx } from "@apatheticwes/scrollify";
 import './Gallery.css';
 
 // import { ReactComponent as MCMIcon } from '@/assets/mcm.svg';
-// ...etc
 
 class Gallery extends Component {
   scrollify(el, i) {
@@ -49,12 +48,6 @@ class Gallery extends Component {
           />
         </li>
       );
-
-      // return (
-      //   <li className="grid-item" key={"logo="+i}>
-      //     <Logo />
-      //   </li>
-      // );
     });
   }
 

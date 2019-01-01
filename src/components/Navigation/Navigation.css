@@ -3,12 +3,10 @@
   left: 0;
   bottom: -32px;
   width: 100%;
-  /* visibility: hidden; */
   opacity: 0;
 }
 
 .nav__list {
-  /* display: inline-block; */
   float: right;
   transform: skew(0deg, var(--skew));
 }
@@ -25,8 +23,6 @@
 .nav__link::before {
   display: none;
 }
-
-/* position: static; */
 
 .sticky {
   position: fixed;

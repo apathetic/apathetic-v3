@@ -1,5 +1,4 @@
 import React from "react"
-// import Navigation from "../Navigation";
 import { Scrollify, fx } from "@apatheticwes/scrollify";
 
 import "./Header.css"
@@ -54,9 +53,6 @@ const Header = () => {
           </h2>
         </div>
       </div>
-
-      {/* <Navigation /> */}
-
     </header>
   )
 };
