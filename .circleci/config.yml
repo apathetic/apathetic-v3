@@ -1,9 +1,7 @@
 # 1. You push code to Github
 # 2. CircleCI runs your tests
-# 3. If your tests pass, then CircleCI will SSH -> droplet and execute a script
-# 4. The script will trigger your droplet to pull down the latest changes from Github.
-# 5. npm installs any new dependencies
-# 6. PM2 restarts the Node.js application.
+# 3. If your tests pass, then CircleCI will build the app
+# 4. CircleCI with then copy the build product to the droplet.
 
 version: 2
 
@@ -64,41 +62,6 @@ jobs:
       # Deploy and profit
       - run:
           name: Update Code in Droplet
-          # command: ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP "cd /var/www/weshatch-v2/ && npm run clean"
-
-          # note: DROPLET_USER / DROPLET_IP vars are added in the CircleCI dashboard
           # note: the '.' after the source file is needed -- it tells scp to copy contents of the directory
           command: scp -oStrictHostKeyChecking=no -r ./build/. ${DROPLET_USER}@${DROPLET_IP}:${DROPLET_PATH}/build
 
-      # - run:
-      #     name: Update Code in Droplet
-      #     # note: DROPLET_USER / DROPLET_IP vars are added in the CircleCI dashboard
-      #     command: |
-      #       echo "deploying..."
-      #       ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP << EOF
-      #         cd /var/www/weshatch-v2/ #$DROPLET_PATH
-      #         pm2 stop wh2
-      #         git pull
-      #         # npm install
-      #         NODE_ENV=production pm2 start server/index.js --name "wh2"
-      #         exit
-      #       EOF
-
-  # deployment:
-  #   master:
-  #     branch: master
-        # command: |
-        #   echo "deploying..."
-        #   ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP << EOF
-        #     cd /var/www/weshatch-v2/ #$DROPLET_PATH
-        #     pm2 stop wh2
-        #     git pull
-        #     # npm install
-        #     pm2 start server/index.js --name "wh2"
-        #     exit
-        #   EOF
-
-  #   development:
-  #     branch: dev
-  #     commands:
-  #       - scp -r $CIRCLE_PROJECT_REPONAME/build $DROPLET_USER@$DROPLET_IP:/var/www/weshatch-v2/build
