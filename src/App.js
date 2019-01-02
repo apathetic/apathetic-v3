@@ -19,6 +19,7 @@ class App extends Component {
         <Header></Header>
 
         <main className="content" ref={(main) => { this.main = main; }}>
+          <span className="more"></span>
           <About />
           <Work />
           <Contact />

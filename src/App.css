@@ -83,3 +83,27 @@ main::after {
   padding-top: var(--padding) !important;
 }
 
+
+.more {
+  display: flex;
+  justify-content: center;
+  height: 32px;
+  margin-top: 5vmax;
+  width: 100%;
+}
+
+.more::after {
+  animation: pulse 2s infinite;
+  content: '〉';
+  display: block;
+  font-size: 32px;
+  transform: rotate(90deg);
+  height: 40px;
+  width: 16px;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  70% { opacity: 0; }
+  100% { opacity: 1; }
+}

@@ -1,26 +1,8 @@
 .header {
   color: white;
   height: 64vh;
+  overflow: hidden;
   z-index: 1;
-}
-
-.header::after {
-  content: '〉';
-  animation: pulse 2s infinite;
-  display: block;
-  position: absolute;
-  font-size: 32px;
-  bottom: -15vmin;
-  width: 32px;
-  height: 32px;
-  transform: rotate(90deg);
-  left: 49%;
-}
-
-@keyframes pulse {
-  0% { opacity: 1; }
-  70% { opacity: 0; }
-  100% { opacity: 1; }
 }
 
 .header .container {
