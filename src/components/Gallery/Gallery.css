@@ -23,7 +23,7 @@
 .icon {
   width: 54px;
   filter: grayscale(1) contrast(0.5);
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 .icon--wide {

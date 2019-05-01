@@ -10,6 +10,7 @@
 }
 
 .weshatch-is-great {
+  cursor: pointer;
   position: absolute;
   width: 110%;
   /* background: rgba(110,110,110, 0.2); */
