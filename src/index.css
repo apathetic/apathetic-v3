@@ -34,10 +34,6 @@ body, html {
   height: 100%;
 }
 
-html {
-  animation: colorize 99s infinite;
-}
-
 
 /* -------------------------------- */
 
@@ -148,6 +144,10 @@ dd {
 
 .block + .block {
   margin-top: var(--padding);
+}
+
+.hidden {
+  display: none;
 }
 
 

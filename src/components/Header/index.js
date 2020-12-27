@@ -39,8 +39,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      {/* <nav>xxx</nav> */}
-      {/* <div className="parallax"> */}
+      <nav className="hidden"><ul><li>blog</li></ul></nav>
       <div className="weshatch-is-great">
         <h1 className="h1 font-heavy color-white"
             onClick={toggle}
