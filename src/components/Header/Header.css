@@ -17,7 +17,8 @@
   background: var(--colour-reflect);
   transform: rotate(-4deg);
   padding: 12px 10%;
-  left: -5%
+  left: -5%;
+  top: 20vh;
 }
 
 /*

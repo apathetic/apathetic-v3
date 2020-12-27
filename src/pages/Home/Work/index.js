@@ -7,7 +7,7 @@ class Work extends Component {
     return (
       <section className="work section">
         <div className="container">
-          <h2>Selected Work</h2>
+          <h3 className="color-yellow">Selected Work</h3>
           <Gallery></Gallery>
         </div>
       </section>

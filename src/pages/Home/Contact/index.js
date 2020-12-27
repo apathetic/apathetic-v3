@@ -6,7 +6,7 @@ class Contact extends Component {
     return (
       <section className="contact section">
         <div className="container">
-          <h2>Contact</h2>
+          <h3 className="color-yellow">Contact</h3>
           <dl>
             <dt>email</dt>    <dd>wes.hatch@gmail.com</dd>
             <dt>linkedin</dt> <dd><a href="http://linkedin.com/in/weshatch">linkedin.com/in/weshatch/</a></dd>

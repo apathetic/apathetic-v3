@@ -34,29 +34,34 @@ body, html {
   height: 100%;
 }
 
+html {
+  animation: colorize 99s infinite;
+}
+
+
 /* -------------------------------- */
 
 h1, h2, h3, h4 {
-  margin: 0;
+  margin: 0 0 0.2rem;
   color: rgba(158, 158, 158, 1);
   font-weight: 100;
 }
 
-.h1 {
+h1, .h1 {
   font-size: 24px;
 }
 
-.h2 {
+h2, .h2 {
   font-size: 18px;
 }
 
-h3 {
-  margin: 0 0 0.2em;
+h3, .h3 {
+  font-size: 16px;
 }
 
-.heavy {
-  font-weight: 600;
-}
+.color-white { color: rgb(255, 255, 255); }
+.color-yellow { color: rgb(255, 211, 0); }
+.font-heavy { font-weight: 600; }
 
 pre {
   white-space: inherit;
@@ -132,9 +137,9 @@ dd {
   width: 100%;
 }
 
-.container--large {
+/* .container--large {
   max-width: var(--max-width);
-}
+} */
 
 .flex {
   display: flex;

@@ -11,8 +11,8 @@ class Block extends Component {
         fn: function(p) {
           const q = (1 - p);
           // const rotate = `rotate3d(0.7, 1, 0.1, -${p}deg)`;
-          // const trapezoid = `perspective(${progress * 100 + 100}px) translateX(${p * -40}px) rotateY(-${p * 10}deg)`;    
-          const trapezoid = `perspective(${p * 100 + 100}px) translateY(${q * 20}px) rotateX(${q * 60}deg)`;    
+          // const trapezoid = `perspective(${progress * 100 + 100}px) translateX(${p * -40}px) rotateY(-${p * 10}deg)`;
+          const trapezoid = `perspective(${p * 100 + 100}px) translateY(${q * 20}px) rotateX(${q * 60}deg)`;
 
           this.element.style.transform = trapezoid; // rotate;
         }
@@ -27,10 +27,10 @@ class Block extends Component {
   }
 
   render() {
-    const items = this.props.items;    
+    const items = this.props.items;
 
     return <div className="block">
-        <h3 ref={title => { this.title = title }}>
+        <h3 className="color-yellow" ref={title => { this.title = title }}>
           {this.props.title}
         </h3>
         <ul className="bullets">

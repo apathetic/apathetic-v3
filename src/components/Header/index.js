@@ -5,7 +5,6 @@ import "./Header.css"
 
 const Header = () => {
   const toggle = () => {
-    // document.body.classList.toggle("inversion");
     document.documentElement.classList.toggle("inversion");
   }
 
@@ -40,19 +39,20 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="parallax">
-        <div className="weshatch-is-great">
-          <h1 className="h1"
-              onClick={toggle}
-              ref={(el) => { scrollify(el); }}>
-            Wes Hatch
-          </h1>
-          <h2 className="h2 heavy"
-              ref={(el) => { scrollify(el); }}>
-            front-end developer
-          </h2>
-        </div>
+      {/* <nav>xxx</nav> */}
+      {/* <div className="parallax"> */}
+      <div className="weshatch-is-great">
+        <h1 className="h1 font-heavy color-white"
+            onClick={toggle}
+            ref={(el) => { scrollify(el); }}>
+          Wes Hatch
+        </h1>
+        <h2 className="h2"
+            ref={(el) => { scrollify(el); }}>
+          front-end developer
+        </h2>
       </div>
+      {/* </div> */}
     </header>
   )
 };
