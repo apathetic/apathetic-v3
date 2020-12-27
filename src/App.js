@@ -5,15 +5,20 @@ import Birds from "./components/Birds";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-import About from "./pages/About"
-import Work from "./pages/Work"
-import Contact from "./pages/Contact"
+import About from "./pages/Home/About"
+import Work from "./pages/Home/Work"
+import Contact from "./pages/Home/Contact"
 
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
+      // <Router>
+      //   <Route exact path="/" component={Home} />
+      //   <Route exact path="/hello" component={Hello} />
+      // </Router>
+
       <>
         <Birds />
 

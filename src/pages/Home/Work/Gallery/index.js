@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { Scrollify, fx } from "@apatheticwes/scrollify";
 import './Gallery.css';
 
-import { ReactComponent as MCMIcon } from '../../assets/icons/mcm.svg';
-import { ReactComponent as GoogleIcon } from '../../assets/icons/google.svg';
-import { ReactComponent as HPIcon } from '../../assets/icons/hp.svg';
-import { ReactComponent as WalmartIcon } from '../../assets/icons/walmart.svg';
-import { ReactComponent as NBCIcon } from '../../assets/icons/nbc.svg';
-import { ReactComponent as nyulangoneIcon } from '../../assets/icons/nyulangone.svg';
+// import { ReactComponent as MCMIcon } from '@/assets/icons/mcm.svg';
+import { ReactComponent as MCMIcon } from '../../../../assets/icons/mcm.svg';
+import { ReactComponent as GoogleIcon } from '../../../../assets/icons/google.svg';
+import { ReactComponent as HPIcon } from '../../../../assets/icons/hp.svg';
+import { ReactComponent as WalmartIcon } from '../../../../assets/icons/walmart.svg';
+import { ReactComponent as NBCIcon } from '../../../../assets/icons/nbc.svg';
+import { ReactComponent as nyulangoneIcon } from '../../../../assets/icons/nyulangone.svg';
 
 class Gallery extends Component {
   scrollify(el, i) {
