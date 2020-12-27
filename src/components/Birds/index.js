@@ -49,6 +49,7 @@ class Birds extends Component {
 
     // figure out what the stuff in the scene looks like, draws it
     renderer = new THREE.WebGLRenderer({ antialias: true });
+    // renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     this.makeGrid();
@@ -84,10 +85,17 @@ class Birds extends Component {
   }
 
   draw() {
-    var timer = Date.now() * 0.0001;
-    camera.position.x = Math.cos(timer) * -500;
-    // camera.position.z = Math.sin(timer) * 200;
-    camera.lookAt(scene.position);
+    // var timer = Date.now() * 0.0001;
+
+				// const now = performance.now();
+				// let delta = ( now - last ) / 1000;
+
+				// if ( delta > 1 ) delta = 1; // safety cap on large deltas
+				// last = now;
+
+    // camera.position.x = Math.cos(timer) * -500;
+    // // camera.position.z = Math.sin(timer) * 200;
+    // camera.lookAt(scene.position);
 
 
     particles.forEach((bird, i) => {
