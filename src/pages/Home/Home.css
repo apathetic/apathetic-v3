@@ -1,6 +1,42 @@
+
+html {
+  animation: colorize 99s infinite;
+}
+
 body {
   transition: filter 1.6s;
+  background: #2121A1;
 }
+
+.inversion {
+  filter: invert(84%);
+}
+
+@keyframes colorize {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(359deg);
+  }
+}
+
+
+
+@keyframes colorize2 {
+  0% { filter: hue-rotate(0deg), invert(84%);
+  }
+  100% {
+    filter: hue-rotate(359deg), invert(84%);
+  }
+}
+
+.inversion {
+  animation: colorize2 99s infinite;
+}
+
+
+ /* -------------------------------- */
 
 main {
   min-height: calc(100vh - 64px);
@@ -10,6 +46,7 @@ main {
   width: 100%;
 }
 
+/** top border */
 main::before {
   content: '';
   clip-path: polygon(0 0%, 100% 6vw, 100% 6.5vw, 0% .5vw);
@@ -20,6 +57,7 @@ main::before {
   z-index: 1;
 }
 
+/* interesting poly effect, within main */
 main::after {
   content: '';
   clip-path: polygon(0 0, 100% 6vw, 100% 100%, 0% 0%);
@@ -33,10 +71,6 @@ main::after {
   z-index: -1;
 }
 
-
-/* -------------------------------- */
-
-
 .section {
   padding: var(--padding) 0;
 }
@@ -48,6 +82,7 @@ main::after {
 .page {
   padding-top: var(--padding) !important;
 }
+
 
 .more {
   display: flex;
@@ -67,30 +102,8 @@ main::after {
   width: 16px;
 }
 
-.inversion {
-  animation: colorize2 99s infinite;
-  filter: invert(84%);
-}
-
 @keyframes pulse {
   0% { opacity: 1; }
   70% { opacity: 0; }
   100% { opacity: 1; }
-}
-
-@keyframes colorize {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-  100% {
-    filter: hue-rotate(359deg);
-  }
-}
-
-@keyframes colorize2 {
-  0% { filter: hue-rotate(0deg), invert(84%);
-  }
-  100% {
-    filter: hue-rotate(359deg), invert(84%);
-  }
 }
