@@ -1,0 +1,132 @@
+:root {
+  --min-width: 320px;
+  --column-width: 480px;
+  --max-width: 960px;
+  --color-bg: 24, 24, 24;
+  --padding: 48px;
+  --transition: 0.2s;
+}
+
+
+
+
+.about {
+  color: theme('colors.gray.100');
+
+  header {
+    border-right: 1px solid theme('colors.gray.700');
+  }
+
+  main {
+    /* background: #181818de; */
+    background: rgba(var(--color-bg), 0.87);
+    clip-path: polygon(0 0, 100% 6vw, 100% 100%, 0% 100%);
+    grid-area: 1/1/2/3;
+    margin-top: 48vh;
+    pointer-events: none;
+
+    &::before {
+      background: #222;
+      clip-path: polygon(0 0%, 100% 6vw, 100% 6.5vw, 0% .5vw);
+      content: '';
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+    }
+
+    &::after {
+      background: #222;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 0%);
+      content: '';
+      height: 100%;
+      opacity: 0.4;
+      /* position: absolute; */
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: -1;
+    }
+  }
+
+
+  .container {
+    pointer-events: all;
+    max-width: var(--column-width);
+    min-width: var(--min-width);
+    margin: 0 auto;
+    padding: 0 32px;
+    width: 100%;
+  }
+
+  .work {
+    background: rgba(var(--color-bg), 1);
+  }
+
+
+
+  .inversion {
+    filter: invert(84%);
+  }
+
+
+  .block + .block {
+    margin-top: var(--padding);
+  }
+
+
+
+
+
+
+
+  .bullets {
+    padding-left: 24px;
+    list-style-type: disc;
+    max-width: 240px;
+  }
+
+  dt {
+    float: left;
+    clear: left;
+    width: 100px;
+    text-align: right;
+    padding-right: 0.5em;
+  }
+
+  dt::after {
+    content: ':';
+  }
+
+  dd {
+    margin-left: 100px;
+  }
+  /* @media(max-width:480px) {
+    .contact dt {
+      display: none;
+    }
+    .contact dd {
+      margin: 0;
+    }
+  } */
+
+
+
+.grid-item {
+  display: inline-flex;
+  height: 96px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+}
+
+
+.gallery .icon {
+  width: 80%;
+  height: 80%;
+  filter: grayscale(1) contrast(0.5);
+}

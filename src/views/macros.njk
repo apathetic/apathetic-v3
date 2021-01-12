@@ -1,0 +1,28 @@
+{% macro subsection(title, items, format) %}
+  <div class="block">
+    <h3 class="text-yellow-300">{{ title }}</h3>
+
+    {% if format == 'dl' %}
+      <dl>
+        {% for key, value in items %}
+          <dt>{{ key }}</dt>
+          <dd>{{ value }}</dd>
+        {% endfor %}
+      </dl>
+    {% else %}
+      {{ linkify(items) }}
+    {% endif  %}
+
+  </div>
+{% endmacro %}
+
+
+{% macro linkify(items) %}
+  <ul class="bullets">
+    {% for key, value in items %}
+      <li>
+        <a href={{ value }} target="_blank" rel="noopener noreferrer">{{ key }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}

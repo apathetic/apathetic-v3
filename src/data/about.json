@@ -1,0 +1,121 @@
+{
+  "experience": {
+    "Front-end": "CSS, Javascript, Vue, React, Typescript, ThreeJS, more...",
+    "Back-end": "Node / express, nginx, php, python",
+    "CMS": "Django, Drupal, Wordpress, Sitecore, Contentful, Brightspot, Symfony, Keystone, more...",
+    "Design": "Figma, Photoshop, Sketch",
+    "Miscellany": "Firebase, webpack, Rollup, bash, git"
+  },
+
+  "demos": {
+    "component showcase": "http://apathetic.github.io/showcase/",
+    "modular synth": "http://malformed.ca"
+  },
+
+  "repos": {
+    "scrollify": "https://github.com/apathetic/scrollify",
+    "modular synth": "https://github.com/apathetic/modular-synth",
+    "this here site": "https://github.com/apathetic/apathetic-v2"
+  },
+
+  "npm": {
+    "scrollify": "https://www.npmjs.com/package/@apatheticwes/scrollify",
+    "carousel": "https://www.npmjs.com/package/@apatheticwes/flexicarousel",
+    "stickynav": "https://www.npmjs.com/package/@apatheticwes/stickynav",
+    "panels": "https://www.npmjs.com/package/@apatheticwes/panels"
+  },
+
+  "work": [
+    {
+      "name": "Material Design Spec",
+      "year": 2018,
+      "tech": ["python", "appengine"]
+    }, {
+      "name": "MCM",
+      "year": 2017,
+      "tech": ["firebase", "threejs"]
+    }, {
+      "name": "SPAN2017",
+      "year": 2017,
+      "url": "https://design.google/span2017",
+      "tech": ["wagtail"]
+    }, {
+      "name": "Primetime",
+      "year": 2017,
+      "tech": ["customjs"]
+    }, {
+      "name": "Walmart Careers",
+      "year": 2016,
+      "url": "http://careers.walmart.com",
+      "tech": ["brightspot"]
+    }, {
+      "name": "Android Nougat",
+      "year": 2016,
+      "url": "https://www.android.com/versions/nougat-7-0/",
+      "tech": ["customjs"]
+    }, {
+      "name": "Material Design Blog",
+      "year": 2016,
+      "tech": ["python"]
+    }, {
+      "name": "Google Custom Case",
+      "year": 2015,
+      "url": "https://livecase.withgoogle.com/places/style",
+      "tech": ["angular 1.x", "threejs"]
+    }, {
+      "name": "HP",
+      "year": 2015,
+      "tech": ["wordpress", "threejs"]
+    }, {
+      "name": "NYULangone",
+      "year": 2014,
+      "url": "http://www.nyulangone.org",
+      "tech": ["drupal", "symfony"]
+    }, {
+      "name": "Sprout",
+      "year": 2014,
+      "url": "http://sproutonline.com",
+      "tech": ["drupal"],
+      "awards": [
+        {
+          "url": "http://www.cynopsis.com/event/2017-cynopsis-kids-magination-awards-results/",
+          "from": "Cynopsis Media",
+          "award": "Best Brand Website"
+        },
+        {
+          "url": "https://www.webbyawards.com/winners/2016/websites/general-website/youth/sprout-online/",
+          "from": "Webby Awards",
+          "award": "Best Youth Website 2016, Honoree"
+        }
+      ]
+    }, {
+      "name": "Huge Inc.",
+      "year": 2013,
+      "description": "The new website for Huge Inc.",
+      "url": "http://www.hugeinc.com",
+      "tech": ["sitecore", "jquery"],
+      "awards": [
+        {
+          "url": "https://www.awwwards.com/sites/huge-inc",
+          "from": "Awwwards",
+          "award": "Site of The Day"
+        },
+        {
+          "url": "https://thefwa.com/cases/the-redesigned-hugeinc-com",
+          "from": "FWA",
+          "award": ""
+        },
+        {
+          "url": "http://userexperienceawards.com/ux-awards-2015-winners/",
+          "from": "UX Awards",
+          "award": "2015 UX Awards, Honoree"
+        }
+      ]
+    }, {
+      "name": "Google Partners",
+      "year": 2013,
+      "url": "https://www.google.com/partners",
+      "tech": ["angular 1.x"]
+    }
+  ]
+}

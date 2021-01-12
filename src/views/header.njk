@@ -1,0 +1,21 @@
+<header class="text-gray-300 px-8 py-4">
+  <div class="weshatch cursor-pointer">
+    <h1 class="xtext-xl font-bold">Wes Hatch</h1>
+    <h2 class="text-sm">front-end developer</h2>
+  </div>
+
+  {% if page.url.includes('/content') %}
+    <a class="" href="/blog">⇦ back</a>
+  {% endif %}
+
+  <nav class="inline-block">
+    <ul class="flex">
+      <li class="ml-4 {{ 'active' if page.url === '/' }}">
+        <a href="/">about</a>
+      </li>
+      <li class="ml-4 {{ 'active' if ('posts' in page.url or 'blog' in page.url) }}">
+        <a href="/blog">blog</a>
+      </li>
+    </ul>
+  </nav>
+</header>

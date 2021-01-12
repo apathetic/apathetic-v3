@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - gpgpu - flocking</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				background-color: #fff;
+				color: #444;
+			}
+			a {
+				color:#08f;
+			}
+		</style>
+	</head>
+	<body>
+
+		<!-- shader for bird's position -->
+		<script id="fragmentShaderPosition" type="x-shader/x-fragment">
+      import fragmentShaderPosition from './birds/shaders/fragment-pos.js';
+		</script>
+
+		<!-- shader for bird's velocity -->
+		<script id="fragmentShaderVelocity" type="x-shader/x-fragment">
+      // import birds/shaders/fragment-vel.js
+		</script>
+
+		<script type="x-shader/x-vertex" id="birdVS">
+      // import birds/shaders/vertex-VS
+		</script>
+
+		<!-- bird geometry shader -->
+		<script type="x-shader/x-fragment" id="birdFS">
+      // import birds/shaders/vertex-FS
+		</script>
+
+		<script type="module" src="birds.js"></script>
+	</body>
+</html>

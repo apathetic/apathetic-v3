@@ -1,0 +1,56 @@
+---
+title: About
+---
+{% from "macros.njk" import subsection %}
+{% extends 'page.njk' %}
+{% set bodyClass = 'about' %}
+
+
+{% block header %}
+  <div class="birds colorize cover bg-gray-900 -z-10"></div>
+
+  {% include 'header.njk' %}
+{% endblock %}
+
+{% block body %}
+  <span class="more"></span>
+
+  <section class="overview py-16">
+    <div class="container">
+      <div class="text-lg block" data-scrollify="intro">
+        <p>Hi. I'm a front-end engineer with a broad set of skills. Usually I'm messing with the newest
+          paradigms in the front-end world, but you'll also find me exploring random things in the world
+          of art and design.
+        </p>
+
+        <a class="block my-4 font-bold text-yellow-500 colorize"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://docs.google.com/document/d/1eHbgSWL5puQnpyi2SiLGgqpW0Jp0W5t-dpUXdb461Gg"
+        >
+          wes hatch CV
+        </a>
+      </div>
+
+      {{ subsection("Experience", about.experience, 'dl') }}
+      {{ subsection("Demos, Random things", about.demos) }}
+      {{ subsection("Selected NPM packages", about.npm) }}
+
+    </div>
+  </section>
+
+  <section class="work py-16 bg-gray-900">
+    <div class="container">
+      <h3 class="text-yellow-300">Selected Work</h3>
+      <ul class="gallery grid grid-cols-3">
+        <li class="grid-item" data-scrollify="icon">{% icon "work/mcm" %}</li>
+        <li class="grid-item" data-scrollify="icon">{% icon "work/walmart" %}</li>
+        <li class="grid-item" data-scrollify="icon">{% icon "work/hp" %}</li>
+        <li class="grid-item" data-scrollify="icon">{% icon "work/nyulangone" %}</li>
+        <li class="grid-item" data-scrollify="icon">{% icon "work/nbc" %}</li>
+        <li class="grid-item" data-scrollify="icon">{% icon "work/google" %}</li>
+      </ul>
+    </div>
+  </section>
+{% endblock %}
+

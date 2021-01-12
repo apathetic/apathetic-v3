@@ -1,0 +1,68 @@
+body {
+  @apply font-inter text-gray-800 antialiased;
+  background: #f4f4f4;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+body { transition: filter 1.6s; }
+.colorize { animation: colorize 99s infinite; }
+
+
+
+
+@screen lg {
+  body {
+    display: grid;
+    grid-template:
+      "b c" 1fr
+      "d d" 96px /
+      240px 1fr;
+
+    header {
+      display: block;
+      grid-area: 1/1/2/2;
+    }
+
+    footer {
+      grid-column: 1 / -1
+    }
+
+    .weshatch {
+      @apply border-b pb-3 mb-3;
+    }
+
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/*
+
+// to "rotate" the header responsively:
+
+header::after {
+
+transform: rotate(-4deg) translate(-12px, 0px);
+    width: 104vw;
+    height: 128px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 1s, width 1s;
+    transform-origin: top left;
+}
+.toggle header {
+    transform: rotate(-90deg) translate(-100%, 0px) !important;
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+    position: absolute;
+    width: 100vh !important;
+} */

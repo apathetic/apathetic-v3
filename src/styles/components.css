@@ -1,0 +1,47 @@
+header {
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav .active {
+  color: #fff;
+  border-bottom: 2px solid white;
+}
+
+.weshatch {
+ line-height: 1;
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  height: 64px;
+  width: 100%;
+}
+
+.more::after {
+  animation: pulse 2s infinite;
+  content: '〉';
+  display: block;
+  font-size: 32px;
+  transform: rotate(90deg);
+  height: 40px;
+  width: 16px;
+  top: 36px;
+  position: relative;
+}
+
+footer {
+
+  grid-column-start: 2 !important; }
+footer ul { position: absolute; left: 5px; }
+
+
+
+footer a {
+  display: block;
+  padding: 0.5em;
+  border-radius: 50%;
+  background: greenyellow;
+}

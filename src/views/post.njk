@@ -1,0 +1,8 @@
+{% extends 'page.njk' %}
+{% set bodyClass = 'post' %}
+
+{% block body %}
+  <article class="prose mx-auto p-8">
+    {{ content | safe }}
+  </article>
+{% endblock %}
