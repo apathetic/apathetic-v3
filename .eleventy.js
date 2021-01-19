@@ -1,9 +1,11 @@
+const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const markdownIt = require('markdown-it');
 const filters = require('./utils/filters.js');
 const shortcodes = require('./utils/shortcodes.js');
 
 module.exports = (config) => {
   // Stuffs
+  config.addPlugin(syntaxHighlight);
   config.setLibrary('md', markdownIt({
     html: true,
     breaks: true,
