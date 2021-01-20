@@ -1,21 +1,16 @@
 /* Add custom utilities here! */
 @layer utilities {
-  time {
-    @apply text-sm;
-  }
 
   .cover {
     @apply fixed top-0 left-0 right-0 bottom-0;
   }
 
-  .icon {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
+  .inversion {
+    filter: invert(100%);
   }
 
-  .item:hover {
-    animation: blip 2s infinite;
+  .colorize {
+    animation: colorize 99s infinite;
   }
 
   @keyframes blip {

@@ -7,52 +7,41 @@ tags:
 
 # Using Schemas
 
-> tl;dr Ideally, top-level components (page / wrapper / what-have-you) should be thin and lightweight. Schemas are one trick to help minimize code complexity, allowing any dev to quickly understand the organization and the function of the page.
-
-
+> tl;dr Ideally, top-level components (page / wrapper / what-have-you) should be thin and lightweight. Schemas are one trick to help minimize code complexity, allowing one to quickly understand the organization and function of the page.
 
 
 ## the why: managing complexity
 
 We have a lot of complexity in our client-side applications these days. Luckily, we have a number of top-notch frameworks to help us manage it. However, while these frameworks are great for managing _architectural_ complexity, they take somewhat of an un-opinionated stance on how we leverage the tools on offer; how we manage state, what we put into a component, how we abstract functionality away, etc. are left to the devices of the developer.
 
-I won't discuss approaches to all these issues herein, but without _some_ guardrails in your app, you'll likely bear witness to spaghetti code, structures, and logic finding its way into the codebase. One of the guardrails/items/things/ for managing code complexity that has worked extremely well for us, though, are _schemas_*.
+I won't discuss approaches to all these issues herein, but without _some_ guardrails in your app, you'll likely bear witness to spaghetti code, structures, and logic finding its way into the codebase. One of the guardrails/items/things/ for managing code complexity that has worked extremely well for us, though, are _schemas_.
 
-<sup>* Note: I'm taking a liberal defintion of the word schema, here.</sup>
+<!-- Immediately, top-level page compoentns (and any component, really) ar e a _lot_ more clear. Additionally, it's easy to see where things are coming from (imported from), and their intent. -->
 
-### benefits
-
-Immediately, top-level page compoentns (and any component, really) ar e a _lot_ more clear. Additionally, it's easy to see where things are coming from (imported from), and their intent.
-
-
-## the What:
-
-To be clear, i'm not talking about application _state_, nor ... I'm talking about ancillary data, set-up data, or configuration structures that define how the application _behaves_ at runtime.  I
-that are instantiated on page load are also nice  for this xxx as well.
-## issues
-
-NOte: this is not static data. Most of thie data sctructures require initialization at runtime, using state from the logged-in user. If
-
-
-<!-- Vue has a nice diagram outlining organizational benefits in using its compositions API ({TODO} insert component diagram); something similar for this discussion would be (TODO: diagram with massive block of set up data / CONSTS, Objects / etc... leaving little room for the actual code) -->
-
-so, what sort of things would be candidates for this?  Giant object structure, repeated set-up data that is used across pages, consts or data that is, essentially static*. It does not change, it does not represent state.
-
-* we even Object.freeze our schemas to enforce this distinction
+## the what: some guardrails
 
 ** also note... we're somewhat bending the concept of schema -- in addition to a "blue-print"... a lot of the data _for_ the blueprint is defined and hydrated at runtime.
+Note that I'm taking a liberal defintion of the word schema, here. To be clear, i'm not talking about application _state_, nor user data. I _am_ talking about ancillary data, set-up data, or configuration structures that define how the application _behaves_ at runtime. These sorts of things are dynamic structures instantiated once on pageload/runtime given certain state parameters, for example data from the logged-in user.
+
+so, what sort of things would be candidates for this?  Giant object structure, repeated set-up data that is used across pages, consts or data that is, essentially static*. It does not change, it does not represent state.
+Large data structures are also good candidates for this type of clean-up as well. The question is then: what qualifies and how do we accomplish it ?
+
+A few use cases that have arisen are:
+* **filters / sorting** dynamically generating filters and filter options for a user.
+* **sorting** dynamically generating sorting options for a user.
+* **analytics / tracking** tracking schemas can be injected and dynamically xxx. Why would we do this? more discussed below
+* **validations** many common validation libraries are schema-based.
+
 
 
 ## the how:
 
-Luckily, we, as devs, love to organize things. Often to this end we might tweak things to make them consistent, or abstract away common functionality. Large data structures are also good candidates for this type of clean-up as well. The question is then: what qualifies and how do we accomplish it ?
-
-### injecting state
-
+Luckily, we, as devs, love to organize things. Often to this end we might tweak things to make them consistent, or abstract away common functionality. As these objects are dynimcally instantaiatin, we need to inject state axxxx
 All of our data structures take in state upon instantiation.   xxxxx  They are,e xxentlially, a d large data struct with _common_ fields but dynaimcally populated values as determined by..
 
-<span>// path/to/schema.ts</span>
-```javascript
+``` js
+// path/to/schema.ts
+
 import store from '@/store';
 import { ISchemaItem } from '@/types';
 
@@ -66,8 +55,12 @@ export function exampleSchema(): Readonly<ISchemaItem[]> {
   ]);
 }
 ```
+* Note that we inject the current state of the app. the shema can use what it needs uppon instnatiation
+* Note that we user Object.freeze our schemas to enforce this distinction
 
-```
+Then, elsewhere in a component, we leverage it. In Vue, we now have a computed structure that corresponds to the user's state:
+
+``` js
   import { exampleSchema } from '@/path/to/schema';
 
   export default {
@@ -77,6 +70,7 @@ export function exampleSchema(): Readonly<ISchemaItem[]> {
 ```
 
 
+## Discussion
 
 ### examples
 
@@ -140,11 +134,6 @@ One core piece of functionality of our application is the ability to sort or fil
   ]);
 ```
 
-
-
-### Parsing File uploads
-
-CSV upload validation
 
 
 ### Validation

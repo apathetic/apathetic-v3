@@ -1,7 +1,4 @@
 :root {
-  --min-width: 320px;
-  --column-width: 480px;
-  --max-width: 960px;
   --color-bg: 24, 24, 24;
   --padding: 48px;
   --transition: 0.2s;
@@ -49,14 +46,20 @@
     }
   }
 
+  .more::after {
+    animation: pulse 2s infinite;
+    content: '〉';
+    display: block;
+    font-size: 32px;
+    transform: rotate(90deg);
+    height: 40px;
+    width: 16px;
+    top: 5vw;
+    position: relative;
+  }
 
   .container {
-    pointer-events: all;
-    max-width: var(--column-width);
-    min-width: var(--min-width);
-    margin: 0 auto;
-    padding: 0 32px;
-    width: 100%;
+    @apply w-full m-auto px-8 max-w-lg pointer-events-auto;
   }
 
   .work {
@@ -64,62 +67,17 @@
   }
 
 
-
-  .inversion {
-    filter: invert(84%);
-  }
-
-
-  .block + .block {
+  /* .block + .block {
     margin-top: var(--padding);
+  } */
+  .block {
+    @apply my-12;
   }
 
-
-
-
-
-
-
-  .bullets {
-    padding-left: 24px;
-    list-style-type: disc;
-    max-width: 240px;
-  }
-
-  dt {
-    float: left;
-    clear: left;
-    width: 100px;
-    text-align: right;
-    padding-right: 0.5em;
-  }
 
   dt::after {
     content: ':';
   }
-
-  dd {
-    margin-left: 100px;
-  }
-  /* @media(max-width:480px) {
-    .contact dt {
-      display: none;
-    }
-    .contact dd {
-      margin: 0;
-    }
-  } */
-
-
-
-.grid-item {
-  display: inline-flex;
-  height: 96px;
-  justify-content: center;
-  align-items: center;
-}
-
-
 
 
 }

@@ -1,7 +1,7 @@
 ---
 title: ML in audio patches
-tags: post
 description: vLooking at JSON representations of Malformed synth patches, tags, and abstracting xxxx
+tags: draft
 ---
 
 

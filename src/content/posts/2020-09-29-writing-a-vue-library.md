@@ -1,7 +1,6 @@
 ---
-tags: post
 title: Writing a vue library.
-description: xxx
+description: challenges encountered along the way
 ---
 
 Thoughts, considerations
@@ -29,6 +28,8 @@ testing
 
 ------------------------
 
+
+[Green-UI](https://github.com/apathetic/green-ui)
 
 
 

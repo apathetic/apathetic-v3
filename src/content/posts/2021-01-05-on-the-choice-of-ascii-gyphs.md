@@ -5,7 +5,6 @@ tags: post
 ---
 
 
-
 * image divided up into squares
 * each tile converted to greyscale
 * the colour (greyness) of each tile _averaged_

@@ -1,7 +1,7 @@
 ---
-tags: post
 title: Enforcing Application Data Integrity
 descripion: "_Type guards_ or models in an application's services layer"
+tags: draft
 ---
 
 > We can ensure key parts of our app are _known quantites_ ie. conform to a particular shape / contract. But what about at runtime?

@@ -1,13 +1,11 @@
 ---
 title: Client-side validation.
-description: a simpler approach
+description: a simple approach
 tags:
-  - post
   - vue3
 ---
 
 # Validation in Vue
-
 
 > tl;dr Instead of a promise-based API for every asynchronous field in a form, a much more flexible approach is a single async `setError` method for the entire reactive form. This gives greater flexibility, significantly less code, and can be useful when integrating back-end validation messaging.
 

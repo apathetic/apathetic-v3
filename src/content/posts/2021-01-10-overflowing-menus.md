@@ -1,5 +1,5 @@
 ---
-title: An Overflowing Menu with IntersectionObserver.
+title: An overflowing menu with IntersectionObserver.
 description: a simpler approach
 tags: post
 ---

@@ -1,7 +1,7 @@
 ---
-tags: post
 title: Client-side data structures.
 description: "Representing xxxx hooks / composables / models"
+tags: draft
 ---
 
 problem

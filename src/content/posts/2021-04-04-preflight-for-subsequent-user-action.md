@@ -1,7 +1,7 @@
 ---
-tags: post
 title: Preflight page optimization
 description: optimizing data for subsequent on-page usage
+tags: draft
 ---
 
 # Preflight

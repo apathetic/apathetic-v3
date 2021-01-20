@@ -1,6 +1,5 @@
 ---
-tags: post
-title: testing audio
+title: "Web Audio: testing"
 description: There is no webaudio in JSDOM. What's an alternative?
 ---
 

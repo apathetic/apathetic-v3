@@ -1,11 +1,9 @@
 {% from "macros.njk" import linkify %}
 
 <footer class="">
-  {# <h3 class="text-yellow-300">Contact</h3> #}
-  {# {{ linkify(contact) }} #}
-  <ul class="flex list-none">
+  <ul class="flex list-none p-8 lg:absolute left-0">
   {% for key, value in contact %}
-    <li>
+    <li class="mr-2">
       <a href={{ value }} target="_blank" rel="noopener noreferrer" title="{{ key }}">
         {% icon key %}
       </a>

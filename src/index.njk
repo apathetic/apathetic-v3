@@ -8,12 +8,11 @@ title: About
 
 {% block header %}
   <div class="birds colorize cover bg-gray-900 -z-10"></div>
-
   {% include 'header.njk' %}
 {% endblock %}
 
 {% block body %}
-  <span class="more"></span>
+  <span class="more flex justify-center"></span>
 
   <section class="overview py-16">
     <div class="container">
@@ -43,12 +42,10 @@ title: About
     <div class="container">
       <h3 class="text-yellow-300">Selected Work</h3>
       <ul class="gallery grid grid-cols-3">
-        <li class="grid-item" data-scrollify="icon">{% icon "work/mcm" %}</li>
-        <li class="grid-item" data-scrollify="icon">{% icon "work/walmart" %}</li>
-        <li class="grid-item" data-scrollify="icon">{% icon "work/hp" %}</li>
-        <li class="grid-item" data-scrollify="icon">{% icon "work/nyulangone" %}</li>
-        <li class="grid-item" data-scrollify="icon">{% icon "work/nbc" %}</li>
-        <li class="grid-item" data-scrollify="icon">{% icon "work/google" %}</li>
+        {% for i in ['mcm', 'walmart', 'hp', 'nyulangone', 'nbc', 'google'] %}
+          {% set j = "work/" + i %}
+          <li class="h-24 grid place-items-center" data-scrollify="icon">{% icon j %}</li>
+        {% endfor %}
       </ul>
     </div>
   </section>
