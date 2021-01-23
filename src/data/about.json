@@ -13,16 +13,16 @@
   },
 
   "repos": {
+    "validation": "https://github.com/apathetic/validation",
     "scrollify": "https://github.com/apathetic/scrollify",
     "modular synth": "https://github.com/apathetic/modular-synth",
-    "this here site": "https://github.com/apathetic/apathetic-v2"
+    "this here site": "https://github.com/apathetic/apathetic-v3"
   },
 
   "npm": {
     "scrollify": "https://www.npmjs.com/package/@apatheticwes/scrollify",
     "carousel": "https://www.npmjs.com/package/@apatheticwes/flexicarousel",
-    "stickynav": "https://www.npmjs.com/package/@apatheticwes/stickynav",
-    "panels": "https://www.npmjs.com/package/@apatheticwes/panels"
+    "stickynav": "https://www.npmjs.com/package/@apatheticwes/stickynav"
   },
 
   "work": [

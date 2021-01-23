@@ -1,5 +1,8 @@
-/* Add custom utilities here! */
 @layer utilities {
+  .active {
+    color: #fff;
+    border-bottom: 2px solid white;
+  }
 
   .cover {
     @apply fixed top-0 left-0 right-0 bottom-0;
@@ -36,5 +39,4 @@
       filter: hue-rotate(359deg);
     }
   }
-
 }

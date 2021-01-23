@@ -6,12 +6,19 @@ import { terser } from 'rollup-plugin-terser';
 const dev = process.env.NODE_ENV !== 'production';
 
 export default {
-  input: 'src/scripts/main.js',
+  input: {
+    'main': 'src/scripts/main.js',
+    // 'home': 'src/scripts/home.js'
+  },
   output: {
     sourcemap: false,
     format: 'iife',
+
     name: 'main',
-    file: 'dist/static/main.bundle.js',
+    // file: 'dist/static/main.bundle.js',
+    dir: 'dist/static/',
+    entryFileNames: '[name].bundle.js',
+    // inlineDynamicImports: true
   },
   plugins: [
     postcss({

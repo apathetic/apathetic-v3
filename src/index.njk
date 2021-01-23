@@ -18,11 +18,11 @@ title: About
     <div class="container">
       <div class="text-lg block" data-scrollify="intro">
         <p>Hi. I'm a front-end engineer with a broad set of skills. Usually I'm messing with the newest
-          paradigms in the front-end world, but you'll also find me exploring random things in the world
-          of art and design.
+          paradigms in the front-end world, but you'll also find me exploring random things server-side
+          or in the world of art and design.
         </p>
 
-        <a class="block my-4 font-bold text-yellow-500 colorize"
+        <a class="inline-block my-4 font-bold text-yellow-500 colorize"
           target="_blank"
           rel="noopener noreferrer"
           href="https://docs.google.com/document/d/1eHbgSWL5puQnpyi2SiLGgqpW0Jp0W5t-dpUXdb461Gg"
@@ -32,7 +32,7 @@ title: About
       </div>
 
       {{ subsection("Experience", about.experience, 'dl') }}
-      {{ subsection("Demos, Random things", about.demos) }}
+      {# {{ subsection("Demos, Random things", about.demos) }} #}
       {{ subsection("Selected NPM packages", about.npm) }}
 
     </div>

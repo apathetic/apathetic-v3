@@ -1,17 +1,35 @@
-body {
-  @apply font-inter text-gray-800 antialiased;
-  background: #f4f4f4;
-  overflow-x: hidden;
-  min-height: 100vh;
-  min-width: 320px;
+html {
   transition: filter 1.6s;
 }
 
+body {
+  @apply font-inter text-gray-800 bg-gray-100 antialiased leading-7;
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-width: 320px;
+}
+
 header {
-  text-align: right;
+  background: theme('colors.gray.800');
   display: flex;
   justify-content: space-between;
+  text-align: right;
 }
+
+main {
+  @apply bg-gray-100;
+}
+
+footer {
+  background: repeating-linear-gradient(
+    45deg,
+    rgb(244 244 244),
+  rgb(244,244,244) 16px,
+  #a2a2a2 18px
+  );
+}
+
+
 
 @screen lg {
   body {
@@ -23,6 +41,7 @@ header {
   }
 
   header {
+    border-right: 1px solid theme('colors.gray.700');
     display: block;
     grid-area: 1/1/2/2;
   }
@@ -34,5 +53,21 @@ header {
 
 
 /* a:hover {
-  color: #fff;
+  text-shadow: 0 0 2px currentColor;
+  transition: text-shadow 0.1s;
 } */
+
+/* main a {
+  --mainColor: currentColor;
+  background: linear-gradient(to bottom, var(--mainColor) 0%, var(--mainColor) 100%);
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 1px 1px;
+  text-decoration: none;
+  transition: background-size .2s;
+}
+
+a:hover {
+  background-size: 1px 100%;
+}
+*/

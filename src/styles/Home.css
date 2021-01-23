@@ -10,8 +10,9 @@
 .about {
   color: theme('colors.gray.100');
 
-  header {
-    border-right: 1px solid theme('colors.gray.700');
+  header,
+  footer {
+    background: transparent;
   }
 
   main {
@@ -66,25 +67,13 @@
     background: rgba(var(--color-bg), 1);
   }
 
-
-  /* .block + .block {
-    margin-top: var(--padding);
-  } */
   .block {
-    @apply my-12;
+    @apply mt-12;
   }
 
 
   dt::after {
     content: ':';
   }
-
-
 }
 
-
-.gallery .icon {
-  width: 80%;
-  height: 80%;
-  filter: grayscale(1) contrast(0.5);
-}

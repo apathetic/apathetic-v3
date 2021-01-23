@@ -1,0 +1,30 @@
+---
+title: Demos
+---
+
+{% extends 'page.njk' %}
+{% set bodyClass = 'demos' %}
+
+{% block body %}
+  <div class="max-w-4xl mx-auto p-8">
+    <h1 class="text-2xl">{{ title }}</h1>
+    <span class="inline-block mb-4">A collection of things-in-progress, ideas, and random what-have-yous.</span>
+
+    <ul class="grid grid-cols-2 gap-4">
+    {%- for title, data in demos -%}
+      <li class="p-6 border border-gray-400 rounded">
+        <a href="{{ data.url }}">
+          <span class="text-lg font-bold inline-block mb-2">{{ title }}</span>
+          {% if data.vid %}
+            <video autoplay loop src="{{ data.vid }}"></video>
+          {% elif data.thumb %}
+            <img src="{{ data.thumb }}" alt="{{ title }}" />
+          {% endif %}
+          <span class="text-sm inline-block mt-2">{{ data.description }}</span>
+        </a>
+      </li>
+    {%- endfor -%}
+    </ul>
+
+  </div>
+{% endblock %}
