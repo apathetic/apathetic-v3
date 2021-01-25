@@ -18,17 +18,20 @@ header {
 
 main {
   @apply bg-gray-100;
+  border-bottom: 0.25em solid #78716c66;
+  /* border-bottom: 0.25em solid theme('colors.gray.500'); */
 }
 
 footer {
   background: repeating-linear-gradient(
     45deg,
-    rgb(244 244 244),
-  rgb(244,244,244) 16px,
-  #a2a2a2 18px
-  );
+    transparent,
+    transparent 16px,
+    #78716c99 18px
+  )
 }
 
+    /* theme('colors.gray.500') 18px */
 
 
 @screen lg {

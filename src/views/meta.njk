@@ -1,3 +1,4 @@
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -9,16 +10,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,400,600">
     <link rel="stylesheet" href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css">
 
-<meta name="description" content="{{ description or meta.description }}">
-{# Open Graph #}
-<meta property="og:site_name" content="{{ meta.title }}">
-<meta property="og:title" content="{{ title or meta.title }}">
-<meta property="og:description" content="{{ description  or meta.description }}">
-<meta property="og:url" content="{{ absolutePageUrl }}">
-<meta property="og:locale" content="{{ meta.locale }}">
-{%- if image -%}
-    <meta property="og:image" content="{{ image | url | absoluteUrl(meta.url) }}">
-{%- endif -%}
-
+    <meta name="description" content="{{ description or meta.description }}">
+    <meta property="og:site_name" content="{{ meta.title }}">
+    <meta property="og:title" content="{{ title or meta.title }}">
+    <meta property="og:description" content="{{ description  or meta.description }}">
+    <meta property="og:url" content="{{ absolutePageUrl }}">
+    <meta property="og:locale" content="{{ meta.locale }}">
+    {%- if image -%}
+        <meta property="og:image" content="{{ image | url | absoluteUrl(meta.url) }}">
+    {%- endif %}
 
     <title>{{ title }}</title>

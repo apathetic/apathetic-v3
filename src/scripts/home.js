@@ -1,3 +1,4 @@
 import "./birds/";
-// import "./birds/birds.js";
 
+// import about.js
+// imprt gallery.js fx, etc
