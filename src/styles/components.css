@@ -5,27 +5,19 @@
   }
 }
 
+header nav {
+  position: sticky;
+  top: 1em;
+  z-index: 100;
+}
 
 .icon {
   display: inline-block;
   width: 18px;
   height: 18px;
 }
-
-/* .item:hover {
-  animation: blip 2s infinite;
-} */
-
 .gallery .icon {
   width: 80%;
   height: 80%;
   filter: grayscale(1) contrast(0.5);
 }
-
-footer a {
-  display: inline-flex;
-  padding: 0.5em;
-  border-radius: 50%;
-  background: greenyellow;
-}
-

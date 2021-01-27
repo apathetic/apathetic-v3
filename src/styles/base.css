@@ -7,6 +7,8 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   min-width: 320px;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -17,21 +19,19 @@ header {
 }
 
 main {
-  @apply bg-gray-100;
-  border-bottom: 0.25em solid #78716c66;
-  /* border-bottom: 0.25em solid theme('colors.gray.500'); */
+  @apply bg-gray-100 flex-1;
 }
 
 footer {
   background: repeating-linear-gradient(
     45deg,
     transparent,
-    transparent 16px,
-    #78716c99 18px
-  )
+    transparent 10px,
+    #78716c99 12px
+  );
+    /* theme('colors.gray.500') 12px */
 }
 
-    /* theme('colors.gray.500') 18px */
 
 
 @screen lg {
@@ -39,7 +39,7 @@ footer {
     display: grid;
     grid-template:
       "b c" 1fr
-      "d d" 96px /
+      "d d" 72px /
       240px 1fr;
   }
 
@@ -74,3 +74,5 @@ a:hover {
   background-size: 1px 100%;
 }
 */
+
+main a:hover { text-decoration: underline; }

@@ -1,13 +1,15 @@
 {
   "Validation framework": {
     "url": "http://apathetic.github.io/validation/",
+    "github": "https://github.com/apathetic/validation",
     "description": "A schema-based validation framework for Vue",
     "thumb": ""
   },
   "component library (Vue)": {
-    "url": "http://apathetic.github.io/zigzag/",
+    "url": "http://apathetic.github.io/zigzag-ui/",
+    "github": "https://github.com/apathetic/zigzag-ui",
     "description": "A component library for Vue",
-    "thumb": ""
+    "thumb": "/static/images/zigzag-ui.png"
   },
   "component showcase (JS)": {
     "url": "http://apathetic.github.io/showcase/",
@@ -16,6 +18,7 @@
   },
   "modular synth": {
     "url": "http://malformed.ca",
+    "github": "https://github.com/apathetic/modular-synth",
     "description": "A digital modular synth. A work in progress; presupposes working knowledge of digital synthesis",
     "vid": "/static/images/synth.mp4",
     "thumb": "/static/images/synth.gif"
