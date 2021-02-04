@@ -7,7 +7,7 @@ title: About
 
 
 {% block header %}
-  <div class="birds colorize cover bg-gray-900 -z-10"></div>
+  <div class="birds colorize cover bg-gray-900"></div>
   {% include 'header.njk' %}
 {% endblock %}
 
@@ -32,7 +32,7 @@ title: About
       </div>
 
       {{ subsection("Experience", about.experience, 'dl') }}
-      {# {{ subsection("Demos, Random things", about.demos) }} #}
+      {# {{ subsection("Demos, Random things", about.repos) }} #}
       {{ subsection("Selected NPM packages", about.npm) }}
 
     </div>

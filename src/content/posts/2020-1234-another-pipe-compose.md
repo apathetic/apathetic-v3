@@ -1,7 +1,7 @@
 ---
 title: Function composition
 description: Writing your own `compose` function
-tags: post
+tags: draft
 ---
 
 What is compose and pipe?

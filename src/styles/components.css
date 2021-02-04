@@ -1,9 +1,3 @@
-@screen lg {
-  .weshatch {
-    border-bottom: 1px solid theme('colors.gray.700');
-    @apply /*border-b*/ pb-3 mb-3;
-  }
-}
 
 header nav {
   position: sticky;
@@ -16,8 +10,30 @@ header nav {
   width: 18px;
   height: 18px;
 }
+
 .gallery .icon {
   width: 80%;
   height: 80%;
   filter: grayscale(1) contrast(0.5);
+}
+
+.tip {
+  .icon {
+    width: 3em;
+    height: 3em;
+    padding: 0.5em;
+  }
+  .prose & pre {
+    color: theme('colors.gray.800');
+    margin: 0;
+    background: theme('colors.yellow.200');
+  }
+}
+
+
+@screen lg {
+  .weshatch {
+    border-bottom: 1px solid theme('colors.gray.700');
+    @apply /*border-b*/ pb-3 mb-3;
+  }
 }

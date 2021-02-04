@@ -1,7 +1,7 @@
 ---
-tags: post
 title: Animated loader performance
 description: gotchas for svg-animation under load
+tags: draft
 ---
 
 CPU & LOADING ICONS

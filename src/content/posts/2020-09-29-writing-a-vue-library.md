@@ -1,6 +1,7 @@
 ---
 title: Writing a vue library.
 description: challenges encountered along the way
+tags: draft
 ---
 
 Thoughts, considerations

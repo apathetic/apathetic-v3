@@ -2,18 +2,19 @@
   "Validation framework": {
     "url": "http://apathetic.github.io/validation/",
     "github": "https://github.com/apathetic/validation",
+    "npm": "https://www.npmjs.com/package/@apatheticwes/validation",
     "description": "A schema-based validation framework for Vue",
     "thumb": ""
   },
-  "component library (Vue)": {
+  "ZigZag component library": {
     "url": "http://apathetic.github.io/zigzag-ui/",
     "github": "https://github.com/apathetic/zigzag-ui",
-    "description": "A component library for Vue",
+    "description": "A fully-featured component library for Vue",
     "thumb": "/static/images/zigzag-ui.png"
   },
-  "component showcase (JS)": {
+  "Component showcase": {
     "url": "http://apathetic.github.io/showcase/",
-    "description": "An older aggregation of vanilla JS tools, packages, and components",
+    "description": "An (older) aggregation of vanilla JS tools, packages, and components",
     "vid": "/static/images/showcase.mp4"
   },
   "modular synth": {
@@ -22,5 +23,11 @@
     "description": "A digital modular synth. A work in progress; presupposes working knowledge of digital synthesis",
     "vid": "/static/images/synth.mp4",
     "thumb": "/static/images/synth.gif"
+  },
+  "ascii": {
+    "url": "http://maladjusted.ca/",
+    "github": "https://github.com/apathetic/ascii",
+    "description": "Experiments in asciii art and encoding",
+    "vid": "/static/images/ascii.mp4"
   }
 }

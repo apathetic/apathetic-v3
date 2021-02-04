@@ -1,7 +1,7 @@
 ---
 title: ASCII art
 description: on the choice of glyph for ascii art
-tags: post
+tags: draft
 ---
 
 

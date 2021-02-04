@@ -1,7 +1,7 @@
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const markdownIt = require('markdown-it');
 const filters = require('./utils/filters.js');
-const shortcodes = require('./utils/shortcodes.js');
+const { shortcodes, pairedshortcodes } = require('./utils/shortcodes.js');
 
 module.exports = (config) => {
   // Stuffs
@@ -14,18 +14,24 @@ module.exports = (config) => {
   }));
 
   // Filters
-  Object.keys(filters).forEach((filterName) => {
-    config.addFilter(filterName, filters[filterName]);
+  Object.keys(filters).forEach((name) => {
+    config.addFilter(name, filters[name]);
   });
 
   // Shortcodes
-  Object.keys(shortcodes).forEach((shortcodeName) => {
-    config.addShortcode(shortcodeName, shortcodes[shortcodeName]);
+  Object.keys(shortcodes).forEach((name) => {
+    config.addShortcode(name, shortcodes[name]);
+  });
+  Object.keys(pairedshortcodes).forEach((name) => {
+    config.addPairedShortcode(name, pairedshortcodes[name]);
   })
 
+
   // Static assets
-  config.addPassthroughCopy('src/manifest.json'); // copy `static/manifest.json` to `dist/manifest.json`
+  config.addPassthroughCopy('src/manifest.json'); // copy `manifest.json` to `dist/manifest.json`
   config.addPassthroughCopy('static/'); // copy `static/` to `dist/static/`
+  // config.addPassthroughCopy({'src/content/images/*.jpg': 'static/images'});
+  config.addPassthroughCopy({'src/content/images/*': 'static/images'});
 
   // development stuffs
   config.setBrowserSyncConfig({
