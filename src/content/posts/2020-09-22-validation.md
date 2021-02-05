@@ -1,8 +1,7 @@
 ---
 title: Client-side validation.
 description: a simple approach
-tags:
-  - vue3
+tags: vue
 ---
 
 # Validation in Vue
@@ -11,17 +10,17 @@ tags:
 
 Play with it [HERE](https://apathetic.github.io/validation/)
 
-This post originated from a need for a Vue 3 validation library. At the time of writing, there were not a lot of options, so I authored my own. It's inspired in part by Vuelidate, but I'm sure the landscape has certainly changed since. However, a few unique features of the validation framework I'll describe are:
+This post originated from a need for a Vue 3 validation library. At the time of writing, there were not a lot of options, so I authored my own. It's inspired in part by Vuelidate, but I'm sure the landscape has certainly changed since. However, a few unique features of this one are:
 
-- **Schema-based**. Import rules and structure, keeping the component lean
-- **Flexible**. Simply provide the validation composable with rules + values
-    - no "black box" set up: use the component's data directly and provide rules elsewhere. Or:
-    - lean: sweep away both rules and values into a schema config
-- **Reactive**. User input triggers validation updates and display
+- **Schema-based**. Simple rules and validation structure
+- **Flexible**. Multiple ways to set-up the validation composable
+    - lean: import both rules and values from the schema config. Or...
+    - no "black box" set up: use the component's data directly with imported rules
+- **Reactive**. User input triggers validation and display updates
 - **Extensible**. Easy to override and add new rules
-- **De-coupled**. The reactive form-object can be injected directly into your actions
-- **Agnostic**. Can consume validation errors generated on either client or server
-    - client-side: validators from Vuelidate are leveraged, sharing prior-art
+- **De-coupled**. The reactive validation object can be injected directly into your actions
+- **Agnostic**. Can consume validation errors generated from server or client
+    - client-side: validators from Vuelidate are leveraged (sharing prior-art)
     - server errors: may also be used to hydrate the validation composable. Uses the JSON error format by default
 
 
@@ -41,17 +40,17 @@ Setting up a validation _schema_ is easy. Its structure is flexible enough such 
 
 Define both data `values` and its validation `rules` upfront, in an external schema.
 
-```
+``` js
 // schemas/validation.js
-const exampleValues = { /* the form data  */ };
-const exampleSchema = { /* validation rules for the form data * };
+const exampleValues = { /* the form data */ };
+const exampleSchema = { /* validation rules for the above */ };
 
 export function useExampleValidation() {
   return useValidation(exampleSchema, exampleValues);
 }
 ```
 Then, in your component:
-```
+``` js
 // exampleComponent.vue
 import { useExampleValidation } from '@/path/to/schemas';
 
@@ -62,8 +61,9 @@ export default {
   };
 }
 ```
-
+{% tip %}
 (Or if you're using Vue 2 + composition API)
+
 ```
 import { useExampleValidation } from '@/path/to/schemas';
 const { form } = useExampleValidation();
@@ -74,6 +74,7 @@ export default {
   }
   // ...
 ```
+{% endtip %}
 
 The advantage of this set-up is simplicity; it's clean, easy, and quick. The disadvantage is that the component's data is not readily visible to the developer, which may then be opaque in the template.
 
@@ -83,24 +84,33 @@ Conversely, you may also set up the validation composable thusly:
 - define the validation schema externally, _currying_ it into the exported `useValidation` composable
 - `values` are instead hydrated in the component, using the `setValues` helper function
 
-```
+``` js
 // schemas/validation.js
-const exampleSchema = { /* validation rules for the form data * };
+const exampleSchema = { /* validation rules */ };
 
 export function useExampleValidation() {
-  return useValidation(exampleSchema); // note: no values. They'll be hydrated on component instantiation
+  return useValidation(exampleSchema);
 }
 ```
+{% note %}
+* no values are passed in; they'll be hydrated on component instantiation
+
+{% endnote %}
 
 Then, in your component:
-```
+``` js
 // exampleComponent.vue
 import { useExampleValidation } from '@/path/to/schemas';
 
 export default {
   setup() {
-    const { form, setValues, setErrors } = useValidation(schema);
-    const vals = setValues(values);
+    const { form, setValues } = useValidation(schema);
+    const vals = setValues({
+      name: '',
+      email: '',
+      // ...
+    });
+
     return {
       form
     }
@@ -108,35 +118,12 @@ export default {
 }
 ```
 
-(Or if you're using Vue 2 + composition API)
-<!--
-```
-// exampleComponent.vue
-import { useExampleValidation } from '@/path/to/schemas';
+In this case, the `vals` returned from `setValues` may be still be used in the component. The object is now reactively bound, and may be manipulated in parallel. Modifying `form` (or even `vals`) will trigger validation updates.
 
-const { setValues } = useExampleValidation();
-
-export default {
-  data() ({
-    values: {
-      name: '',
-      email: '',
-    }
-  }),
-  beforeCreate() {
-    this.$options.computed.form = setValues(this.values);
-  },
-  // ...
+{% tip %}
+(If you're using Vue 2 + composition API)
 
 ```
-
-Note: in `beforeCreate`, we use the object returned from `setValues` to setup the computed `form` prop in the template. This is similar to how Vuelidate handles it, as well.
-
-However, we can modify this slightly be wrapping the object returned in `data` (note: the setValues in the `data()` function), and relying on the reactive `form` object. This has the advantage of enabling us to modify validation results _externally_, while the `form` will continue to be reactive in the component. This is discussed in <a href="">Portability</a>.
--->
-
-```
-// exampleComponent.vue
 import { useExampleValidation } from '@/path/to/schemas';
 
 const { form, setValues } = useExampleValidation();
@@ -157,7 +144,40 @@ export default {
   },
 
 ```
-In this case, the `values` returned from `setValues` may be still be used in the component. The object is now reactively bound, and may be manipulated in parallel. The `form` will still respond and validate as expected.
+
+<!-- note: the object returned in `data` is "wrapped" by `setValues`. The object it returns is the same as was passed in (ie. not a copy), which has the advantage of enabling us to modify validation results _externally_ while the `form` will continue to be reactive in the component. This is discussed in <a href="">Portability</a>. -->
+
+{% endtip %}
+
+
+
+<!--
+
+Another alternative:. In `beforeCreate`, we use the object returned from `setValues` to setup the computed `form` prop in the template. This is similar to how Vuelidate handles it, as well.
+
+```
+// exampleComponent.vue
+import { useExampleValidation } from '@/path/to/schemas';
+
+const { setValues } = useExampleValidation();
+
+export default {
+  data() ({
+    values: {
+      name: '',
+      email: '',
+    }
+  }),
+  beforeCreate() {
+    this.$options.computed.form = setValues(this.values);
+  },
+  // ...
+
+```
+
+-->
+
+
 
 
 <!-- ### aside: keeping a handle
@@ -178,7 +198,7 @@ Once created, the composable creates a reactive object that may be bound to the 
 This offers the unique opportunity to import the composable in your app's store or actions, where it may be used to hydrate server-side errors; any field or validation error that is updated here will automatically be surfaced in the template, with no further error handling needed.
 
 This is accomplished with webpack's conditional imports, illustrated below. First, we create the validation object:
-```
+``` js
 // schemas/index
 const schema = { ... };
 const values = { ... };
@@ -188,7 +208,7 @@ export { exampleForm };
 ```
 
 ...and use it in a component
-```
+``` js
 // exampleComponent.vue
 import { exampleForm } from '@/path/to/schemas';
 
@@ -202,8 +222,8 @@ export default {
 }
 ```
 
-Now, then, in an action:
-```
+Now, finally, in an action:
+``` js
 export const exampleAction = async ({ commit }) => {
   try {
     const exampleData = await api.settings.getExampleData();
@@ -218,80 +238,73 @@ export const exampleAction = async ({ commit }) => {
 ```
 Note that we conditionally load the module and hydrate only upon any error(s) originating from the server. That's it. We can now surface server errors directly in the page from here*.
 
-<sup>There is the question of "mapping" the error back to the field. I'm presupposing two things: that the server response is in the JSON-error format (the framework will unwrap it and apply it to the corresponding field automatically if so), and that the pointer in the JSON-error is named the same as the field.</sup>
-
 ## Details
 
 `useValidation` creates a reactive form validation object. The generated object matches the shape of the _validation schema_, while each field is additionally decorated with the following five properties: `$model`, `$error`, `$dirty`, `$invalid` and `$errors`. For example:
 
-```
-  "$model": "horace", // the data to be validated
-  "$dirty": false,
-  "$invalid": false,  // if _any_ of the validation rules fail
-  "$error": false,    // helper for: $invalid && $dirty
-  "$errors": [ ... ]
+``` js
+"$model": "horace", // the data to be validated
+"$dirty": false,
+"$invalid": false,  // if _any_ of the validation rules fail
+"$error": false,    // helper for: $invalid && $dirty
+"$errors": [ ... ]
 ```
 
 Additionally, all the validation rules for each field are provided as computed properties. In the following example, the field has three validators (is required, is an email, and meets the minimum length) and the response of each:
-```
-  "required": true,   // passes required check
-  "minLength": false, // does not meet minLength criteria
-  "email": true,      // passes email validation
-  ...
+``` js
+"required": true,   // passes required check
+"minLength": false, // does not meet minLength criteria
+"email": true,      // passes email validation
 ```
 
 Note the similarities with [vuelidate](https://github.com/vuelidate), from which this structure was borrowed.
 
 
 ### Why not async...?
-You may notice that there is no $pending nor it's equivalent, here. While many frameworks have provisions for a Promise-based validator _per field_, personally, I don't think it's necessary. If you need to hit an API for a valdiation, you'll be authoring an async request to do so regardless. The approach with this framework is to use a single entry point, `setErrors`, for any asyncronous errors received from the server on its response. The `setErrors` function can then handle all responses with ambivalence -- whether they're generated server-side or client-side, mapping each back to the respective field.
+You may notice that there is no $pending nor it's equivalent, here. While many frameworks have provisions for a Promise-based validator _per field_, personally, I don't think it's necessary. If you need to hit an API for a valdiation, you'll be authoring an async request to do so regardless.
+
+The approach with this framework is to use a single entry point, `setErrors`, for any asyncronous errors received from the server on its response. The `setErrors` function can then handle all responses with ambivalence -- whether they're generated server-side or client-side, mapping each back to the respective field.
 
 
-### Form-field helper Components
+### A Form-field helper Component
 
-It's easy to create a form field helper that can be used to wrap common form elements -- selects, inputs, checkboxes, etc. Here, we create a simple wrapper that provides a slot for the aforementioned components, while normalizing the display of hint text, form labels, and errors.
+It's easy to create a form field helper that can be used to wrap common form elements -- selects, inputs, checkboxes, etc. Here, we create a simple wrapper that provides a slot for the aforementioned components, which normalizes the display of hint text, form labels, and errors.
 
+``` html
+<div :class="['input', {'has-error': hasError}]">
+  <label class="input-label" v-if="label">{{ label }}</label>
+  <slot v-bind="$attrs"></slot>
+  <span v-if="text" class="input-hint text-small">{{ text }}</span>
+</div>
 ```
-<template>
-  <div :class="['input', {'has-error': hasError}]">
-    <label class="input-label" v-if="label">{{ label }}</label>
-    <slot v-bind="$attrs"></slot>
-    <span v-if="text" class="input-hint text-small">{{ text }}</span>
-  </div>
-</template>
-```
-```javascript
-<script>
-  export default {
-    name: 'z-field',
-    props: {
-      hint: '',
-      label: '',
-      errors: () => [],
-      disabled: false
+``` js
+export default {
+  name: 'z-field',
+  props: {
+    hint: '',
+    label: '',
+    errors: () => [],
+    disabled: false
+  },
+
+  computed: {
+    hasError() {
+      return !!(this.errors && this.errors.length);
     },
 
-    computed: {
-      hasError() {
-        return !!(this.errors && this.errors.length);
-      },
-
-      text() {
-        const { errors, hint } = this;
-        return errors.length ? `${ errors[0].$message }` :
-          hint ? hint :
-          '';
-      },
+    text() {
+      const { errors, hint } = this;
+      return errors.length ? `${ errors[0].$message }` :
+        hint ? hint :
+        '';
     },
-  };
-</script>
+  },
+};
 ```
-```
-<style>
-  .has-error .input-label {
-    animation: 1s shake 1;
-  }
-</style>
+``` css
+.has-error .input-label {
+  animation: 1s shake 1;
+}
 ```
 
 ## References:
@@ -301,3 +314,7 @@ The `Validatable` idea draws inspiration from multiple sources.
 * [Vee Validate](https://logaretm.github.io/vee-validate/): Vue 3 composition API + "validation provider" component
 * [Vuelidate](https://github.com/vuelidate/vuelidate/blob/master/src/index.js): for model based validation
 * [Vuetify](https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/mixins/validatable/index.ts): Array validation approach
+
+
+<hr>
+<sup>* There is the question of "mapping" the error back to the field. We presuppose two things: that the server response is in the JSON-error format (the framework will unwrap it and apply it to the corresponding field automatically if so), and that the pointer in the JSON-error is named the same as the field.</sup>

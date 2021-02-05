@@ -6,7 +6,7 @@ module.exports = {
     content: [
       "./src/**/*.njk",
       "./src/**/*.js",
-      "./src/**/*.svg",
+      "./utils/shortcodes.js",
     ],
   },
   plugins: [ typography ],
@@ -17,14 +17,15 @@ module.exports = {
       current: 'currentColor',
       gray: colors.warmGray,
       yellow: colors.amber,
+      blue: colors.blue
     },
     extend: {
       fontFamily: {
         inter: '"Inter", sans-serif;',
       },
-      zIndex: {
-        '-10': '-10',
-      }
+      // zIndex: {
+      //   '-10': '-10',
+      // }
     },
   },
 };

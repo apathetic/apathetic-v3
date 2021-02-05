@@ -1,7 +1,7 @@
 ---
 title: An overflowing menu with IntersectionObserver.
-description: a simpler approach
-tags: post
+description: Designing a responsive menu with a dynamically populated dropdown
+tags: [css, js]
 ---
 
 ## Example
@@ -14,10 +14,6 @@ We designed our secondary navigation so as to dynamically display as many naviga
 
 
 ![GitHub Logo](/static/images/responsive-menu.svg "title")
-
-
-
-
 
 
 This all works by using the *Intersection Observer* API.
@@ -185,12 +181,11 @@ And, the [demo](https://codepen.io/apatheticwes/pen/NWRooYP).
 
 ## Discussion
 
-The approach in the first, simpler version, uses a CSS var to dynamically set a margin on the xxxx, which is equal to the width of the `more` overflow toggle. This way, it sits in the free space created, and "floats" at the edge of the parent element.
+The approach in the first version uses a CSS var to dynamically set a margin on the containing nav element, which is equal to the width of the `more` overflow toggle. This way, it sits in the free space created, floating at the edge of the parent element.
 
-The example with multiple IOs foregoes this approach, and instead detects if the viewports was "shrunk" down (ie. the var `isShrinking) or not. It does this by checking if the intersection ratios of any element are < 1. If so, it means we crossed the right edge of the element, and are proceed "leftwards". xxx a diagram here xxx.  Since we want the last item to return xxx when the viewport expands past it, we use isOverflow == isShriking as trick -- they'll both be false for the very last itme; we would only need just isShrinking otherwise.
-
+The example with two IntersectionObservers foregoes this approach, and instead determines which edge is intersecting. If the viewport is "shrinking", the intersection ratio(s) of the element is < 1 because it means we've crossed the right edge of the element as the viewport is proceeding "leftwards". <!-- xxx a diagram here xxx. -->  We'd then need a special provision (only!) for the last item in the list when the viewport is _expanding "rightwards"_, as the left edge won't trigger soon enough. So, we use `isOverflow == isShriking` as a trick -- i.e., they'll both be false in this instance. Otherwse just `isShrinking` would suffice.
 
 ## Demos
 
-[simple](https://codepen.io/apatheticwes/pen/NWRooYP)
-[complex](https://codepen.io/apatheticwes/pen/eYdLRZY)
+[Basic demo](https://codepen.io/apatheticwes/pen/NWRooYP)
+[Edge-adjusted](https://codepen.io/apatheticwes/pen/eYdLRZY)

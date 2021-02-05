@@ -1,6 +1,7 @@
 ---
 title: Using Schemas.
 description: "How we may abstract away non-critical set-up data into easily-consumable data structures."
+tags: vue
 ---
 
 # Using Schemas
@@ -20,18 +21,18 @@ Like child components, organizing code structures into schemas has several immed
 
 ## The what: some guardrails
 
-So, what is a schema (in this context), exactly?  Essentially, a large-ish object or data structure that is used at runtime to provide the view with a particular chunk of data. It's not stateful, yet in some situations it might be _dynamically instantiated_ at pageload _using_ the state. Candidates include ancillary data, set-up data, or configuration structures that define how the application should behave at runtime. Once it's created, it's essentially static, though.
+So, what is a schema (in this context), exactly?  Essentially, a large-ish object or data structure that is used at runtime to provide the view with a particular chunk of data. It's not stateful, yet in some situations it might be dynamically instantiated at page-load _using_ the state. Candidates include ancillary data, set-up data, or configuration structures that define how the application should behave at runtime. Once it's created, it's essentially static, though.
 
 A few specific examples that we'll look at in turn, are:
 
 * **filters**: dynamically generated filters and filter options
-* **sorting** large sets of sorting options and their logic
-* **analytics** tracking schemas, dynamically injected into a page
-* **validations** many validation libraries use schema-based rules
+* **sorting**: large sets of sorting options and their logic
+* **validations**: many validation libraries use schema-based rules
+<!-- * **analytics** tracking schemas, dynamically injected into a page -->
 
 ## The how: some code
 
-First, as the objective is to simplify the organization of our app, I like to keep my schemas in a folder next to where they're used. I have the following structure in my set up:
+As the objective is to simplify the organization of our app, we can keep my schemas in a folder next to where they're used. I use the following folder structure:
 
 ```
 MyPage
@@ -43,22 +44,37 @@ MyPage
 └── page.css
 ```
 
-asfsa s  saf sddf s axxxxxxx x x x x x x x x x x
-x
+The goal is to clean up our components, moving large set-up data structures out.
 
-x
+As for the schema itself, the basic idea is simple: a function that returns an object when needed. A simple sorting schema would look like:
 
-x
+``` js
+export function sortSchema() {
+  return Object.freeze({
+    asc: { sortBy: 'name' },
+    desc: { sortBy: 'name', sortDesc: true },
+    // ...
+```
+{% note %}
+* we use `Object.freeze` to ensure that the object remains static
+* If we wanted we could also apply other transformations, such as internationalizing the copy, here.
+{% endnote %}
 
-x
+<!-- {% tip %}
+If we wanted we could also apply other transformations, such as internationalizing the copy, here.
+{% endtip %} -->
 
-x
+{% tip %}
+If you use TypeScript, you might do something like:
 
-We have two types of schema: those that are static and those that are generated dynamically. The static ones take the form of an ojbect (ie. validation schemas);
+```
+import { ISchemaItem } from '@/types';
+export function exampleSchema(): Readonly<ISchemaItem[]> {
+  // ...
+```
+{% endtip %}
 
-The dynamic ones use the following format:
-
-
+This works fine if the structure is always known and deterministic. However, sometimes the fields and nested data that we need to generate are determined from the current application state. In this case, we can inject the state and use it to derive the required structure.
 ``` js
 // schema.js
 import store from '@/store';
@@ -67,50 +83,41 @@ export function exampleSchema() {
   const { user } = store.state;
   return Object.freeze([
     {
-      // some dynamic calculation, here, using `user` state
+      // use the state to derive the object structure
     },
   ]);
 }
 ```
-Note
-* the (dynamic) schema receives state upon instantiation....
-* ... we inject the current state of the app. The schema can use what it needs uppon instnatiation
-* we user Object.freeze our schemas to enforce / ensure this distinction / that they remain static
 
+{% note %}
+* the `exampleSchema` function receives state upon instantiation
+* not shown here, but we can then generate the required schema structure as needed
+{% endnote %}
 
-{% tip %}
-If you use TypeScript, you might do something like:
-
-```
-import { ISchemaItem } from '@/types';
-export function exampleSchema(): Readonly<ISchemaItem[]> {
-```
-{% endtip %}
 
 Then, we leverage it in a component. In Vue, we now have a computed structure that corresponds to the user's state:
 
 ``` js
-  import { exampleSchema } from '@/path/to/schema';
+import { exampleSchema } from '@/path/to/schema';
 
-  export default {
-    computed: {
-      // this schema object was generated
-      // dynamically for this particular user:
-      exampleSchema,
-      // ...
-
+export default {
+  computed: {
+    // this schema object was generated
+    // dynamically for this particular user:
+    exampleSchema,
+    // ...
 ```
-Note:
+{% note %}
 * because it's a function that depends on state, we import it under `computed`
 * using `Object.freeze` will make Vue skip "reactifying" its contents
-
+{% endnote %}
 
 Let's see a few concrete examples.
 
 
 ### Sorting and Filtering
 
-The ability to sort or filter on any moderately complex data-set, by specific fields or nested data, is a core piece of functionality in an app. If we do it client-side, the sorting criteria and filtering options must apply to the fields _on hand_. These are usually different for each record.
+The ability to sort or filter on any moderately complex data-set, by specific fields or nested data, is a core piece of functionality in an app. If we do it client-side, the sorting criteria and filtering options must correspond to the fields _on hand_. These are usually different for each record.
 
 Let's generate a filtering schema for an arbitrary number of companies, each with their own licences and sales reps:
 
@@ -148,49 +155,41 @@ export function filterSchema() {
     }
   ]);
 ```
-Note:
+{% note %}
 * this function generates options and filtering logic for a set of filters in a component
-* the type of the filter is defined as a a `<select>` in both cases
-* we are filtering the company data by "licenseId" and "salesRepId" fields
+* the filter options are generated dynamically from `company` state data: `company.license` and `company.salesRep` are arrays of objects (Not shown is the structure of each, though)
+* we may filter by "licenseId" and "salesRepId" fields
+* the type of the filter is defined as a `<select>` in both cases
 * we define `attributes` for the actual filter component (`<select>`)
-* the filter options are generated dynamically from company data in the state.
 * there is a custom `fn` filter function in the second item
+{% endnote %}
 
-{% tip %}
-If we wanted we could also apply other transformations, such as internationalizing the copy, in this filter function.
-{% endtip %}
-
+<!--
 ### Tracking user actions
 
-A difficulty of any complex client-side application is managing the myriad of different tracking events required. Stakeholders, product managers, data analysts, client services, and even design will want to know certain things on a page. Usually, client-side code starts to get bogged down with tracking events<!-- and look like this: ({TODO tracking code everywhere image}) -->
+A difficulty of any complex client-side application is managing the myriad of different tracking events required. Stakeholders, product managers, data analysts, client services, and even design will want to know certain things on a page. Usually, client-side code starts to get bogged down with tracking events
 
-Wouldn't it be nice to remove all of that, and leave a clean, uncluttered XXX in its wake?  This would help separate out concerns -- we shoudont' make concessions for tracking demands -- often times i'll see large swaths of code written and rewritten to accommodate a paticular event. DONT dO THIS.  Tracking considerations shoild _never_ override core code xxxx.  They are lower priority to core user X on the site (etc etc. scripts are deferred etc)
-
-Instead, we have a tracking "schema" that allows us to enter events / tiggers, names, etc.  that is then _programatically_ applied to a page. TODO TODO. (more details, here...)
-
+Wouldn't it be nice to remove all of that, and leave a clean, uncluttered DOM in its wake?
+<!-- This would help separate out concerns -- we shoudnt' make concessions for tracking demands -- often times i'll see large swaths of code written and rewritten to accommodate a paticular event. DONT dO THIS.  Tracking considerations shoild _never_ override core code xxxx.  They are lower priority to core user X on the site (etc etc. scripts are deferred etc)
+- - >
+Instead, use a tracking schema where we can enter events, triggers and names, that is then programatically applied to a component.
 
 ```
   const trackingSchema = {
-    trackFilters: debounce(function(state) {
-      if (!this._priorState) {
-        this._priorState = state;
-        return;
-      }
-
-      trackFilter({ currentState: state, priorState: this._priorState, filterSchema: customerFilterSchema });
-
-      this._priorState = state;
-    }, DEBOUNCE.FAST),
-    trackSearch: debounce((term) => {
-      (term.length > 2) && track('Customer List Search Applied', { term });
-    }, DEBOUNCE.FAST),
+    onFilter: debounce((filters) => {
+      const data = filters.filter(f => f.value !== undefined);
+      track('Filters applied', { data });
+    }, 1000),
+    onSearch: debounce((term) => {
+      track('Search Applied', { term });
+    }, 1000),
   };
-
 ```
+-->
 
 ### Validation
 
-Client-side validation and, specifically, form validation often uses a schema-based approach to define the _validation rules_ on a page. There are a many different approaches, here. We borrow from the most popular, and simply layer / provide our set-up schema.
+Client-side validation and, specifically, form validation often uses a schema-based approach to define the _validation rules_ on a page. There are a many different approaches, here. We borrow from the [most popular](https://vuelidate.js.org/):
 
 An example validation schema:
 ```
@@ -212,11 +211,7 @@ export const schema = {
 I will talk more about this [in a future post](/content/posts/2020-09-22-validation/)
 
 
-
-
-
-
-
-* Note that I'm taking a liberal defintion of the word schema, here. To be clear, i'm not talking about application _state_ directly.
-
-** also note... we're somewhat bending the concept of schema -- in addition to a "blue-print"... a lot of the data _for_ the blueprint is defined and hydrated at runtime.
+<hr>
+<sup>
+* Note this is a liberal defintion of the word schema. Not the application state directly, but a blue-print from which a lot of the data is defined and hydrated at runtime.
+</sup>

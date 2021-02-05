@@ -5,6 +5,10 @@ module.exports = {
     return dayjs(date).format(format);
   },
 
+  tags: function(tags) {
+    return tags.filter(t => t !== 'post');
+  },
+
   obfuscate: function (str) {
     const chars = [];
 

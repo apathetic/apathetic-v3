@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const cwd = path.resolve('static/icons');
+const markdownIt = require('markdown-it')();
 
 const shortcodes = {
   // icon: function (name) {
@@ -16,14 +17,24 @@ const shortcodes = {
     return data.replace(/<svg /, '<svg class="icon" ');
   },
 
-  // tip: function(content) {
-  //   return `<div class="tip py-2 px-4 bg-yellow-100 border rounded border-yellow-300">${ shortcodes.icon('tip') } ${ content }</div>`;
-  // }
+  tags: function(tags) {
+        // ${ tags.map(t => `<a href="/tags/${t}/"><span class="">${t}</span></a>`) }
+    return `
+      <div class="hidden">
+        ${ tags.map(t => `<span class="bg-gray-900 text-gray-50 text-sm">${t}</span>`) }
+      </div>`;
+  }
 };
 
 const pairedshortcodes = {
+  note: function(content) {
+    content = markdownIt.render(content);
+    return `<div class="note callout py-2 bg-blue-100 rounded"><strong class="block">Note</strong>${ content }</div>`;
+  },
+
   tip: function(content) {
-    return `<div class="tip flex items-center py-2 bg-yellow-100 border rounded border-yellow-300">${ shortcodes.icon('tip') }<div>${ content }</div></div>`;
+    // content = markdownIt.render(content);
+    return `<div class="tip callout py-2 bg-yellow-100 rounded"><strong class="block">Tip</strong>${ content }</div>`;
   }
 };
 

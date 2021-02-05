@@ -17,17 +17,47 @@ header nav {
   filter: grayscale(1) contrast(0.5);
 }
 
-.tip {
-  .icon {
-    width: 3em;
-    height: 3em;
-    padding: 0.5em;
+
+
+.callout {
+  ul {
+    margin: 0;
   }
-  .prose & pre {
+  li::before {
+    background-color: theme('colors.blue.300') !important;
+  }
+}
+
+
+.prose code::before,
+.prose code::after {
+  content: '';
+}
+
+.note {
+  background: rgb(100 219 255 / 30%);
+}
+.tip {
+  background-color: theme('colors.yellow.100');;
+
+  pre {
+    background: theme('colors.yellow.200');
     color: theme('colors.gray.800');
     margin: 0;
-    background: theme('colors.yellow.200');
   }
+}
+
+pre[class*="language-"],
+.callout {
+    padding: 1em 2em !important;
+    margin: 0 -2em 0.5em !important;
+    overflow: auto;
+    position: relative;
+}
+
+sup {
+  line-height: 1.5;
+  display: inline-block;
 }
 
 

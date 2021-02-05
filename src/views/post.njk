@@ -3,6 +3,9 @@
 
 {% block body %}
   <article class="prose mx-auto p-8">
+    <time class="text-gray-500 text-sm">{{ post.date | formatDate("MMM D, YYYY") }}</time>
+    {% tags tags | tags %}{# this makes me happy #}
+
     {{ content | safe }}
   </article>
 {% endblock %}

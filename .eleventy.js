@@ -49,8 +49,5 @@ module.exports = (config) => {
       data: 'data',
     },
     templateFormats: ['njk', 'md'],
-    // markdownTemplateEngine: 'njk',
-    // htmlTemplateEngine: 'njk',
-    // dataTemplateEngine: 'njk',
   };
 };
