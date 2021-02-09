@@ -22,25 +22,27 @@ const plugins = [
 
 export default [
   {
+    // MAIN
     input: 'src/scripts/main.js',
     output: {
-      format: 'iife',
-      name: 'main',
-      file: 'dist/static/main.bundle.js',
-      // sourcemap: false,
-      // dir: 'dist/static/',
-      // entryFileNames: '[name].bundle.js',
+      format: 'es',
+      name: 'main.bundle',
+      entryFileNames: '[name].bundle.js',
+      dir: 'dist/static/',
+      sourcemap: dev,
     },
     plugins,
   }, {
-    input: 'src/scripts/analytics/base.js',
+    // MAIN (LEGACY / NO MODULE)
+    input: 'src/scripts/main.js',
     output: {
-      format: 'iife',
-      name: 'analytics',
-      file: 'dist/static/analytics.bundle.js',
+      format: 'system',
+      dir: 'dist/static/',
+      sourcemap: dev,
     },
     plugins,
   }, {
+    // HOME PAGE
     input: 'src/scripts/home.js',
     output: {
       format: 'iife',
@@ -49,9 +51,4 @@ export default [
     },
     plugins,
   }
-
-  // watch: {
-  //   clearScreen: false,
-  // },
-
 ];

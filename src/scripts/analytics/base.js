@@ -1,6 +1,5 @@
 // https://philipwalton.com/articles/the-google-analytics-setup-i-use-on-every-site-i-build/#using-autotrack-plugins
 
-
 /**
  * The tracking ID for your Google Analytics property.
  * https://support.google.com/analytics/answer/1032385
@@ -40,16 +39,6 @@ const dimensions = {
 
 
 /**
- * A mapping between custom metric names and their indexes.
- */
-const metrics = {
-  RESPONSE_END_TIME: 'metric1',
-  DOM_LOAD_TIME: 'metric2',
-  WINDOW_LOAD_TIME: 'metric3',
-};
-
-
-/**
  * Initializes all the analytics setup. Creates trackers and sets initial
  * values on the trackers.
  */
@@ -61,7 +50,7 @@ export const init = () => {
   trackErrors();
   trackCustomDimensions();
   sendInitialPageview();
-  sendNavigationTimingMetrics();
+  // reportWebVitals();
 };
 
 
@@ -82,6 +71,33 @@ export const trackError = (err = {}, fieldsObj = {}) => {
     eventLabel: `${err.message}\n${err.stack || '(no stack trace)'}`,
     nonInteraction: true,
   }, fieldsObj));
+};
+
+
+
+/**
+ * Gets the performance metrics of the page and sends them events to Google
+ * Analytics via an event hit.
+ */
+export const reportWebVitals = () => {
+  const onPerfEntry = ({ id, name, value }) => {
+    console.log(`${name}: ${value}`);
+    ga('send', 'event', {
+      eventCategory: 'Web Vitals',
+      eventAction: name,
+      eventValue: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
+      eventLabel: id, // id unique to current page load
+      nonInteraction: true, // avoids affecting bounce rate
+    });
+  };
+
+  import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+    getCLS(onPerfEntry);
+    getFID(onPerfEntry);
+    getFCP(onPerfEntry);
+    getLCP(onPerfEntry);
+    getTTFB(onPerfEntry);
+  });
 };
 
 
@@ -175,47 +191,6 @@ const sendInitialPageview = () => {
 
 
 /**
- * Gets the DOM and window load times and sends them as custom metrics to
- * Google Analytics via an event hit.
- */
-const sendNavigationTimingMetrics = () => {
-  // Only track performance in supporting browsers.
-  if (!(window.performance && window.performance.timing)) return;
-
-  // If the window hasn't loaded, run this function after the `load` event.
-  if (document.readyState != 'complete') {
-    window.addEventListener('load', sendNavigationTimingMetrics);
-    return;
-  }
-
-  const nt = performance.timing;
-  const navStart = nt.navigationStart;
-
-  const responseEnd = Math.round(nt.responseEnd - navStart);
-  const domLoaded = Math.round(nt.domContentLoadedEventStart - navStart);
-  const windowLoaded = Math.round(nt.loadEventStart - navStart);
-
-  // In some edge cases browsers return very obviously incorrect NT values,
-  // e.g. 0, negative, or future times. This validates values before sending.
-  const allValuesAreValid = (...values) => {
-    return values.every((value) => value > 0 && value < 6e6);
-  };
-
-  if (allValuesAreValid(responseEnd, domLoaded, windowLoaded)) {
-    ga('send', 'event', {
-      eventCategory: 'Navigation Timing',
-      eventAction: 'track',
-      eventLabel: NULL_VALUE,
-      nonInteraction: true,
-      [metrics.RESPONSE_END_TIME]: responseEnd,
-      [metrics.DOM_LOAD_TIME]: domLoaded,
-      [metrics.WINDOW_LOAD_TIME]: windowLoaded,
-    });
-  }
-};
-
-
-/**
  * Generates a UUID.
  * https://gist.github.com/jed/982883
  * @param {string|undefined=} a
@@ -226,7 +201,3 @@ const uuid = function b(a) {
       ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b);
 };
 
-
-
-
-init(); // remove if using the `init` in main
