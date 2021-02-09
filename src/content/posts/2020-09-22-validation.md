@@ -1,6 +1,6 @@
 ---
-title: Client-side validation.
-description: a simple approach
+title: Client-side validation in Vue.
+description: Describing a simple approach to a validation framework
 tags: vue
 ---
 

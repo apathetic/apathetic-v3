@@ -37,6 +37,7 @@ header nav {
 .note {
   background: rgb(100 219 255 / 30%);
 }
+
 .tip {
   background-color: theme('colors.yellow.100');;
 
@@ -53,6 +54,11 @@ pre[class*="language-"],
     margin: 0 -2em 0.5em !important;
     overflow: auto;
     position: relative;
+}
+
+mark {
+  background: rgba(0,0,0,0.5);
+  color: inherit;
 }
 
 sup {

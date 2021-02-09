@@ -1,5 +1,5 @@
-// import registerServiceWorker from './registerServiceWorker';
 import "../styles/main.css";
+import registerSW from './service-worker/register';
 
 
 const main = () => {
@@ -9,7 +9,7 @@ const main = () => {
     analytics.reportWebVitals();
   });
 
-  // registerServiceWorker();
+  registerSW();
   console.log("okay.");
 };
 

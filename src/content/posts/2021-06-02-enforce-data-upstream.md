@@ -6,6 +6,8 @@ tags: draft
 
 > We can ensure key parts of our app are _known quantites_ ie. conform to a particular shape / contract. But what about at runtime?
 
+??? IN LIEU of GRAPHQL query schemas. !!
+
 tl;dr
 
 validation and enforce data entering app
@@ -31,6 +33,9 @@ dealing w/ bugs.
 - lots of bugs arise b/c of data inconsistently. We have a _tonnne_ of "Cannot read JSON in position 0" bugs
 
 -->
+
+
+
 
 
 

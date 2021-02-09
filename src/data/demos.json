@@ -29,5 +29,12 @@
     "github": "https://github.com/apathetic/ascii",
     "description": "Experiments in asciii art and encoding",
     "vid": "/static/images/ascii.mp4"
+  },
+  "11ty boilerplate": {
+    "url": "https://11ty-blarg.netlify.app/",
+    "github": "https://github.com/apathetic/boilerplate-11ty",
+    "description": "An 11ty template, which this site is based on",
+    "vid": ""
   }
+
 }

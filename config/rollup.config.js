@@ -1,17 +1,20 @@
 import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
+import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
+import { injectManifest } from 'rollup-plugin-workbox';
 
 const dev = process.env.NODE_ENV !== 'production';
 const plugins = [
   postcss({
-    config: {
-      path: 'config/postcss.config.js',
-      ctx: null,
-    },
+    config: { path: 'config/postcss.config.js', ctx: null },
     extract: 'dist/static/main.bundle.css',
     minimize: !dev,
+  }),
+  replace({
+    'process.env.NODE_ENV': `"${process.env.NODE_ENV}"`,
+    'process.env.PUBLIC_URL': dev ? 'localhost' : `''`,
   }),
   resolve({
     browser: true,
@@ -50,5 +53,20 @@ export default [
       file: 'dist/static/home.bundle.js',
     },
     plugins,
+  }, {
+    // SERVICE WORKER
+    input: 'src/scripts/service-worker/sw.js',
+    output: {
+      format: 'es',
+      file: 'dist/sw.js',
+    },
+    plugins: [
+      injectManifest({
+        swSrc: 'dist/sw.js',
+        swDest: 'dist/sw.js',
+        globDirectory: 'dist',
+      }),
+      ...plugins
+    ]
   }
 ];
