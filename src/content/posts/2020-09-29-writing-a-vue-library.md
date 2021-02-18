@@ -1,12 +1,21 @@
 ---
-title: Writing a vue library.
-description: challenges encountered along the way
+title: Writing a Component Library for Vue.
+description: challenges and learnings encountered along the way
 tags: draft
 ---
 
-Thoughts, considerations
+# Writing a Component Library for Vue
 
-- deliverables
+> tl;dr Learnings and xxx from wwriting a fully-feature Component library.
+
+I recently had the pleasure to lead development on a component library, and thought I'd share some learnings. There are many fine component libraries out there already, but there is an ever-increasing drive for a company or brand to assert its own particualr flavour and style of UI.
+
+There are [better](https://atomicdesign.bradfrost.com/) [resources](https://www.invisionapp.com/inside-design/scale-design-systems/) out there that paint a more holsitc picture of the undertaking; but here are musings fromt eh technical side of things.
+
+## Thoughts, considerations
+approach.  If you're at a smaller company and bandwith / resources are at issues, it absolutely makes sense to adopt one of the many great UI libraraies out there. Over time, as xxx grow, it to start developing and implementing a custom component framework. how exciting!
+
+## deliverables
 
 architecture
 
@@ -14,40 +23,26 @@ architecture
 - à la carte
 - services
 
-Bundling, rollup
--speed
-
-- minification
-
-chunking
-
-not using webpack...?
-
-testing
-
-
-
-------------------------
-
-
-[Green-UI](https://github.com/apathetic/green-ui)
-
+core CSS? leverage prior art?
 
 
 ### Publishing the library
 
-#### Pre-requisites
-* [ ] an npm account
-* [ ] access to the `developers` group in the `@leaflink/leaflink-ui`
-* [ ] have an `NPM_API_KEY` env var set
+Once xxx it makes sense to publish to npm. Set yourself up a company account, and ....
 
-#### Steps
+There are a couple of ways to publish. I'd recommend the `xxxxx` from sindre sorhus. Or, manually like
+`npm version patch`  // or minor, major, etc
+`npm publish --access=public`
 
-1. `npm run publish` (<small>note: don't leave out the `run` in this command</small>)
+However, as this thing is used by multiplel folks, i ended up writing a custom publish script, and calling it via npm `npm run publish` (note the `run`, which distinguises it)
 
-2. Follow the command prompts
-3. Done.
 
+
+## Internal tooling
+Bundling, rollup
+- speed
+- minification
+- chunking. not using webpack...?
 
 ### Building the library. A History:
 
@@ -60,6 +55,27 @@ I explored several (equally mediocre) options. One thing to note is that most ev
 3) Vue-CLI: why not use the Vue-CLI built on top of webpack? (If we ignore that we cannot output `esm` modules). We have a config for it and there'd be an opportunity to resue code. Well... it's not super configurable (in terms of generating a framework), in that it outputs every type of JS file (umd, common, etc) by default, _and HTML_. And, crucially, it is _slooow_.
 
 
+
+
+## testing
+
+## feedback (or, promoting it)
+surfacing the current xxx in the system to interested parties. NOt jsut other devs or designers, but stakeholders, PMs, 3rd party vendors, etc.
+- storybook
+- documentation
+
+
+
+------------------------
+
+
+[Green-UI](https://github.com/apathetic/green-ui)
+
+
+
+
+
+
 #### Scripts
 
 All relevant build-things live in `scripts/`. The library will be generated upon `npm install leaflink-ui` in a consuming application. This, then, runs `build.sh`
@@ -70,3 +86,8 @@ We might keep a few other modalities for building the library around, in case th
 * **Vue CLI**: vue.config.js, babel.config.js
 * **Jest**: babel.config.js, jest.config.js
 
+
+## References:
+
+* [atomic design](https://atomicdesign.bradfrost.com/)
+* [scale design systems](https://www.invisionapp.com/inside-design/scale-design-systems/)
