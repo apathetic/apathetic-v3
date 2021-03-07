@@ -158,23 +158,23 @@ button.addEventListener('click', (e) => {
 * we also `clone` each nav item and insert them into the dropdown, keeping a reference to each in our WeakMap
 {% endnote %}
 
-At this point, things actually work pretty well. Though, there is one minor detail that may be an issue -- or not -- depending on your use-case. When the viewport is shrinking, each intersection is detected on the _left_ edge of each nav item. When the viewport expands, though, this means we "miss" the intersection of the last item until we're beyond it.
+At this point, things actually work pretty well. Though, there is one minor detail that may be an issue -- or not -- depending on your use-case. When the viewport is shrinking, each intersection is detected on the _right_ edge of each nav item. When the viewport expands, though, this means we "miss" the intersection of the last item until we're beyond it. That is to say, when the right edge of the last nav item is clear of the bounding container.
 
-It's not a huge deal (we wouldn't expect the user to be frequently resizing the viewport) and the menu still works fine. To reset it, the user would need to resize a little beyond the menu in order to trigger the intersection.
+It's not a huge deal (as we wouldn't expect the user to be frequently resizing the viewport) but more importantly, the menu still works fine. To hide the overflow dropdown again, the user would need to resize a little beyond the bounding nav container in order to trigger the intersection.
 
-If we did want to address this, though, we'd need to detect intersections on each edge of each menu item. On the left edge for when the screen shrinks, and on the right edge for when it expands. We could get fancy with keeping track of widths and margins, and updating offsets dynamically (yuck), but it's far simpler to have an addtional IntersectionObserver, instead:
+If we did want to address this, though, we could get fancy by keeping track of widths and margins and updating offsets dynamically (yuck), but it's far simpler to have an addtional IntersectionObserver, instead. We'd need to detect intersections on the bounding nav container, and also on an "adjusted" bounding nav container -- one with the width of the dropdown button taken into consideration:
 
 ``` js
   let isOverflowing = false;
-  let isShrinking = false;
+  let isIntersecting = false;
   // ...
 
   const navIO = new IntersectionObserver((entries) => {
     isOverflowing = entries.some(i => i.rootBounds.width < listWidth);
-    isShrinking = entries.some(i => i.intersectionRatio < 1);
+    isIntersecting = entries.some(i => i.intersectionRatio < 1);
 
     more.classList.toggle('invisible', !isOverflowing);
-    (isOverflowing == isShrinking) && entries.forEach(toggle);
+    (isOverflowing == isIntersecting) && entries.forEach(toggle);
   }, options);
 
   const moreIO = new IntersectionObserver((entries) => {
@@ -187,7 +187,7 @@ If we did want to address this, though, we'd need to detect intersections on eac
 {% note %}
 * we no longer need to set a CSS var to reserve margin
 * we extend our options in the second IntersectionObserver, using a negative `rootMargin` instead
-* both IntersectionObservers will call the same `toggle` method (from above) upon intersection. The logic for this (isShrinking, isOverflowing) is discussed in the next section
+* both IntersectionObservers will call the same `toggle` method (from above) upon intersection. The logic for this (isIntersecting, isOverflowing) is discussed in the next section
 
 {% endnote %}
 
@@ -204,7 +204,7 @@ Finally, we need to make sure we observe both:
 
 The approach in the first version uses a CSS var to dynamically set a margin on the containing nav element, which is equal to the width of the `more` overflow toggle. This way, the overflow toggle is able to sit in the free space created, floating at the edge of the parent element. Then, when any items intersect (i.e. any element is less that 100% contained), we toggle `isOverflowing` to true and use it to 1) show the overflow dropdown and 2) add a right-margin equal to the width of the dropdown.
 
-The example with two IntersectionObservers foregoes this approach, though, using a constant negative `rootMargin` on one of the observers instead. The first observer detects intersections on the left edge of the dropdown, while the second detects the right edge. `isShrinking` is true when the intersection occured on the left edge, meaning the viewport is "shrinking". If the intersection ratio(s) of the element is < 1 it means we've crossed the right edge of the element heading leftwards (ie. element is not 100% contained); else, it'd be 1 (ie. element is 100% contained).  <!-- xxx a diagram here xxx. -->  We'd then need a special provision (only!) for the last item in the list when the viewport is expanding rightwards, as the left edge won't trigger at the correct time. So, we use `isOverflowing == isShriking` as a trick on the first observer, as they'll both be false in this instance. Otherwse just `isShrinking` would have sufficed.
+The example with two IntersectionObservers foregoes this approach, though, using a constant negative `rootMargin` on one of the observers instead. The _offset-adjusted_ observer detects intersections offset by the `more` button width and is used to manage the display of nav items (as before), while the _non-offset_ one is used to simply activate / deactivate the overflow dropdown at the correct time. For this, an `isIntersecting` variable tracks when a nav item is intersecting, which, when used in tandem with the `isOverFlow` variable, can be used to activate the `more` dropdown accordingly. We use `isOverflowing == isIntersecting` as a trick for when to turn it on (both true) and off (both false).
 
 ## Demos
 
