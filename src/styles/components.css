@@ -11,10 +11,15 @@ header nav {
   height: 18px;
 }
 
-.gallery .icon {
-  width: 80%;
-  height: 80%;
-  filter: grayscale(1) contrast(0.5);
+.gallery {
+  li {
+    background: #33333333;
+  }
+  .icon {
+    width: 80%;
+    height: 80%;
+    filter: grayscale(1) contrast(0.5);
+  }
 }
 
 
@@ -66,6 +71,9 @@ sup {
   display: inline-block;
 }
 
+.weshatch {
+  z-index: 100;
+}
 
 @screen lg {
   .weshatch {

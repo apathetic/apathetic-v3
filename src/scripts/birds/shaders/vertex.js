@@ -1,5 +1,5 @@
 // Vertex Shader
-// provides the clipspace coordinates
+// provides the clipspace coordinates (movement?)
 
 export const birdVertexShader = `
   attribute vec2 reference;

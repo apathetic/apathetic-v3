@@ -1,0 +1,7 @@
+Recoil in vue
+
+This is bit of clickbait title, but. After watching Dave mccabes' talk at reactions about a state managesment system to sync the leaves of a complex app, I realized I had done the same thing in a personal project in Vue 4 years ago. (Moving nodes around on a canvas! malformed.ca)
+
+
+
+The paradigms are not exactly the same, but, if you are able to wrap your ha da around how recoil works, a similar structure can be easily achieved in vuex by setting up your store with a few patterns

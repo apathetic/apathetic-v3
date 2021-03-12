@@ -1,3 +1,8 @@
+//
+// THREEJS implementation
+// Adapted from "birds" --> shaders demo
+// uses the GPUComputationRenderer WTF
+//
 
 import * as THREE from 'three';
 import { textureVelocity, texturePosition } from './shaders/fragment.js';
@@ -6,7 +11,6 @@ import { GPUComputationRenderer } from './GPUComputationRenderer.js';
 
 /* TEXTURE WIDTH FOR SIMULATION */
 const WIDTH = 32;
-
 const BIRDS = WIDTH * WIDTH;
 
 // Custom Geometry - using 3 triangles each. No UVs, no normals currently.

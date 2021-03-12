@@ -7,15 +7,43 @@ title: About
 
 
 {% block header %}
-  <div class="birds colorize cover bg-gray-900"></div>
   {% include 'header.njk' %}
+  <div class="hero bg-gray-900">
+
+    {# birds n glint n stuff #}
+    <div class="birds colorize glint red fixed" id="shader">
+      <span class="more flex justify-center absolute"></span>
+    </div>
+
+    {# mask #}
+    <div class="tint cover">
+      <canvas class="mask"></canvas>
+      {# to be loaded by svg mask: #}
+      <svg class="hidden icon" width="96px" height="96px" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#4987CE" d="M48,96 C47.5228889,96 47.0477778,95.9913334 46.5735556,95.9775556 L56.3831111,69.0180625 L69.8831111,69.0180625 C72.2526667,69.0180625 74.8537778,67.1965111 75.6642222,64.9709607 L86.3068889,35.7385839 C88.048,30.952595 85.3066667,27.0370485 80.214,27.0370485 L61.4853333,27.0370485 L45.7708889,70.2182819 L45.7651111,70.2182819 L36.8564444,94.6966697 C15.7208889,89.6720146 0,70.6727253 0,48.0001111 C0,25.981051 14.8268889,7.4268717 35.0406667,1.7719959 L25.8484444,27.0370485 L25.8457778,27.0370485 L10.5642222,69.0180625 L20.7371111,69.0189513 L33.7328889,33.3454784 L41.3782222,33.3454784 L28.3824444,69.0189513 L38.5515556,69.0207291 L50.6622222,35.7385839 C52.4044444,30.952595 49.6628889,27.0370485 44.5748889,27.0370485 L36.0235556,27.0370485 L45.8426667,0.0504443277 C46.5584444,0.0186666235 47.2768889,0 48,0 C74.5097778,0 96,21.4901725 96,48.0001111 C96,74.5093831 74.5097778,96 48,96 Z M77.0426667,33.3199229 L69.3993333,33.3199229 L58.6955556,62.6882993 L66.3391111,62.6882993 L77.0426667,33.3199229 L77.0426667,33.3199229 Z"></path>
+      </svg>
+
+      {# <svg class="hidden icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 7.77L18.39 18H5.61L12 7.77M12 4L2 20h20L12 4z"/>
+      </svg> #}
+
+    </div>
+
+  </div>
 {% endblock %}
 
 {% block body %}
-  <span class="more flex justify-center"></span>
+  <section class="overview pb-16">
+    <div class="container" style="perspective: 500px;">
 
-  <section class="overview py-16">
-    <div class="container">
+<svg class="squiggle" xmlns="http://www.w3.org/2000/svg" width="78.2px" height="26.4px" viewBox="0 0 78.2 26.4" enable-background="new 0 0 78.2 26.4">
+  <path fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="  M57.3,13.1c-3.2,10.4,10.4,16.1,16.8,8.7c7.1-8.2,0.6-17.8-7-20.1c-19.6-5.2-31.9,18-49,23.1C9.3,27.5-1.7,20.4,1.6,9.8  c3.8-12.4,23.3-9,19.3,4"
+
+  style="stroke-dasharray: 132.0317, 166.656;"
+
+  />
+</svg>
+
       <div class="text-lg block" data-scrollify="intro">
         <p>Hi. I'm a front-end engineer with a broad set of skills. Usually I'm messing with the newest
           paradigms in the front-end world, but you'll also find me exploring random things server-side
@@ -41,10 +69,10 @@ title: About
   <section class="work py-16 bg-gray-900">
     <div class="container">
       <h3 class="font-bold">Selected Work</h3>
-      <ul class="gallery grid grid-cols-3">
+      <ul class="gallery grid grid-cols-3 gap-4">
         {% for i in ['mcm', 'walmart', 'hp', 'nyulangone', 'nbc', 'google'] %}
           {% set j = "work/" + i %}
-          <li class="h-24 grid place-items-center" data-scrollify="icon">{% icon j %}</li>
+          <li class="h-24 grid place-items-center rounded-xl" data-scrollify="icon">{% icon j %}</li>
         {% endfor %}
       </ul>
     </div>
