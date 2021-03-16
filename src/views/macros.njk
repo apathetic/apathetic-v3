@@ -1,12 +1,12 @@
 {% macro subsection(title, items, format) %}
   <div class="block">
-    <h3 class="font-black">{{ title }}</h3>
+    <h3 class="mb-4 font-black">{{ title }}</h3>
 
     {% if format == 'dl' %}
       <dl>
         {% for key, value in items %}
-          <dt class="float-left text-right pr-2 w-24">{{ key }}</dt>
-          <dd class="ml-24">{{ value }}</dd>
+          <dt data-scrollify="dt" class="float-left text-right pr-2 w-24">{{ key }}</dt>
+          <dd data-scrollify="dd" class="ml-24">{{ value }}</dd>
         {% endfor %}
       </dl>
     {% else %}
@@ -20,7 +20,7 @@
 {% macro linkify(items) %}
   <ul class="list-disc pl-6">
     {% for key, value in items %}
-      <li>
+      <li data-scrollify="li">
         <a href={{ value }} target="_blank" rel="noopener noreferrer">{{ key }}</a>
       </li>
     {% endfor %}

@@ -40,22 +40,34 @@ body { background: var(--color-bg, black); } /* NOTE: <--- this is what the mask
 }
 .about main::after { background-color: #77777733 !important; }
 
-.tint::before,
+/* .tint::before, */
 .tint::after {
-  content: '';
+  /* content: ''; */
   position: absolute;
   top: 75%;
-  width: calc(50% - 50px); /* - 1/2 of the hp thing */
-  height: 3px;
-  background: #e9e9e9;
-  background: var(--color-red);
-  background: var(--color-glint);
-  opacity: 0.2;
-  transform: scale(calc(1 - var(--t)));
+
+  /* width: calc(50% - 50px); */
+  /* height: 3px; */
+  /* background: #e9e9e9; */
+  /* background: var(--color-red); */
+  /* background: var(--color-glint); */
+  /* transform: scale(calc(1 - var(--t))); */
+  /* opacity: 0.2; */
+
+  width: 160px;
+  height: 160px;
+  opacity: var(--t);
+  transform: scale(calc(1 + var(--t) * 1.2));
+  border: calc(16px * var(--t)) solid var(--color-red);
+  border-radius: 50%;
+  border-style: double;
+  left: 50%;
+  margin: -80px;
+
   z-index: 1;
 }
-.tint::before { left:0 }
-.tint::after { right:0 }
+/* .tint::before { left:0 }
+.tint::after { right:0 } */
 
 
 
@@ -104,8 +116,8 @@ body { background: var(--color-bg, black); } /* NOTE: <--- this is what the mask
     --bg-alpha: 1.0;
   }
 
-  .block {
-    @apply mb-12;
+  .block + .block {
+    @apply mt-16;
   }
 
 

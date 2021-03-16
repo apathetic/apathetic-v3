@@ -207,8 +207,6 @@ function svgToBlobImage(e) {
     w = parseFloat(w) * ratio
     h = parseFloat(h) * ratio;
 
-    console.log('svg mask', w,h);
-
     e.setAttribute('width', w),
     e.setAttribute('height', h);
 
