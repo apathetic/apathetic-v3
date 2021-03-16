@@ -3,6 +3,7 @@ import { debounce, lerp, css } from '@apatheticwes/scrollify/src/utils';
 import CanvasMaskZoom from "./svgmask.js";
 import "./birds/";
 
+const root = document.documentElement;
 // import xxx from './hi';
 // import perlin from './perlin';
 // const run = perlin(noise);
@@ -53,7 +54,6 @@ new Scrollify('.mask').addScene({
 
 const grey = [0, 250, 240, 0.8];
 const red =  [144, 35, 22, 0.45];
-const root = document.documentElement;
 const interpolate = (arrA, arrB, t) => { // assumes array lengths are equal
   return arrA.map((v, i) => lerp(arrA[i], arrB[i], t))
 }
@@ -193,3 +193,15 @@ document.querySelectorAll('[data-scrollify]').forEach((el, i) => {
 
   }
 })
+
+
+
+// -------------------------------------
+// EASTER EGG
+// -------------------------------------
+
+document.querySelector('.weshatch').addEventListener('click', () => {
+  const rand = [0,0,0].map(() => ~~(Math.random() * 255 )).toString();
+  root.style.setProperty('--color-red', `rgba(${rand}, 0.5)`);
+  root.classList.toggle('inversion');
+});

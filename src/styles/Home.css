@@ -2,32 +2,22 @@
   --padding: 48px;
   --transition: 0.2s;
   --bg-alpha: 1;
-  /* --bg-alpha: 0.87; */
   --color-bg: rgba(24, 24, 24, var(--bg-alpha));
   --color-red: rgba(255, 44, 11, 0.5);
   --color-glint: #90231673;
-
   --distance: 180vh;
 }
 
 
 
-.birds {
- /*  transform: rotate3d(1, 0, 0, calc(var(--xxx) * 1deg)); */
-  /* position: fixed; */
-  /* perspective-origin: 50% 90%;  perspective: 500px; */
-  /* opacity: var(--t); 🪓  */
-}
+
 body { background: var(--color-bg, black); } /* NOTE: <--- this is what the mask will pick up */
-.about main { background: linear-gradient(0deg, #a05252, transparent, var(--color-bg)); }
-.about main { margin-top: var(--distance);  position: relative;  /*transform: rotate3d(1, 0, 0, calc(var(--xxx) * 1deg)); } */ }
+.about main { background:linear-gradient(0deg, #a05252, transparent, var(--color-bg)); margin-top:var(--distance);  position: relative;  /*transform: rotate3d(1, 0, 0, calc(var(--xxx) * 1deg)); } */ }
 .hero { height: var(--distance); width: 100vw; position: absolute; }
-.tint { background: var(--color-red); overflow: hidden; }
+.tint { background: var(--color-red); overflow: hidden;   transition: background 1.6s; }
 .more { top: 90vh; left:50vw; transform: translate(-50%, -50%); }
 .about main::after,
 .glint::after {
-  /* background: #1b1b1b66; */
-  /* background: #90231673; */
   background-color: var(--color-glint); /* linear-gradient(45deg, transparent 50%, xxxx 50%) */
   clip-path: polygon(0 0, 100vw 0, 100vw 100vh, 0 0);
   content: '';
