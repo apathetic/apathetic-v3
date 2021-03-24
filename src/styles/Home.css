@@ -9,13 +9,23 @@
 }
 
 
+.wrapper {
+  /* if "overlapping" hero (creates cool dark fx): */
+  background: linear-gradient(0deg, #a05252 0%, transparent 25%, transparent 85%, var(--color-bg));
 
+  background: linear-gradient(0deg, #a05252 0%, transparent, var(--color-bg));
+}
+.about main {
+  background: none;
+  /* background:linear-gradient(0deg, #a05252, transparent, var(--color-bg)); */
+  /* position: relative;   */
+ /*margin-top:var(--distance); */
+ /*transform: rotate3d(1, 0, 0, calc(var(--xxx) * 1deg)); } */
+}
 
 body { background: var(--color-bg, black); } /* NOTE: <--- this is what the mask will pick up */
-.about main { background:linear-gradient(0deg, #a05252, transparent, var(--color-bg)); margin-top:var(--distance);  position: relative;  /*transform: rotate3d(1, 0, 0, calc(var(--xxx) * 1deg)); } */ }
-.hero { height: var(--distance); width: 100vw; position: absolute; }
+.hero { height: var(--distance); width: 100vw; /*position: absolute;*/ z-index: -1; }
 .tint { background: var(--color-red); overflow: hidden;   transition: background 1.6s; }
-.more { top: 90vh; left:50vw; transform: translate(-50%, -50%); }
 .about main::after,
 .glint::after {
   background-color: var(--color-glint); /* linear-gradient(45deg, transparent 50%, xxxx 50%) */
@@ -64,9 +74,6 @@ body { background: var(--color-bg, black); } /* NOTE: <--- this is what the mask
 
 
 
-
-
-
 .about {
   color: theme('colors.gray.100');
 
@@ -83,18 +90,6 @@ body { background: var(--color-bg, black); } /* NOTE: <--- this is what the mask
 
   main {
     grid-area: 1/1/2/3;
-  }
-
-  .more::after {
-    animation: pulse 2s infinite;
-    content: '〉';
-    display: block;
-    font-size: 32px;
-    transform: rotate(90deg);
-    transform-origin: left;
-    height: 40px;
-    width: 16px;
-    position: relative;
   }
 
   .container {

@@ -8,7 +8,7 @@ import Bird from "./Bird";
 const NUM_BIRDS = 200;
 const LINE_COLOUR = 0x333333;
 const EXTEND = 300; // extend beyond the viewport
-let container;
+let canvas;
 let camera;
 let scene;
 let renderer;
@@ -18,7 +18,7 @@ class Birds {
   constructor(props) {
     if (typeof window === "undefined") return;
 
-    container = document.querySelector('.birds');
+    canvas = document.querySelector('.birds');
 
     // params: field of view, aspect ratio for render output, near and far clipping plane.
     // also move the camera backwards so we can see stuff! (default position is 0,0,0)
@@ -37,23 +37,17 @@ class Birds {
     scene.add(camera);
 
     // figure out what the stuff in the scene looks like, draws it
-    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     // renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize(window.innerWidth, window.innerHeight + EXTEND);
 
     this.makeGrid();
     this.makeParticles();
+
     camera.lookAt(scene.position);
-
-
-    container.appendChild(renderer.domElement);
 
     window.addEventListener('resize', this.onResize);
     window.camera = camera;
-    window.scene = scene;
-
-        // e.fillStyle = this._bgColor,
-
 
     this.animate();
 

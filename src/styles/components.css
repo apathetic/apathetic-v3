@@ -75,6 +75,33 @@ sup {
   z-index: 100;
 }
 
+
+
+
+
+.more {
+  top: 90vh;
+  left:50vw;
+  transform: translate(-50%, -50%);
+}
+
+.more::after {
+  animation: pulse 2s infinite;
+  content: '〉';
+  display: block;
+  font-size: 32px;
+  transform: rotate(90deg);
+  transform-origin: left;
+  height: 40px;
+  width: 16px;
+  position: relative;
+}
+
+
+
+
+
+
 @screen lg {
   .weshatch {
     border-bottom: 1px solid theme('colors.gray.700');

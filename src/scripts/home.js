@@ -23,7 +23,7 @@ const mask = new CanvasMaskZoom({
   }
 });
 
-mask.imgOpacity = 1;
+// mask.imgOpacity = 1;
 mask.maskOpacity = 1;
 mask.setCanvasSize();
 mask.getSvgBlobImage().then(mask.draw);
@@ -32,17 +32,18 @@ window.addEventListener('resize', debounce(() => {
   mask.setCanvasSize();
   mask.draw();
 }));
-// window.mask = mask; // for debuggability, etc
+window.mask = mask; // for debuggability, etc
 
 new Scrollify('.mask').addScene({
   start: 0,
   end: '80vh',
   easing: 'easeInOutCubic',
   effects: {
-    translateY: ['-10vh', '45vh'],
+    y: ['-10vh', '45vh'],
     mask: () => (t) => {
       mask.maskZoomProgress = 1 - t;
-      requestAnimationFrame(mask.draw);
+      mask.draw(); // note: already inside a RAf
+      console.log('update');
     }
   }
 });
@@ -54,11 +55,20 @@ new Scrollify('.mask').addScene({
 
 const grey = [0, 250, 240, 0.8];
 const red =  [144, 35, 22, 0.45];
+          // rgba(144, 35, 22, 0.45)
+          // rgba(142, 36, 23, 0)
+
 const interpolate = (arrA, arrB, t) => { // assumes array lengths are equal
-  return arrA.map((v, i) => lerp(arrA[i], arrB[i], t))
+  // return arrA.map((v, i) => ~~lerp(arrA[i], arrB[i], t))
+  return [
+    ~~lerp(arrA[0], arrB[0], t),
+    ~~lerp(arrA[1], arrB[1], t),
+    ~~lerp(arrA[2], arrB[2], t),
+      lerp(arrA[3], arrB[3], t)
+  ]
 }
 
-new Scrollify('.birds canvas').addScene({
+new Scrollify('.birds').addScene({
   start: 1,
   end: '100vh',
   effects: {
@@ -77,17 +87,29 @@ new Scrollify('.birds canvas').addScene({
   }
 });
 
-
-
-
-
-new Scrollify('.more').addScene({
-  start: 0,
-  end: '100vh',
+const more = document.querySelector('.more');
+new Scrollify('.birds').addScene({
+  start: '75vh',
+  end: '90vh',
+  refs: ['.more'],
   effects: {
-    toggle: { 0.9: 'hidden' }
+    fade: [1, 0.2],
+    custom: ({ element }) => (t) => {
+      more.classList.toggle('hidden', !!(t << 1));
+    }
   },
+  debug: true
 });
+
+
+
+// new Scrollify('.more').addScene({
+//   start: 0,
+//   end: '100vh',
+//   effects: {
+//     toggle: { 0.9: 'hidden' }
+//   },
+// });
 
 
 
@@ -139,7 +161,7 @@ document.querySelectorAll('.weshatch h1, .weshatch h2').forEach((el) => {
     end: '40vh', // end when scroll >= 40vh
     effects: {
       fade: [1, 0],
-      translateY: [0, Math.random() * 300 + 200],
+      y: [0, Math.random() * 300 + 200],
       rotate: [0, ((Math.random() - 0.5) * Math.PI) / -3]
     },
   });
@@ -151,8 +173,8 @@ document.querySelectorAll('.weshatch h1, .weshatch h2').forEach((el) => {
 // SECTION ANIMATIONS
 // -------------------------------------
 
-document.querySelectorAll('[data-scrollify]').forEach((el, i) => {
-  const value = el.dataset.scrollify;
+document.querySelectorAll('[data-fx]').forEach((el, i) => {
+  const value = el.dataset.fx;
 
   // return;
   switch (value) {
@@ -185,10 +207,11 @@ document.querySelectorAll('[data-scrollify]').forEach((el, i) => {
           end: `el.bottom - ${70 + delay}vh`,
           easing: 'easeInOutBack',
           effects: {
-            translateY: [20, 0],
+            y: [20, 0],
             fade: [0, 1],
           },
         });
+
     default:
 
   }

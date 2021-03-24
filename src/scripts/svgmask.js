@@ -1,9 +1,7 @@
 // CANVASMASKZOOM
 
 const s = svgToBlobImage
-  , A = function() {
-    return window.devicePixelRatio > 1 ? 2 : 1
-  }
+  , A = () => window.devicePixelRatio > 1 ? 2 : 1
   , l = "rgba(0, 0, 0, 1.0)"
   , c = 1
   , u = 0
@@ -49,6 +47,7 @@ export default class CanvasMaskZoom {
       };
       var i = this._parent.getBoundingClientRect().width
         , n = window.innerHeight;
+        // , n = this._parent.getBoundingClientRect().height
       this._metrics.scale.max = this._calcMaxScale(i, n),
       this.maskZoomProgress = 0,
       this.imgOpacity = 1,
@@ -86,7 +85,7 @@ export default class CanvasMaskZoom {
     draw() {
         this._clearCanvas(),
         this._calculatedOffsetScaleTransform(),
-        this._drawImg(),
+        // this._drawImg(),
         this._drawImgMask()
     }
 
@@ -159,7 +158,7 @@ export default class CanvasMaskZoom {
               , o = {
                 width: this._svgImg.width * r,
                 height: this._svgImg.height * n
-            }
+              }
               , A = e.focusOffset.x * e.pixelDensity * r * t
               , l = e.focusOffset.y * e.pixelDensity * n * t
               , c = e.canvas.width / 2 - o.width / 2;
@@ -192,14 +191,14 @@ export default class CanvasMaskZoom {
 
 
 
-function svgToBlobImage(e) {
+function svgToBlobImage(svgEl) {
   return new Promise((resolve, reject) => {
-    const ratio = window.devicePixelRatio > 1 ? 2 : 1;
-    let w = e.getAttribute('width');
-    let h = e.getAttribute('height');
+    const ratio = A(); // window.devicePixelRatio > 1 ? 2 : 1;
+    let w = svgEl.getAttribute('width');
+    let h = svgEl.getAttribute('height');
 
     if (!w || !h) {
-      const parent = window.getComputedStyle(e.parentElement);
+      const parent = window.getComputedStyle(svgEl.parentElement);
       w = parent.width;
       h = parent.height;
     }
@@ -207,10 +206,10 @@ function svgToBlobImage(e) {
     w = parseFloat(w) * ratio
     h = parseFloat(h) * ratio;
 
-    e.setAttribute('width', w),
-    e.setAttribute('height', h);
+    svgEl.setAttribute('width', w),
+    svgEl.setAttribute('height', h);
 
-    const bob = new Blob([e.outerHTML], { type: 'image/svg+xml' });
+    const bob = new Blob([svgEl.outerHTML], { type: 'image/svg+xml' });
     const src = (window.URL || window.webkitURL).createObjectURL(bob);
     const img = new Image;
 
@@ -219,63 +218,3 @@ function svgToBlobImage(e) {
   });
 }
 
-
-
-
-
-
-
-
-
-
-var Circle = {
-    x: 440,
-    y: 440,
-    size: 0,
-    maxSize: 77,
-
-    draw: function(ctx) {
-        ctx.moveTo(this.x, this.y);
-        ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-        debugger;
-
-    },
-
-    update: function(t) {
-        this.size = Math.abs(Math.round(Math.sin(t) * this.maxSize));
-    }
-};
-var circle = Object.create(Circle);
-
-function clippify(mask) {
-  const ctx = mask._ctx;
-  const drawImg = mask._drawImg;
-  const drawMask = mask._drawImgMask;
-
-  loop();
-
-  function loop() {
-    requestAnimationFrame(loop);
-
-    let t = 0.001 * Date.now();
-    circle.update(t);
-
-
-    // ctx.drawImage(imgBase, 0, 0);
-    drawImg.call(mask);
-
-    ctx.save();
-    ctx.beginPath();
-    circle.draw(ctx);
-    ctx.closePath();
-    ctx.clip();
-
-    // Draw the 'I Am The Night' image, which will be clipped
-    // by our path, so it is drawn 'into' the circles.
-    // ctx.drawImage(imgXtra, 0, 0);
-    drawMask.call(mask);
-
-    ctx.restore();
-
-  }
-}
