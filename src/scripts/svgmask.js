@@ -53,8 +53,6 @@ export default class CanvasMaskZoom {
       this.imgOpacity = 1,
       this.maskOpacity = 0,
       this.draw = this.draw.bind(this);
-
-      // clippify(this);
     }
 
     setCanvasSize() {

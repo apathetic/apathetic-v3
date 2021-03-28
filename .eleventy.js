@@ -36,7 +36,8 @@ module.exports = (config) => {
   // development stuffs
   config.setBrowserSyncConfig({
     files: ['dist/**/*'],
-    ghostMode: false,
+    ghostMode: false, // Default changed in 1.0
+    ui: false, // Default changed in 1.0
     open: false,
   });
 

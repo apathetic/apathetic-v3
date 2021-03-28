@@ -31,6 +31,7 @@ footer {
     transparent 10px,
     #78716c99 12px
   );
+  z-index: 1;
     /* theme('colors.gray.500') 12px */
 }
 
