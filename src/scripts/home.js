@@ -16,12 +16,16 @@ const mask = new CanvasMaskZoom({
   bgColor: css('background-color', document.body),
 });
 
-mask.maskOpacity = 1;
-mask.setCanvasSize();
-mask.getSvgBlobImage().then(() => mask.directScaleDraw(scale));
+const onResize = () => {
+  mask.setCanvasSize();
+  mask.directScaleDraw(scale);
+};
 
-window.mask = mask; // for debuggability, etc
-window.addEventListener('resize', mask.setCanvasSize.bind(mask));
+mask.maskOpacity = 1;
+mask.getSvgBlobImage().then(onResize);
+window.addEventListener('resize', onResize);
+
+// window.mask = mask; // for debuggability, etc
 
 new Scrollify('.mask').addScene({
   start: 0,
