@@ -1,5 +1,5 @@
 import { Scrollify } from "@apatheticwes/scrollify";
-import { debounce, lerp, css } from '@apatheticwes/scrollify/src/utils';
+import { css } from '@apatheticwes/scrollify/src/utils';
 import CanvasMaskZoom from "./svgmask.js";
 import "./birds/";
 
@@ -9,24 +9,19 @@ const root = document.documentElement;
 // MASK
 // -------------------------------------
 
+let scale = 1;
+const MAX_ZOOM = 100;
 const mask = new CanvasMaskZoom({
   el: document.querySelector('.cover'),
   bgColor: css('background-color', document.body),
-  zoomFocusPoint: {
-    offset:      [0, 0],  // focusOffset (x,y)
-    initialSize: [0, 0],  // focusStartSize (w,h)
-  }
 });
 
 mask.maskOpacity = 1;
 mask.setCanvasSize();
-mask.getSvgBlobImage().then(mask.draw);
+mask.getSvgBlobImage().then(() => mask.directScaleDraw(scale));
 
-window.addEventListener('resize', debounce(() => {
-  mask.setCanvasSize();
-  mask.draw();
-}));
-// window.mask = mask; // for debuggability, etc
+window.mask = mask; // for debuggability, etc
+window.addEventListener('resize', mask.setCanvasSize.bind(mask));
 
 new Scrollify('.mask').addScene({
   start: 0,
@@ -35,8 +30,8 @@ new Scrollify('.mask').addScene({
   effects: {
     y: ['0', '45vh'],
     mask: () => (t) => {
-      mask.maskZoomProgress = 1 - t;
-      mask.draw(); // note: already inside a RAf
+      scale = (1 - t) * MAX_ZOOM + 1;
+      mask.directScaleDraw(scale);
     }
   }
 });
@@ -50,7 +45,7 @@ new Scrollify('.birds').addScene({
   start: 1,
   end: '100vh',
   effects: {
-    pan: () => (t) => {
+    tilt: () => (t) => {
       // camera position descends while it tilts upwards, and widens its fov
       window.camera.position.y = (1-t) * 270 + 30 // 300 -> 30
       window.camera.lookAt(0, t*120, 0);          // 0 -> 120
@@ -81,7 +76,6 @@ new Scrollify('.birds').addScene({
 document.querySelectorAll('[data-fx]').forEach((el, i) => {
   const value = el.dataset.fx;
 
-  // return;
   switch (value) {
     case 'intro':
     case 'cv':

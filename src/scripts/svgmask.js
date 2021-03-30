@@ -1,7 +1,7 @@
 // CANVASMASKZOOM
 
 const s = svgToBlobImage
-  , A = () => window.devicePixelRatio > 1 ? 2 : 1
+  , A = () => 1 // window.devicePixelRatio > 1 ? 2 : 1
   , l = "rgba(0, 0, 0, 1.0)"
   , c = 1
   , u = 0
@@ -32,27 +32,9 @@ export default class CanvasMaskZoom {
               width: 0,
               height: 0
           },
-          focusStartSize: {
-              w: t.zoomFocusPoint.initialSize[0] || h,
-              h: t.zoomFocusPoint.initialSize[1] || h
-          },
-          focusOffset: {
-              x: t.zoomFocusPoint.offset[0] || u,
-              y: t.zoomFocusPoint.offset[1] || u
-          },
-          scale: {
-              min: c,
-              max: c
-          }
       };
-      var i = this._parent.getBoundingClientRect().width
-        , n = window.innerHeight;
-        // , n = this._parent.getBoundingClientRect().height
-      this._metrics.scale.max = this._calcMaxScale(i, n),
-      this.maskZoomProgress = 0,
       this.imgOpacity = 1,
-      this.maskOpacity = 0,
-      this.draw = this.draw.bind(this);
+      this.maskOpacity = 0;
     }
 
     setCanvasSize() {
@@ -60,7 +42,6 @@ export default class CanvasMaskZoom {
           , t = this._metrics
           , i = t.pixelDensity
           , r = this._parent.getBoundingClientRect().width
-          // , n = window.innerHeight
           , n = this._parent.getBoundingClientRect().height
           , a = t.canvas.width = e.width = r * i
           , s = t.canvas.height = e.height = n * i;
@@ -73,51 +54,19 @@ export default class CanvasMaskZoom {
         return s(t).then((img) => this._svgImg = img);
     }
 
-    directScaleDraw(e) {
+    directScaleDraw(scale) {
         this._clearCanvas(),
-        this._directScaleTransform(e),
-        this._drawImg(),
-        this._drawImgMask()
-    }
-
-    draw() {
-        this._clearCanvas(),
-        this._calculatedOffsetScaleTransform(),
+        this._directScaleTransform(scale),
         // this._drawImg(),
         this._drawImgMask()
     }
 
-    getFocusMetrics(e) {
-        var t = this._parent.getBoundingClientRect()
-          , i = t.width
-          , r = window.innerHeight
-          , n = this._metrics;
-        if (e) {
-            var a = e.getBoundingClientRect()
-              , s = this._calcFocusOffset(a, t, i, r);
-            n.focusStartSize.w = a.width,
-            n.focusStartSize.h = a.height,
-            n.focusOffset.x = s[0],
-            n.focusOffset.y = s[1]
-        }
-        n.scale.max = this._calcMaxScale(i, r)
-    }
-
-    _calcFocusOffset(bcr, parent, w, h) {
-        var n = w / 2
-          , a = h / 2
-          , s = bcr.left + bcr.width / 2
-          , o = bcr.top + bcr.height / 2 - parent.top
-          , A = s - n
-          , l = o - a;
-        return [A, l]
-    }
-
-    _calcMaxScale(e, t) {
-        var i = Math.ceil(e / this._metrics.focusStartSize.w)
-          , r = Math.ceil(t / this._metrics.focusStartSize.h);
-        return Math.max(i, r)
-    }
+    // draw() {
+    //     this._clearCanvas(),
+    //     this._calculatedOffsetScaleTransform(),
+    //     // this._drawImg(),
+    //     this._drawImgMask()
+    // }
 
     _clearCanvas() {
         var e = this._ctx;
@@ -144,30 +93,6 @@ export default class CanvasMaskZoom {
         }
     }
 
-    _calculatedOffsetScaleTransform() {
-        if (this._svgImg) {
-            var e = this._metrics
-              , t = this.maskZoomProgress
-              , i = e.scale.min + e.scale.max * t
-              , r = i
-              , n = i
-              , a = 0
-              , s = 0
-              , o = {
-                width: this._svgImg.width * r,
-                height: this._svgImg.height * n
-              }
-              , A = e.focusOffset.x * e.pixelDensity * r * t
-              , l = e.focusOffset.y * e.pixelDensity * n * t
-              , c = e.canvas.width / 2 - o.width / 2;
-            c -= A;
-            var u = e.canvas.height / 2 - o.height / 2;
-            u -= l,
-            this._ctx.setTransform(r, s, a, n, c, u);
-            // console.log('w | h | scale | minscale', c,u, i, e.scale.min);
-        }
-    }
-
     _drawImg() {
         if (this._svgImg) {
             var e = this._ctx;
@@ -191,7 +116,7 @@ export default class CanvasMaskZoom {
 
 function svgToBlobImage(svgEl) {
   return new Promise((resolve, reject) => {
-    const ratio = A(); // window.devicePixelRatio > 1 ? 2 : 1;
+    const ratio = A();
     let w = svgEl.getAttribute('width');
     let h = svgEl.getAttribute('height');
 
