@@ -1,5 +1,5 @@
 //
-// THREEJS implementation
+// THREEJS implementation using shaders
 // Adapted from "birds" --> shaders demo
 // uses the GPUComputationRenderer WTF
 //

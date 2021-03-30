@@ -1,3 +1,6 @@
+//
+// LIGHTGL implementation (ie. from evan wallace's site)
+//
 
 import GL from './lightgl.js';
 
@@ -67,13 +70,13 @@ gl.onupdate = function(seconds) {
   angleY += seconds * 5;
 };
 
-gl.onmousemove = function(e) {
-  if (e.dragging) {
-    angleX += e.deltaY;
-    angleY += e.deltaX;
-    angleX = Math.max(-90, Math.min(90, angleX));
-  }
-};
+// gl.onmousemove = function(e) {
+//   if (e.dragging) {
+//     angleX += e.deltaY;
+//     angleY += e.deltaX;
+//     angleX = Math.max(-90, Math.min(90, angleX));
+//   }
+// };
 
 gl.ondraw = function() {
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
