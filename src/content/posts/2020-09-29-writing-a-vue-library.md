@@ -1,34 +1,47 @@
 ---
 title: Writing a Component Library for Vue.
-description: challenges and learnings encountered along the way
+description: Challenges and learnings encountered along the way
 tags: draft
 ---
 
 # Writing a Component Library for Vue
 
-> tl;dr Learnings and xxx from wwriting a fully-feature Component library.
+> tl;dr Learnings and insights from authoring the technical-side of a design system.
 
-I recently had the pleasure to lead development on a component library, and thought I'd share some learnings. There are many fine component libraries out there already, but there is an ever-increasing drive for a company or brand to assert its own particualr flavour and style of UI.
+I had the pleasure to lead development on a component library at my last job, and thought I'd share some learnings. While there are many fine component libraries out there already, there is still an ever-increasing drive for companies to assert their own particular brand on an in-house styled UI.
 
-There are [better](https://atomicdesign.bradfrost.com/) [resources](https://www.invisionapp.com/inside-design/scale-design-systems/) out there that paint a more holsitc picture of the undertaking; but here are musings fromt eh technical side of things.
+Firstly, there are [better](https://atomicdesign.bradfrost.com/) [resources](https://www.invisionapp.com/inside-design/scale-design-systems/) out there that paint a more holistic picture of the undertaking involved; herein are simply some personal musings from my own experiences.
 
 ## Thoughts, considerations
 approach.  If you're at a smaller company and bandwith / resources are at issues, it absolutely makes sense to adopt one of the many great UI libraraies out there. Over time, as xxx grow, it to start developing and implementing a custom component framework. how exciting!
 
-## deliverables
+## Deliverables
 
-architecture
-
+What is in the actual "thing" that is to be built? It can be ambiguous, and that's okay. Scope and needs change.
+- architecture
+  -
 - "core" parts
+  - CSS
+    - core colours, styles, spacing, fonts,
+    - utility classes
+    - inheritance
+  - components
+    - which ones are needed?
+    - primitives, composability
+  - JS utilities
+    - lodash
+    - company-specific things and helpers
 - à la carte
+  - custom builds / or all-in-one
 - services
+  -
 
 core CSS? leverage prior art?
 
 
 ### Publishing the library
 
-Once xxx it makes sense to publish to npm. Set yourself up a company account, and ....
+Once the Design library has attained a critical mass, and can sufficiently represent the UI on a page, it makes sense to publish to npm. Set yourself up a company account, and ....
 
 There are a couple of ways to publish. I'd recommend the `xxxxx` from sindre sorhus. Or, manually like
 `npm version patch`  // or minor, major, etc

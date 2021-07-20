@@ -83,11 +83,11 @@ A few salient details:
 * we've set `flex-wrap: nowrap` so that the items continue horizontally
 * `inline-flex` so that the `ul` takes up just as much room as it needs
 * the `pinned` class positions both the _dropdown_ and the _more_ elements absolutely on the right edge. We'll show / hide both as needed
-* a few minor helper classes for showing hiding things.
+* a few minor helper classes (`.invisble` and `.hidden`) for showing hiding things.
 * you also might be wondering about the `transform` on the `div`. We'll come to that...
 {% endnote %}
 
-Also, notice how we have _both_ visibility hidden and display none helpers, here. This is important. When we remove an item from the navigation, we want to leave it in the document so that it may continue to trigger the Intersection Observer. We use `visibility:hidden` for this, while `display:none` is used to remove an element (and its children) from the layout completely.
+Also, notice how we have _both_ visibility hidden and display none helpers, here. This is important. When we remove an item from the navigation, we want to leave it in the document so that it may continue to trigger the Intersection Observer. We use `visibility:hidden` for this. Contrast it to `display:none`, which is used to remove an element (and its children) from the layout completely.
 
 
 For the JS, we first set up some references to the DOM nodes we'll need handles to:
