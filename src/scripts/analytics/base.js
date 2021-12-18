@@ -44,13 +44,14 @@ const dimensions = {
  */
 export const init = () => {
   // Initialize the command queue in case analytics.js hasn't loaded yet.
-  window.ga = window.ga || ((...args) => (ga.q = ga.q || []).push(args));
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = (...args) => { dataLayer.push(args); }
 
   createTracker();
+  reportWebVitals();
   trackErrors();
-  trackCustomDimensions();
-  sendInitialPageview();
-  // reportWebVitals();
+  // trackCustomDimensions();
+  // sendInitialPageview();
 };
 
 
@@ -65,7 +66,7 @@ export const init = () => {
  * @param {Object=} fieldsObj
  */
 export const trackError = (err = {}, fieldsObj = {}) => {
-  ga('send', 'event', Object.assign({
+  gtag('event', 'exception', Object.assign({
     eventCategory: 'Error',
     eventAction: err.name || '(no error name)',
     eventLabel: `${err.message}\n${err.stack || '(no stack trace)'}`,
@@ -82,7 +83,8 @@ export const trackError = (err = {}, fieldsObj = {}) => {
 export const reportWebVitals = () => {
   const onPerfEntry = ({ id, name, value }) => {
     console.log(`${name}: ${value}`);
-    ga('send', 'event', {
+    gtag({
+      event: 'web-vitals',
       eventCategory: 'Web Vitals',
       eventAction: name,
       eventValue: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
@@ -106,10 +108,8 @@ export const reportWebVitals = () => {
  * version fields. In non-production environments it also logs hits.
  */
 const createTracker = () => {
-  ga('create', TRACKING_ID, 'auto');
-
-  // Ensures all hits are sent via `navigator.sendBeacon()`.
-  ga('set', 'transport', 'beacon');
+  gtag('js', new Date());
+  gtag('config', TRACKING_ID, { 'transport_type': 'beacon'});
 };
 
 
@@ -153,11 +153,11 @@ const trackCustomDimensions = () => {
   // because Google Analytics will drop rows with empty dimension values
   // in your reports.
   Object.keys(dimensions).forEach((key) => {
-    ga('set', dimensions[key], NULL_VALUE);
+    gtag('set', dimensions[key], NULL_VALUE);
   });
 
   // Adds tracking of dimensions known at page load time.
-  ga((tracker) => {
+  gtag((tracker) => {
     tracker.set({
       [dimensions.TRACKING_VERSION]: TRACKING_VERSION,
       [dimensions.CLIENT_ID]: tracker.get('clientId'),
@@ -167,7 +167,7 @@ const trackCustomDimensions = () => {
 
   // Adds tracking to record each the type, time, uuid, and visibility state
   // of each hit immediately before it's sent.
-  ga((tracker) => {
+  gtag((tracker) => {
     const originalBuildHitTask = tracker.get('buildHitTask');
     tracker.set('buildHitTask', (model) => {
       const qt = model.get('queueTime') || 0;
@@ -184,9 +184,11 @@ const trackCustomDimensions = () => {
 
 /**
  * Sends the initial pageview to Google Analytics.
+ * NOTE: this is automatially done unless _explicitly_ disabled in the config
+ * https://developers.google.com/analytics/devguides/collection/gtagjs/pages
  */
 const sendInitialPageview = () => {
-  ga('send', 'pageview', {[dimensions.HIT_SOURCE]: 'pageload'});
+  gtag('event', 'page_view', {[dimensions.HIT_SOURCE]: 'pageload'});
 };
 
 

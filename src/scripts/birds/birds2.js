@@ -1,6 +1,5 @@
 //
-// THREEJS implementation
-// Adapted from "two slabs of texture" demo
+// random shader example: adapted from "two slabs of texture" demo
 // Three.js "tutorials by example"
 // Author: Lee Stemkoski
 //
