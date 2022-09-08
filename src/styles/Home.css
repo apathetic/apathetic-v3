@@ -25,8 +25,12 @@
   width: 100vw;
   opacity: 0.2;
 }
-.about main::after { background-color: #77777733 !important; }
 
+
+.about main::after {
+    /* background: linear-gradient(hsl(0deg 10% 48% / 5%), hsl(272deg 52% 60% / 50%)); */
+  background-color: #77777733 !important;
+}
 
 
 

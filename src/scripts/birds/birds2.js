@@ -51,6 +51,8 @@ void main()
 var container, scene, camera, renderer, controls, stats;
 var clock = new THREE.Clock();
 var customUniforms, customUniforms2;
+var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
+var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
 
 container = document.querySelector('.birds');
 
@@ -59,31 +61,20 @@ animate();
 
 // FUNCTIONS
 function init() {
-	// SCENE
 	scene = new THREE.Scene();
-
-	// CAMERA
-	var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
-	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
 	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
+  renderer = new THREE.WebGLRenderer( {antialias:true} );
+
 	scene.add(camera);
 	camera.position.set(0,100,400);
 	camera.lookAt(scene.position);
 
-	// RENDERER
-	// if ( Detector.webgl )
-		renderer = new THREE.WebGLRenderer( {antialias:true} );
-	// else
-	// 	renderer = new THREE.CanvasRenderer();
+
+  window.camera = camera; // TODO: remove from window! (ref'd in home.js)
+
 	renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	container.appendChild( renderer.domElement );
 
-	// EVENTS
-	// THREEx.WindowResize(renderer, camera);
-	// THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
-
-	// // CONTROLS
-	// controls = new THREE.OrbitControls( camera, renderer.domElement );
 
 	// LIGHT
 	var light = new THREE.PointLight(0xffffff);
@@ -91,7 +82,8 @@ function init() {
 	scene.add(light);
 
 	// FLOOR
-	var floorTexture = new THREE.ImageUtils.loadTexture( 'https://images.all-free-download.com/images/graphiclarge/checkerboard_pattern_201772.jpg' );
+	var floorTexture = new THREE.ImageUtils.TextureLoader.load('static/images/checkerboard.jpg' );
+	var waterTexture = new THREE.ImageUtils.TextureLoader.load( '/static/images/water.jpg' );
 	floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
 	floorTexture.repeat.set( 10, 10 );
 	var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
@@ -108,10 +100,10 @@ function init() {
 	// CUSTOM //
 	////////////
 
-	var noiseTexture = new THREE.ImageUtils.loadTexture( 'static/images/zigzag-ui.png' );
+	var noiseTexture = new THREE.ImageUtils.TextureLoader.load( 'static/images/zigzag-ui.png' );
 	noiseTexture.wrapS = noiseTexture.wrapT = THREE.RepeatWrapping;
 
-	var lavaTexture = new THREE.ImageUtils.loadTexture( 'static/images/zigzag-ui.png' );
+	var lavaTexture = new THREE.ImageUtils.TextureLoader.load( 'static/images/zigzag-ui.png' );
 	lavaTexture.wrapS = lavaTexture.wrapT = THREE.RepeatWrapping;
 
 	customUniforms = {
@@ -142,7 +134,8 @@ function init() {
 	/////////////////////////////////
 	// again, but for water!
 
-	var waterTexture = new THREE.ImageUtils.loadTexture( 'https://images.all-free-download.com/images/graphiclarge/blue_water_background_image_5_169469.jpg' );
+	// var waterTexture = new THREE.ImageUtils.loadTexture( '/static/images/water.jpg' );
+	var waterTexture = new THREE.ImageUtils.TextureLoader.load( '/static/images/water.jpg' );
 	waterTexture.wrapS = waterTexture.wrapT = THREE.RepeatWrapping;
 
 	// use "this." to create global object
