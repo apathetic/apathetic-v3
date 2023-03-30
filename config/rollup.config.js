@@ -9,7 +9,7 @@ const dev = process.env.NODE_ENV !== 'production';
 const plugins = [
   postcss({
     config: { path: 'config/postcss.config.js', ctx: null },
-    extract: 'dist/static/main.bundle.css',
+    extract: 'main.bundle.css',
     minimize: !dev,
   }),
   replace({
