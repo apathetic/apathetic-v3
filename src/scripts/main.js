@@ -1,5 +1,5 @@
-import "../styles/main.css";
 import registerSW from './service-worker/register';
+import "../styles/main.css";
 
 
 const main = () => {

@@ -21,7 +21,7 @@ Skypack is a tool that allows you to import xxx intor your working wihtout bundl
 Skypack has pretty much all the same modules that npm's registry has.  Instead of grabbing it from xxxx, you can Skypack it (if we can use it as verb). However, on the downside, you still need to find your package....
 
 
-``` index.html
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>

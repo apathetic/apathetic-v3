@@ -1,8 +1,8 @@
 import commonjs from '@rollup/plugin-commonjs';
-import postcss from 'rollup-plugin-postcss';
 import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
+import postcss from 'rollup-plugin-postcss';
 import { injectManifest } from 'rollup-plugin-workbox';
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -13,6 +13,7 @@ const plugins = [
     minimize: !dev,
   }),
   replace({
+    preventAssignment: true,
     'process.env.NODE_ENV': `"${process.env.NODE_ENV}"`,
     'process.env.PUBLIC_URL': dev ? 'localhost' : `''`,
   }),
