@@ -38,7 +38,7 @@
     "build": "NODE_ENV=production run-s clean build:*",
     "build:11ty": "eleventy --quiet",
     "build:js": "rollup -c config/rollup.config.js --bundleConfigAsCjs",
-    "dev": "run-p clean dev:js dev:11ty",
+    "dev": "run-p dev:js dev:11ty",
     "dev:11ty": "eleventy --serve --quiet",
     "dev:js": "rollup -w -c config/rollup.config.js --bundleConfigAsCjs",
     "start": "npm run clean && npm run dev"
