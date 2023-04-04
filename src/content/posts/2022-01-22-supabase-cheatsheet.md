@@ -1,7 +1,6 @@
 ---
 title: Supabase Cheatsheet
 description: A few common commands and queries.
-tags: draft
 ---
 
 # Supabase Cheatsheet
@@ -46,7 +45,9 @@ Initialize some things:
 
 * **Matchers" aka filtering or refining results**
 
-  Supabase has a bunch of docs on its available matchers, but less what they do. I you know sql you can probably infer what's going on. Otherwise:
+  Supabase has a bunch of docs on its available matchers, but less what they do.
+  If you know sql you'll likely infer what's going on.
+  Otherwise:
 
         // good for filtering on arrays:
         contains:  AND
@@ -58,9 +59,9 @@ Initialize some things:
 
 * **construct a query dynamically**
   ```
-    if (tt) { query = query.contains('tag_ids', tt) }    // AND
-    // if (tt) { query = query.containedBy('tag_ids', tt) } // ONLY (ie. have 1 or all of tt and no others)
-    // if (tt) { query = query.overlaps('tag_ids', tt) }    // OR
+    if (X) { query = query.contains('tag_ids', X) }    // AND
+    if (Y) { query = query.containedBy('tag_ids', Y) } // ONLY (ie. have Y and no others)
+    if (Z) { query = query.overlaps('tag_ids', Z) }    // OR
 
     query.then(({ data, error }) => {
       console.log(data, error);
@@ -69,18 +70,20 @@ Initialize some things:
 
 * **text search**
 
-  Supabase has full-text-search built in, which is nice. For more sophisticated searching (hashing/indexing) see below
+  Supabase has full-text-search built in, which is nice.
+  For more sophisticated searching (hashing/indexing), try
   ```
-  .textSearch('title, synopsis', qq)
+  if (Q) { query = query.textSearch('title, synopsis', Q) }
   ```
 
 * **FULL text search**
 
-  search large amounts of text is slow.  in postgres, you can construct a "VECOTR???" or something that "pre-indexes" a particular table column -- or _multiple columns_.
+  Searching large amounts of text is slow.
+  In postgres, you can construct a "VECTOR" (or something?) that _pre-indexes_ a particular table column (or _multiple columns_).
 
-  _However_, to leverage it, you need to define an "index", which is like a hash of the words in the field to search. You set it up:
-
-  you can do this by creating and "searchable" column.  You'll need to run this snippet in the CMD thingy:
+  _However_, to leverage it, you need to define an "index", which is like a hash of the words in the field to search.
+  You set it up by creating a "searchable" column.
+  (From their site) run this snippet in the CMD window:
 
   ```sql
   alter table
@@ -97,10 +100,10 @@ Initialize some things:
   from books;
   ```
 
-  Use the generated-index like so:
+  Then, use the same `textSearch` but on the generated-index like so:
 
   ```
-  if (qq) { query = query.textSearch('fts', qq) }
+  if (Q) { query = query.textSearch('fts', Q) }
   ```
 
 
@@ -111,8 +114,8 @@ First, a helper function to managing paging:
 ```js
 function paginate(page, size) {
   const limit = size ? size : 50;
-  const from = page ? page * limit : 0;
-  const to = page ? from + size - 1 : size - 1;
+  const from = page * limit;
+  const to = from + size - 1;
   return { from, to }
 }
 ```
@@ -129,7 +132,9 @@ let query = client
 
 ### JOIN (or, getting things from multiple tables at once)
 
-First, you'll need a "foreign key" set up.  That is, a key that points to a record in a _different_ table.  You can set this in the Supabase table editor.
+First, you'll need a "foreign key" set up.
+That is, a key that points to a record in a _different_ table.
+You can set this in the Supabase table editor.
 
 ```js
   .select(`
