@@ -1,20 +1,20 @@
 ---
-title: Writing a Component Library for Vue.
-description: Challenges and learnings encountered along the way
+title: An alternative prototyping environment.
+description: Findings using Skypack, unpkg, et al.
 tags: draft
 ---
 
-# Writing a Component Library for Vue
+# An alternative prototyping environment
 
-> tl;dr Learnings and insights from authoring the technical-side of a design system.
+> tl;dr A quick way to spin up an environment with a specific library
 
 
-Normally when I start something new, I spend a chunk of my time setting up folders, pulling in frameworks and resources, deciding whihc llibrary to use this or that, and putting into place the all-dreaded build pipeline.  Once these things are done, I've lost the main thread of what i was doing.  (and, yes, you can tell me to simply npx nextjs or npx vite that -- however, what to do when your thing isn't precipitated on a SPA structure and needs different considerations).
+Normally when I start something new, I spend a chunk of my time setting up folders, pulling in frameworks and resources, deciding which libraries to use, and then putting it all together into whatever build pipeline is trending. Everything has to be _perfect_.  But, once these things are done I've lost the main thread of what I was doing. (And, yes, you can tell me to simply `npx nextjs` this or `npx vite` that -- however, what to do when your thing isn't precipitated on a SPA structure and needs different considerations).
 
-So... recently, i started on a new personal project. It began, initially, with a few snippets of JavaScript that I was authoring directly in the brosers WebInspector.  Then I started pulling in a few more things.
+<!-- So... recently, i started on a new personal project. It began, initially, with a few snippets of JavaScript that I was authoring directly in the brosers WebInspector.  Then I started pulling in a few more things.
 Generally, do project structures happen _organically_ or _intentionally_?
 
-I started pulling in things as i needed thme, and wanted to see how far i could go _wihtout_ any kind of bundler or build step. It turns out, if browser limitations aren't a concern, pretty far.  Now, most browsers understand modules _natively_ and, more interestingly, you can import them via CDN
+I started pulling in things as i needed thme, and wanted to see how far i could go _wihtout_ any kind of bundler or build step. It turns out, if browser limitations aren't a concern, pretty far.  Now, most browsers understand modules _natively_ and, more interestingly, you can import them via CDN -->
 
 Skypack is a tool that allows you to import xxx intor your working wihtout bundling / etc.   And, you can see results instandly.  Its' rpetty neat, and a nice way to quickly spin up a proof of concept, or validate that a thing will work as you envisioned, without having to make a detour into package.jjosn land.  It's a more focused way of working.
 

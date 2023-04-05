@@ -13,7 +13,7 @@ title: Posts
     {%- for post in collections.post | reverse -%}
       {% if 'draft' not in post.data.tags %}
       <li class="mb-6 item">
-        <time class="block text-gray-500 text-sm">{{ post.date | formatDate("MMM D, YYYY") }}</time>
+        <time class="block text-gray-600 text-sm">{{ post.date | formatDate("MMM D, YYYY") }}</time>
         <a href="{{ post.url }}" class="text-lg font-bold">{{ post.data.title }}</a>
         <p>{{ post.data.description }}</p>
       </li>
