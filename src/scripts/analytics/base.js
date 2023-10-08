@@ -4,7 +4,7 @@
  * The tracking ID for your Google Analytics property.
  * https://support.google.com/analytics/answer/1032385
  */
-const TRACKING_ID = 'UA-1033005-5';
+const TRACKING_ID = 'G-71HRD0SNKL';
 
 
 /**
@@ -12,7 +12,7 @@ const TRACKING_ID = 'UA-1033005-5';
  * implementation. This allows you to create a segment or view filter
  * that isolates only data captured with the most recent tracking changes.
  */
-const TRACKING_VERSION = '1';
+const TRACKING_VERSION = '2';
 
 
 /**
