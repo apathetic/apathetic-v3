@@ -4,7 +4,7 @@
  * The tracking ID for your Google Analytics property.
  * https://support.google.com/analytics/answer/1032385
  */
-const TRACKING_ID = 'G-71HRD0SNKL';
+const TRACKING_ID = 'G-NZS4CFE752';
 
 
 /**

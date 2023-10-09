@@ -15,16 +15,16 @@ For a recent personal project, I tried out a few of the newer crop of cloud data
 * [Fauna](https://fauna.com/)
 * [Turso](https://turso.tech/)
 
-Also, given that I was moving betwen a number of databases (MYSQL, Postgres, Sqlite) it seemed like a good idea to minimize friction by leveraging an ORM.  I experimented with
+Also, given that these each leverage a different database under the hood (MYSQL, Postgres, SQLite), it seemed like a good idea to minimize friction when moving between them by leveraging an ORM.  I experimented with
 * [Prisma](https://www.prisma.io/)
 * [Drizzle](https://orm.drizzle.team/)
 
-For this project, I had some very unique data requirements, so my thoughts and feedback will be _unique_ to the issues I'm trying to solve. The items I'm looking for, and evaluating, were
-* a free tier for mucking about. (need approx 2GB)
-* FullText search solution (or pattern, implementation)
+I had some very unique data requirements, so my thoughts and feedback will be _unique_ to the issues I was trying to solve.  Very briefly, the items I'm looking for and evaluating, were
+* a free tier for mucking about (with approx 2GB of storage)
+* a FullText search solution (or pattern, way to implement)
 * can store text documents upwards of 1MB
 
-I'm typing this up more as a memory aid to myself.  There are probably inaccuracies, and things may have changed in the interim.
+Lastly, I'm typing this up mostly as a memory aid to myself.  There are probably inaccuracies, and things may have changed in the interim.
 
 ---
 
@@ -56,7 +56,6 @@ I'm typing this up more as a memory aid to myself.  There are probably inaccurac
 - tooling is limited, very much in its infancy
   - turso CLI is okay though
 - it is noticeably faster than the others on this list
-- queries TBD
 
 ### SUPABASE
 - FULLTEXT search works, but hard to sort by "not-relevancy" (ie createdAt)
@@ -95,8 +94,9 @@ Okay, and for the ORMs:
 - typesafe
   - generates typings for your data (and it works well!)
 - uses the schema to inform data relationships
-  - there appears to be redundancy between foreign keys and this "relations" data, but one is for the schema, the other is for generated typings
+  - there _appears_ to be redundancy between foreign keys and this "relations" data, but one is for the schema, the other is for typings and the query builder
 - still not clear `search` vs `query`
+  - update: `query` sits on search, and uses the generated typings for a more streamlined experience
 
 ### PRISMA
 - really wanted this to work, but
